@@ -12,13 +12,12 @@ import Button from '@mui/material/Button';
 // emotion import 
 import styled from '@emotion/styled';
 // recoil
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil'
-import { isColorNavState, selectMenuState, toggleState } from '@/recoil/atoms'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { isColorNavState, toggleState } from '@/recoil/atoms'
 
 const menu = ['Profile', 'Skill', 'Project', 'Contact']; //constant로 옮기기 MODAL_MENU
 
 function Header() {
-  const setSelectMenu = useSetRecoilState(selectMenuState);
   const isColorNav = useRecoilValue(isColorNavState);
   const [toggle, setToggle] = useRecoilState(toggleState);
 
@@ -46,9 +45,8 @@ function Header() {
   }
 
   const handleSelectMenu = (menu: string) => {
-    setSelectMenu(menu);
-    handleMove(menu);
-    setToggle(!toggle);
+    handleMove();
+    setToggle(false);
   }
 
   const handleToggleMenu = () => {
@@ -74,7 +72,7 @@ function Header() {
       >
         <TypoBox
           variant="h6"
-          onClick={() => { handleMove('Intro') }}>
+          onClick={() => { handleMove() }}>
           ☁️ Portfolio
         </TypoBox>
         <FiMenu
