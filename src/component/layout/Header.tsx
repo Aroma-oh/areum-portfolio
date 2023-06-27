@@ -1,5 +1,5 @@
 // react, hook, icon import 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useScroll } from '@/hooks/useScroll';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
 import { FiMenu } from 'react-icons/fi';
@@ -14,8 +14,8 @@ import styled from '@emotion/styled';
 // recoil
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { isColorNavState, toggleState } from '@/recoil/atoms'
-
-const menu = ['Profile', 'Skill', 'Project', 'Contact']; //constant로 옮기기 MODAL_MENU
+// constant data import 
+import { MENU } from '@/constant/menu';
 
 function Header() {
   const isColorNav = useRecoilValue(isColorNavState);
@@ -31,7 +31,7 @@ function Header() {
   const Menu = ({ sx }: { sx: {} }) => {
     return (
       <MenuBox className="menu-box" sx={sx}>
-        {menu.map((el) => (
+        {MENU.map((el) => (
           <Button
             className="menu-button"
             key={el}
