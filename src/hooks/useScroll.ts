@@ -8,19 +8,22 @@ export const useScroll = () => {
   const setIsColorNav = useSetRecoilState(isColorNavState);
   const setToggle = useSetRecoilState(toggleState);
 
-  const onScroll = () => {
-    const scrollY = window.scrollY;
-    setToggle(false)
+  useEffect(() => {
 
-    if (scrollY > 486) {
-      return setIsColorNav(true);
+    const onScroll = () => {
+
+      const scrollY = window.scrollY;
+      setToggle(false);
+
+      if (scrollY > 486) {
+        return setIsColorNav(true);
+      }
+
+      setIsColorNav(false);
     }
 
-    setIsColorNav(false);
-
-  }
-
-  useEffect(() => {
     window.addEventListener('scroll', onScroll);
+
   }, [])
+
 }
