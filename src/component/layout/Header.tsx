@@ -73,7 +73,7 @@ function Header() {
       >
         <TypoBox
           variant="h6"
-          onClick={() => { handleMove('Profile') }}>
+          onClick={() => { handleMove('Intro') }}>
           ☁️ Portfolio
         </TypoBox>
         <FiMenu
