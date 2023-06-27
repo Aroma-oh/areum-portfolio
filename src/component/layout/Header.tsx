@@ -45,7 +45,7 @@ function Header() {
   }
 
   const handleSelectMenu = (menu: string) => {
-    handleMove();
+    handleMove(menu);
     setToggle(false);
   }
 
@@ -72,7 +72,7 @@ function Header() {
       >
         <TypoBox
           variant="h6"
-          onClick={() => { handleMove() }}>
+          onClick={() => { handleMove('Profile') }}>
           ☁️ Portfolio
         </TypoBox>
         <FiMenu
