@@ -1,6 +1,7 @@
 // react, hook, icon import 
 import { useEffect, useState } from 'react'
 import { useScroll } from '@/hooks/useScroll';
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 import { FiMenu } from 'react-icons/fi';
 // mui import
 import AppBar from '@mui/material/AppBar';
@@ -11,17 +12,24 @@ import Button from '@mui/material/Button';
 // emotion import 
 import styled from '@emotion/styled';
 // recoil
-import { useSetRecoilState, useRecoilValue } from 'recoil'
-import { isColorNavState, selectMenuState } from '@/recoil/atoms'
+import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil'
+import { isColorNavState, selectMenuState, toggleState } from '@/recoil/atoms'
 
-const menu = ['Profile', 'Skill', 'Project', 'Contact'];
+const menu = ['Profile', 'Skill', 'Project', 'Contact']; //constant로 옮기기 MODAL_MENU
 
 function Header() {
   const setSelectMenu = useSetRecoilState(selectMenuState);
   const isColorNav = useRecoilValue(isColorNavState);
-  const { handleMove } = useScroll();
-  const [toggle, setToggle] = useState<boolean | undefined>(false)
 
+  // 스크롤에 따라 background color를 변경하는 훅
+  useScroll();
+
+  const { handleMove } = useMoveToSection();
+
+  const [toggle, setToggle] = useState(false)
+
+  // MUI 컴포넌트 재사용 목적
+  // MUI 컴포넌트에 sx 속성을 props로 전달
   const Menu = ({ sx }: { sx: {} }) => {
     return (
       <MenuBox className="menu-box" sx={sx}>
@@ -50,38 +58,47 @@ function Header() {
 
   useEffect(() => {
     const resizeHandler = () => setToggle(false);
-
     window.addEventListener('resize', resizeHandler)
-    return () => window.removeEventListener('resize', resizeHandler)
   }, [])
 
   return (
     <AppBarBox id='Portfolio'
-      sx={{ backgroundColor: isColorNav ? 'white' : 'rgb(0, 0, 0, 0.08)' }}>
-      <ToolBarBox >
-        <TypoBox variant="h6"
+      sx={{
+        backgroundColor: isColorNav || toggle ? 'white' : 'rgb(0, 0, 0, 0.08)',
+        color: 'black',
+      }}>
+      <Toolbar
+        sx={{
+          justifyContent: 'space-between',
+          margin: '0 24px',
+        }}
+      >
+        <TypoBox
+          variant="h6"
           onClick={() => { handleMove('Intro') }}>
           ☁️ Portfolio
         </TypoBox>
         <FiMenu
           className='menu-icon'
-          onClick={() => handleToggleMenu()}
+          onClick={handleToggleMenu}
         />
         <Menu
-          sx={{ display: { xs: 'none', md: 'flex' } }}
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+          }}
         />
-      </ToolBarBox>
+      </Toolbar>
       <Menu
         sx={{
           display: { xs: toggle ? 'flex' : 'none', md: 'none' },
           flexDirection: { xs: 'column', md: 'row' },
+          pb: '18px',
         }} />
     </AppBarBox>
   );
 }
 
 const AppBarBox = styled(AppBar)`
-  color: rgba(0, 0, 0);
   .menu-icon { 
     font-size: 1.5rem;
     cursor: pointer;
@@ -94,12 +111,6 @@ const AppBarBox = styled(AppBar)`
   }
 `
 
-const ToolBarBox = styled(Toolbar)`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 24px 0 24px;
-`
-
 const MenuBox = styled(Box)`
   .menu-button {
     color: inherit;
@@ -108,11 +119,8 @@ const MenuBox = styled(Box)`
 `;
 
 const TypoBox = styled(Typography)`
-  margin-right: 2px;
   font-weight: 700;
   letter-spacing: 0.3rem;
-  color: inherit;
-  text-decoration: none;
   cursor: pointer;
 
   @media (max-width: 900px) {
