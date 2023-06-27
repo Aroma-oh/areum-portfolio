@@ -8,14 +8,17 @@ import Button from '@mui/material/Button';
 // emotion import 
 import styled from '@emotion/styled';
 // recoil
-import { useRecoilValue } from 'recoil'
-import { isColorNavState } from '@/recoil/atoms'
+import { useSetRecoilState, useRecoilValue } from 'recoil'
+import { isColorNavState, selectMenuState } from '@/recoil/atoms'
+// hook
+import { useScroll } from '@/hooks/useScroll';
 
-const pages = ['Portfolio', 'Skills', 'Projects', 'Contact'];
+const menu = ['Profile', 'Skills', 'Projects', 'Contact'];
 
 function Header() {
-
+  const setSelectMenu = useSetRecoilState(selectMenuState);
   const isColorNav = useRecoilValue(isColorNavState);
+  const { handleMove } = useScroll();
 
   const theme = createTheme({
     components: {
@@ -29,6 +32,11 @@ function Header() {
     },
   });
 
+  const handleSelectMenu = (menu: string) => {
+    setSelectMenu(menu);
+    handleMove(menu)
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <AppBarBox >
@@ -37,12 +45,13 @@ function Header() {
             Portfolio
           </TypoBox>
           <StyledMenuBox className="menu-box"  >
-            {pages.map((page) => (
+            {menu.map((el) => (
               <Button
                 className="menu-button"
-                key={page}
+                key={el}
+                onClick={() => handleSelectMenu(el)}
               >
-                {page}
+                {el}
               </Button>
             ))}
           </StyledMenuBox>
@@ -53,7 +62,6 @@ function Header() {
 }
 
 const AppBarBox = styled(AppBar)`
-  /* background-color: rgba(0, 0, 0, 0); */
   color: rgba(0, 0, 0);
 `
 

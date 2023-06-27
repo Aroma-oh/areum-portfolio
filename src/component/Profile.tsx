@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 import { useScroll } from '@/hooks/useScroll';
+// import { useMoveToSection } from '@/hooks/useMoveToSection';
 
-const sectionIndex = 1;
 
 const Profile = () => {
   const { sectionRef } = useScroll();
+
   return (
-    <ProfileBox ref={sectionRef}>
+    <ProfileBox id='Profile' ref={sectionRef}>
       이름, 이메일, 연락처
     </ProfileBox>
   )
