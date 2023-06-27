@@ -8,10 +8,10 @@ import bgImage from '/public/intro.jpg';
 import Button from '@mui/material/Button';
 
 const Intro = () => {
-  const { sectionRef, handleMove } = useMoveToSection();
+  const { handleMove } = useMoveToSection();
 
   return (
-    <IntroBox id='Intro' ref={sectionRef}>
+    <IntroBox id='Intro' >
       <Image
         src={bgImage}
         alt='배경 이미지 - 노트북이 있는 책상'
