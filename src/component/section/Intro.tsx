@@ -63,6 +63,7 @@ const ContentBox = styled.div`
   h1 {
     font-size: 3rem;
     font-weight: 700;
+    letter-spacing: 0.8rem;
     margin-bottom: 0.8rem;
     color: inherit;
   }
