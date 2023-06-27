@@ -57,12 +57,12 @@ function Header() {
     setToggle(!toggle);
   }
 
-  const handleToggleMenu = (props?: boolean) => {
-    setToggle(props || !toggle)
+  const handleToggleMenu = () => {
+    setToggle(!toggle)
   }
 
   useEffect(() => {
-    const resizeHandler = () => handleToggleMenu(false);
+    const resizeHandler = () => setToggle(false);
 
     window.addEventListener('resize', resizeHandler)
     return () => window.removeEventListener('resize', resizeHandler)
