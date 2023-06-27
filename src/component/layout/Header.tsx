@@ -100,7 +100,12 @@ function Header() {
 const AppBarBox = styled(AppBar)`
   .menu-icon { 
     font-size: 1.5rem;
+    padding: 4px;
     cursor: pointer;
+    :hover {
+      background-color: rgb(255,255,255, 0.2);
+      border-radius: 6px;
+    }
   }
 
   @media (min-width: 900px) {
