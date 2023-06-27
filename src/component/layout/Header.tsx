@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { useScroll } from '@/hooks/useScroll';
 import { FiMenu } from 'react-icons/fi';
 // mui import
-import { createTheme, ThemeProvider } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,18 +21,6 @@ function Header() {
   const isColorNav = useRecoilValue(isColorNavState);
   const { handleMove } = useScroll();
   const [toggle, setToggle] = useState<boolean | undefined>(false)
-
-  const theme = createTheme({
-    components: {
-      MuiAppBar: {
-        styleOverrides: {
-          root: {
-            backgroundColor: isColorNav ? 'white' : 'rgb(0, 0, 0, 0)',
-          },
-        },
-      },
-    },
-  });
 
   const Menu = ({ sx }: { sx: {} }) => {
     return (
@@ -69,34 +56,32 @@ function Header() {
   }, [])
 
   return (
-    <ThemeProvider theme={theme}>
-      <AppBarBox id='Portfolio'>
-        <ToolBarBox >
-          <TypoBox variant="h6"
-            onClick={() => { handleMove('Intro') }}>
-            ☁️ Portfolio
-          </TypoBox>
-          <FiMenu
-            className='menu-icon'
-            onClick={() => handleToggleMenu()}
-          />
-          <Menu
-            sx={{ display: { xs: 'none', md: 'flex' } }}
-          />
-        </ToolBarBox>
+    <AppBarBox id='Portfolio'
+      sx={{ backgroundColor: isColorNav ? 'white' : 'rgb(0, 0, 0, 0.08)' }}>
+      <ToolBarBox >
+        <TypoBox variant="h6"
+          onClick={() => { handleMove('Intro') }}>
+          ☁️ Portfolio
+        </TypoBox>
+        <FiMenu
+          className='menu-icon'
+          onClick={() => handleToggleMenu()}
+        />
         <Menu
-          sx={{
-            display: { xs: toggle ? 'flex' : 'none', md: 'none' },
-            flexDirection: { xs: 'column', md: 'row' },
-          }} />
-      </AppBarBox>
-    </ThemeProvider>
+          sx={{ display: { xs: 'none', md: 'flex' } }}
+        />
+      </ToolBarBox>
+      <Menu
+        sx={{
+          display: { xs: toggle ? 'flex' : 'none', md: 'none' },
+          flexDirection: { xs: 'column', md: 'row' },
+        }} />
+    </AppBarBox>
   );
 }
 
 const AppBarBox = styled(AppBar)`
   color: rgba(0, 0, 0);
-
   .menu-icon { 
     font-size: 1.5rem;
     cursor: pointer;

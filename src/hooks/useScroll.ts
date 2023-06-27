@@ -10,7 +10,7 @@ export const useScroll = () => {
   const onScroll = () => {
     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollY > 440) setIsColorNav(true)
+    if (scrollY > 486) setIsColorNav(true)
     else setIsColorNav(false)
   }
 

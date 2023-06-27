@@ -15,7 +15,7 @@ const Profile = () => {
 
 const ProfileBox = styled.section`
     height: 500px;
-    background-color: #fbd3ed;
+    background-color: #e7f9ff;
 `
 
 export default Profile;

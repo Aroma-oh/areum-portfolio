@@ -1,10 +1,14 @@
+// styled, hook import
 import styled from '@emotion/styled';
 import { useScroll } from '@/hooks/useScroll';
+// Image import
 import Image from "next/image";
 import bgImage from '/public/intro.jpg';
+// MUI import
+import Button from '@mui/material/Button';
 
 const Intro = () => {
-  const { sectionRef } = useScroll();
+  const { sectionRef, handleMove } = useScroll();
 
   return (
     <IntroBox id='Intro' ref={sectionRef}>
@@ -17,31 +21,66 @@ const Intro = () => {
         objectPosition='center'
       />
       <ContentBox>
-        <div className='text'>
-          <h1>오아름</h1>
-          <h4>프론트엔드 포트폴리오</h4>
-        </div>
+        <h1>오아름</h1>
+        <h4>프론트엔드 포트폴리오</h4>
+        <hr />
+        <p>
+          안녕하세요, <br />
+          문제를 즐기는 프론트엔드 개발자입니다. <br />
+          일상에서 마주한 불편함으로 더 나은 사용자 경험을 고민합니다. <br />
+        </p>
+        <Button
+          variant="contained"
+          size='large'
+          sx={{ borderRadius: '21px' }}
+          onClick={() => handleMove('Profile')}
+        > 더 알아보기 👇🏻 </Button>
       </ContentBox>
-      <hr style={{ border: 'solid', width: '50%' }} />
     </IntroBox>
   )
 }
 
 const IntroBox = styled.section`
-  top: -10px;
-  width: 100%;
-  height: 500px;
   position: relative;
+  width: 100%;
+  height: 550px;
 `
 
 const ContentBox = styled.div`
   z-index: 1;
-  .text {
-    position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+
+  color: #363441;
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: inherit;
+  }
+  h4 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  hr {
+    width: 3rem;
+    border: solid 3px #636363;
+    margin-bottom: 2.5rem;
+  }
+  p {
+    font-size: 1.2rem;
     text-align: center;
-    top: 150px;
-    left: 50%;
-    transform: translate(-50%, 0);
+    line-height: 1.5rem;
+    margin-bottom: 3rem;
   }
 `
 
