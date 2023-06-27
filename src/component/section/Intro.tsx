@@ -1,6 +1,6 @@
 // styled, hook import
 import styled from '@emotion/styled';
-import { useScroll } from '@/hooks/useScroll';
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 // Image import
 import Image from "next/image";
 import bgImage from '/public/intro.jpg';
@@ -8,7 +8,7 @@ import bgImage from '/public/intro.jpg';
 import Button from '@mui/material/Button';
 
 const Intro = () => {
-  const { sectionRef, handleMove } = useScroll();
+  const { sectionRef, handleMove } = useMoveToSection();
 
   return (
     <IntroBox id='Intro' ref={sectionRef}>
