@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
+import { useScroll } from '@/hooks/useScroll';
 
 const Intro = () => {
+  const { sectionRef } = useScroll();
+
   return (
-    <IntroBox >
+    <IntroBox id='Intro' ref={sectionRef}>
       아름 포트폴리오
     </IntroBox>
   )

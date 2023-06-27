@@ -1,5 +1,5 @@
 // react, hook, icon import 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useScroll } from '@/hooks/useScroll';
 import { FiMenu } from 'react-icons/fi';
 // mui import
@@ -20,8 +20,8 @@ const menu = ['Profile', 'Skills', 'Projects', 'Contact'];
 function Header() {
   const setSelectMenu = useSetRecoilState(selectMenuState);
   const isColorNav = useRecoilValue(isColorNavState);
-  const { handleMove } = useScroll();
-  const [toggle, setToggle] = useState(false)
+  const { sectionRef, handleMove } = useScroll();
+  const [toggle, setToggle] = useState<boolean | undefined>(false)
 
   const theme = createTheme({
     components: {
@@ -35,7 +35,7 @@ function Header() {
     },
   });
 
-  const Menu = ({ sx }: { sx?: any }) => {
+  const Menu = ({ sx }: { sx: {} }) => {
     return (
       <MenuBox className="menu-box" sx={sx}>
         {menu.map((el) => (
@@ -57,15 +57,23 @@ function Header() {
     setToggle(!toggle);
   }
 
-  const handleToggleMenu = () => {
-    setToggle(!toggle)
+  const handleToggleMenu = (props?: boolean) => {
+    setToggle(props || !toggle)
   }
+
+  useEffect(() => {
+    const resizeHandler = () => handleToggleMenu(false);
+
+    window.addEventListener('resize', resizeHandler)
+    return () => window.removeEventListener('resize', resizeHandler)
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBarBox >
+      <AppBarBox id='Portfolio'>
         <ToolBarBox >
-          <TypoBox variant="h6">
+          <TypoBox variant="h6"
+            onClick={() => { handleMove('Intro') }}>
             Portfolio
           </TypoBox>
           <FiMenu
@@ -120,6 +128,7 @@ const TypoBox = styled(Typography)`
   letter-spacing: 0.3rem;
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 
   @media (max-width: 900px) {
     display: flex;
