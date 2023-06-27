@@ -1,11 +1,9 @@
 import styled from '@emotion/styled';
-import { useMoveToSection } from '@/hooks/useMoveToSection';
 
 const Contact = () => {
-  const { sectionRef } = useMoveToSection();
 
   return (
-    <ContactBox id='Contact' ref={sectionRef}>
+    <ContactBox id='Contact' >
       Contact
     </ContactBox>
   )

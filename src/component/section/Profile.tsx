@@ -1,12 +1,9 @@
 import styled from '@emotion/styled';
-import { useMoveToSection } from '@/hooks/useMoveToSection';
 
 const Profile = () => {
-  const { sectionRef } = useMoveToSection();
-
   return (
     <>
-      <ProfileBox id='Profile' ref={sectionRef}>
+      <ProfileBox id='Profile' >
         Profile
       </ProfileBox>
     </>
