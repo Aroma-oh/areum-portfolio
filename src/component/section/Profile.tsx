@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import { useScroll } from '@/hooks/useScroll';
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 
 const Profile = () => {
-  const { sectionRef } = useScroll();
+  const { sectionRef } = useMoveToSection();
 
   return (
     <>
