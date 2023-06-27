@@ -1,6 +1,5 @@
-// react import
-import { MouseEvent, useState } from 'react';
 // mui import
+import { createTheme, ThemeProvider } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,35 +7,53 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 // emotion import 
 import styled from '@emotion/styled';
+// recoil
+import { useRecoilValue } from 'recoil'
+import { isColorNavState } from '@/recoil/atoms'
 
 const pages = ['Portfolio', 'Skills', 'Projects', 'Contact'];
 
 function Header() {
 
+  const isColorNav = useRecoilValue(isColorNavState);
+
+  const theme = createTheme({
+    components: {
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: isColorNav ? '#ffd000' : 'aqua',
+          },
+        },
+      },
+    },
+  });
+
   return (
-    <AppBarBox >
-      <ToolBarBox >
-        <TypoBox variant="h6">
-          Portfolio
-        </TypoBox>
-        <StyledMenuBox className="menu-box"  >
-          {pages.map((page) => (
-            <Button
-              className="menu-button"
-              key={page}
-            >
-              {page}
-            </Button>
-          ))}
-        </StyledMenuBox>
-      </ToolBarBox>
-    </AppBarBox>
+    <ThemeProvider theme={theme}>
+      <AppBarBox >
+        <ToolBarBox >
+          <TypoBox variant="h6">
+            Portfolio
+          </TypoBox>
+          <StyledMenuBox className="menu-box"  >
+            {pages.map((page) => (
+              <Button
+                className="menu-button"
+                key={page}
+              >
+                {page}
+              </Button>
+            ))}
+          </StyledMenuBox>
+        </ToolBarBox>
+      </AppBarBox>
+    </ThemeProvider>
   );
 }
-export default Header;
 
 const AppBarBox = styled(AppBar)`
-  background-color: rgba(0, 0, 0, 0);
+  /* background-color: rgba(0, 0, 0, 0); */
   color: rgba(0, 0, 0);
 `
 
@@ -72,3 +89,5 @@ const TypoBox = styled(Typography)`
     justify-content: center;
   }
 `
+
+export default Header;
