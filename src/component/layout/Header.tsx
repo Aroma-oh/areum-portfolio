@@ -20,13 +20,12 @@ const menu = ['Profile', 'Skill', 'Project', 'Contact']; //constant로 옮기기
 function Header() {
   const setSelectMenu = useSetRecoilState(selectMenuState);
   const isColorNav = useRecoilValue(isColorNavState);
+  const [toggle, setToggle] = useRecoilState(toggleState);
 
   // 스크롤에 따라 background color를 변경하는 훅
   useScroll();
 
   const { handleMove } = useMoveToSection();
-
-  const [toggle, setToggle] = useState(false)
 
   // MUI 컴포넌트 재사용 목적
   // MUI 컴포넌트에 sx 속성을 props로 전달
