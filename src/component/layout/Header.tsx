@@ -15,12 +15,12 @@ import styled from '@emotion/styled';
 import { useSetRecoilState, useRecoilValue } from 'recoil'
 import { isColorNavState, selectMenuState } from '@/recoil/atoms'
 
-const menu = ['Profile', 'Skills', 'Projects', 'Contact'];
+const menu = ['Profile', 'Skill', 'Project', 'Contact'];
 
 function Header() {
   const setSelectMenu = useSetRecoilState(selectMenuState);
   const isColorNav = useRecoilValue(isColorNavState);
-  const { sectionRef, handleMove } = useScroll();
+  const { handleMove } = useScroll();
   const [toggle, setToggle] = useState<boolean | undefined>(false)
 
   const theme = createTheme({

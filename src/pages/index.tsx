@@ -1,6 +1,10 @@
-import Header from "@/component/Header"
-import Intro from "@/component/Intro"
-import Profile from "@/component/Profile"
+import Header from "@/component/layout/Header"
+import Intro from "@/component/section/Intro"
+import Profile from "@/component/section/Profile"
+import Project from '@/component/section/Project'
+import Skill from '@/component/section/Skill'
+import Contact from '@/component/section/Contact'
+
 
 
 export default function Home() {
@@ -9,6 +13,9 @@ export default function Home() {
       <Header />
       <Intro />
       <Profile />
+      <Skill />
+      <Project />
+      <Contact />
     </>
   )
 }
