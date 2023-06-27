@@ -64,7 +64,7 @@ const ContentBox = styled.div`
     font-size: 3rem;
     font-weight: 700;
     letter-spacing: 0.8rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.9rem;
     color: inherit;
   }
   h4 {

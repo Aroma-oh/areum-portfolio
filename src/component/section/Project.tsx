@@ -1,11 +1,9 @@
 import styled from '@emotion/styled';
-import { useMoveToSection } from '@/hooks/useMoveToSection';
 
 const Project = () => {
-  const { sectionRef } = useMoveToSection();
 
   return (
-    <ProjectBox id='Project' ref={sectionRef}>
+    <ProjectBox id='Project'>
       Project
     </ProjectBox>
   )
