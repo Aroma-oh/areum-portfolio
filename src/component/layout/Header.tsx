@@ -63,6 +63,7 @@ function Header() {
       sx={{
         backgroundColor: isColorNav || toggle ? 'white' : 'rgb(0, 0, 0, 0.08)',
         color: 'black',
+        backdropFilter: 'blur(6px)',
       }}>
       <Toolbar
         sx={{
