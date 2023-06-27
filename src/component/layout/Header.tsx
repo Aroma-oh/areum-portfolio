@@ -120,6 +120,14 @@ const MenuBox = styled(Box)`
     color: inherit;
     margin-top: 2px;
   }
+  @media (min-width: 900px) {
+    .menu-button {
+      :hover {
+      background-color: rgb(255,255,255, 0.2);
+      border-radius: 6px;
+    }
+  }
+}
 `;
 
 const TypoBox = styled(Typography)`
