@@ -5,15 +5,17 @@ const Profile = () => {
   const { sectionRef } = useScroll();
 
   return (
-    <ProfileBox id='Profile' ref={sectionRef}>
-      이름, 이메일, 연락처
-    </ProfileBox>
+    <>
+      <ProfileBox id='Profile' ref={sectionRef}>
+        Profile
+      </ProfileBox>
+    </>
   )
 }
 
 const ProfileBox = styled.section`
-    height: 150vh;
-    background-color: #ffd000;
+    height: 500px;
+    background-color: #fbd3ed;
 `
 
 export default Profile;

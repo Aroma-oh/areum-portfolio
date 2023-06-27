@@ -28,7 +28,7 @@ function Header() {
       MuiAppBar: {
         styleOverrides: {
           root: {
-            backgroundColor: isColorNav ? '#ffd000' : 'aqua',
+            backgroundColor: isColorNav ? 'white' : 'rgb(0, 0, 0, 0)',
           },
         },
       },
@@ -74,7 +74,7 @@ function Header() {
         <ToolBarBox >
           <TypoBox variant="h6"
             onClick={() => { handleMove('Intro') }}>
-            Portfolio
+            ☁️ Portfolio
           </TypoBox>
           <FiMenu
             className='menu-icon'

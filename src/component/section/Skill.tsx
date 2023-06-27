@@ -13,7 +13,7 @@ const Skill = () => {
 
 const SkillBox = styled.section`
     height: 500px;
-    background-color: #ff00b7a1;
+    background-color: white;
 `
 
 export default Skill;
