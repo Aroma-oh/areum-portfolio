@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
-import { useScroll } from '@/hooks/useScroll';
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 
 const Skill = () => {
-  const { sectionRef } = useScroll();
+  const { sectionRef } = useMoveToSection();
 
   return (
     <SkillBox id='Skill' ref={sectionRef}>
