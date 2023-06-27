@@ -9,3 +9,8 @@ export const selectMenuState = atom({
   key: 'selectMenuState',
   default: "",
 });
+
+export const toggleState = atom({
+  key: 'toggleState',
+  default: false,
+});
