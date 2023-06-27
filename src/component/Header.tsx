@@ -1,3 +1,7 @@
+// react, hook, icon import 
+import { useState } from 'react'
+import { useScroll } from '@/hooks/useScroll';
+import { FiMenu } from 'react-icons/fi';
 // mui import
 import { createTheme, ThemeProvider } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
@@ -10,8 +14,6 @@ import styled from '@emotion/styled';
 // recoil
 import { useSetRecoilState, useRecoilValue } from 'recoil'
 import { isColorNavState, selectMenuState } from '@/recoil/atoms'
-// hook
-import { useScroll } from '@/hooks/useScroll';
 
 const menu = ['Profile', 'Skills', 'Projects', 'Contact'];
 
@@ -19,6 +21,7 @@ function Header() {
   const setSelectMenu = useSetRecoilState(selectMenuState);
   const isColorNav = useRecoilValue(isColorNavState);
   const { handleMove } = useScroll();
+  const [toggle, setToggle] = useState(false)
 
   const theme = createTheme({
     components: {
@@ -32,9 +35,30 @@ function Header() {
     },
   });
 
+  const Menu = ({ sx }: { sx?: any }) => {
+    return (
+      <MenuBox className="menu-box" sx={sx}>
+        {menu.map((el) => (
+          <Button
+            className="menu-button"
+            key={el}
+            onClick={() => handleSelectMenu(el)}
+          >
+            {el}
+          </Button>
+        ))}
+      </MenuBox>
+    )
+  }
+
   const handleSelectMenu = (menu: string) => {
     setSelectMenu(menu);
-    handleMove(menu)
+    handleMove(menu);
+    setToggle(!toggle);
+  }
+
+  const handleToggleMenu = () => {
+    setToggle(!toggle)
   }
 
   return (
@@ -44,18 +68,19 @@ function Header() {
           <TypoBox variant="h6">
             Portfolio
           </TypoBox>
-          <StyledMenuBox className="menu-box"  >
-            {menu.map((el) => (
-              <Button
-                className="menu-button"
-                key={el}
-                onClick={() => handleSelectMenu(el)}
-              >
-                {el}
-              </Button>
-            ))}
-          </StyledMenuBox>
+          <FiMenu
+            className='menu-icon'
+            onClick={() => handleToggleMenu()}
+          />
+          <Menu
+            sx={{ display: { xs: 'none', md: 'flex' } }}
+          />
         </ToolBarBox>
+        <Menu
+          sx={{
+            display: { xs: toggle ? 'flex' : 'none', md: 'none' },
+            flexDirection: { xs: 'column', md: 'row' },
+          }} />
       </AppBarBox>
     </ThemeProvider>
   );
@@ -63,6 +88,17 @@ function Header() {
 
 const AppBarBox = styled(AppBar)`
   color: rgba(0, 0, 0);
+
+  .menu-icon { 
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  @media (min-width: 900px) {
+    .menu-icon {
+      display: none;
+    }
+  }
 `
 
 const ToolBarBox = styled(Toolbar)`
@@ -71,16 +107,10 @@ const ToolBarBox = styled(Toolbar)`
   margin: 0 24px 0 24px;
 `
 
-const StyledMenuBox = styled(Box)`
-  display: none;
-
+const MenuBox = styled(Box)`
   .menu-button {
     color: inherit;
     margin-top: 2px;
-  }
-
-  @media (min-width: 900px) {
-    display: flex;
   }
 `;
 

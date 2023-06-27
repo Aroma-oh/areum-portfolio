@@ -12,8 +12,10 @@ export const useScroll = () => {
   const onScroll = () => {
     let targetTop = sectionRef.current?.getBoundingClientRect().y
 
-    if (targetTop && targetTop < 60) setIsColorNav(true)
+    if (targetTop && targetTop < 63.5) setIsColorNav(true)
     else setIsColorNav(false)
+
+    console.log(sectionRef.current?.getBoundingClientRect().y)
   }
 
   useEffect(() => {
