@@ -42,6 +42,13 @@ export const FRONTEND = [
     class: 'bg-styled-component',
     content: 'Styled-component를 사용하여 프로젝트를 만들어 봤어요.'
   },
+  {
+    type: 'front',
+    name: 'MUI',
+    value: 60,
+    class: 'bg-mui',
+    content: 'MUI를 사용하여 프로젝트를 만들어 봤어요.'
+  },
 ]
 
 export const BACKEND = [
