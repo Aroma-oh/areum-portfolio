@@ -57,8 +57,6 @@ const ContentBox = styled.div`
   align-items: center;
   flex-direction: column;
   position: absolute;
-
-  color: #363441;
   
   h1 {
     font-size: 3rem;
