@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { SxProps } from '@mui/system';
+import { Theme } from '@mui/material/styles';
 // emotion import 
 import styled from '@emotion/styled';
 // recoil
@@ -16,6 +18,7 @@ import { useRecoilValue, useRecoilState } from 'recoil'
 import { isColorNavState, toggleState } from '@/recoil/atoms'
 // constant data import 
 import { MENU } from '@/constant/menu';
+import { getDbAllData } from '@/util/firebase';
 
 function Header() {
   const isColorNav = useRecoilValue(isColorNavState);
@@ -28,7 +31,7 @@ function Header() {
 
   // MUI 컴포넌트 재사용 목적
   // MUI 컴포넌트에 sx 속성을 props로 전달
-  const Menu = ({ sx }: { sx: {} }) => {
+  const Menu = ({ sx }: { sx: SxProps<Theme> }) => {
     return (
       <MenuBox className="menu-box" sx={sx}>
         {MENU.map((el) => (
@@ -43,6 +46,10 @@ function Header() {
       </MenuBox>
     )
   }
+  // 파이어베이스 데이터 통신 확인
+  useEffect(() => {
+    getDbAllData('아름').then(res => console.log(res))
+  }, [])
 
   const handleSelectMenu = (menu: string) => {
     handleMove(menu);
