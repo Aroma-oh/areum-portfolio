@@ -11,7 +11,7 @@ export const useMoveToSection = () => {
 
     if (sectionElement && headerHeight) {
       const sectionTop = sectionElement.getBoundingClientRect().top;
-      window.scrollTo({ top: window.pageYOffset + sectionTop - headerHeight, behavior: 'smooth' }); // 네비 높이 구해서 63 대체하기
+      window.scrollTo({ top: window.pageYOffset + sectionTop - headerHeight, behavior: 'smooth' });
     }
 
   };
