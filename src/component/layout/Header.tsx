@@ -17,7 +17,7 @@ import styled from '@emotion/styled';
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { isColorNavState, toggleState } from '@/recoil/atoms'
 // constant data import 
-import { MENU } from '@/constant/menu';
+import { MENU } from '@/constants/menu';
 import { getDbAllData } from '@/util/firebase';
 
 function Header() {
