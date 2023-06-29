@@ -1,0 +1,1 @@
+export const MENU = ['Profile', 'Skill', 'Project', 'Contact'];
