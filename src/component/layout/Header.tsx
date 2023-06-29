@@ -27,7 +27,7 @@ function Header() {
   // 스크롤에 따라 background color를 변경하는 훅
   useScroll();
 
-  const { handleMove } = useMoveToSection();
+  const { handleMove, headerRef } = useMoveToSection();
 
   // MUI 컴포넌트 재사용 목적
   // MUI 컴포넌트에 sx 속성을 props로 전달
@@ -66,7 +66,9 @@ function Header() {
   }, [])
 
   return (
-    <AppBarBox id='Portfolio'
+    <AppBarBox
+      id='Portfolio'
+      ref={headerRef}
       sx={{
         backgroundColor: isColorNav || toggle ? 'white' : 'rgb(0, 0, 0, 0.08)',
         color: 'black',
