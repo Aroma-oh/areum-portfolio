@@ -7,7 +7,6 @@ export const useMoveToSection = () => {
 
     const sectionElement = document.getElementById(sectionId);
     const headerHeight = document.getElementById('Portfolio').offsetHeight
-    console.log(headerHeight)
 
     if (sectionElement && headerHeight) {
       const sectionTop = sectionElement.getBoundingClientRect().top;
