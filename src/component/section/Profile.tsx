@@ -19,15 +19,13 @@ const Profile = () => {
             </CardBox>
           ))}
         </div>
-        <hr />
       </ProfileBox>
     </>
   )
 }
 
 const ProfileBox = styled.section`
-  /* height: 200px; */
-  padding: 7% 2.5%;
+  padding: 7% 2.5% 2.5% 0;
   display: flex;
   flex-direction: column;
 
@@ -62,10 +60,6 @@ const ProfileBox = styled.section`
       align-items: center;
     }
 
-  }
-  hr {
-    width: 100%;
-    border: solid 0.5px #97a8b287;
   }
 `
 
