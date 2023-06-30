@@ -1,6 +1,9 @@
-export interface Skills {
+export type Skills = {
+  stack: string;
   name: string;
   value: number;
-  class: string;
+  className: string;
   content: string;
-}
+};
+
+export type SkillSet = [string, Skills[], () => void];
