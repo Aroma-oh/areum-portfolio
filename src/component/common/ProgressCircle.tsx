@@ -1,33 +1,34 @@
 import styled from '@emotion/styled';
-import { ReactNode } from 'react';
+
+interface ProgressProps {
+  name: string;
+  value: number;
+  className: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  children?: JSX.Element[];
+}
 
 const RADIUS = 54;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-interface ProgressProps {
-  value: number
-  children: ReactNode;
-  className: string;
-  text: string;
-}
-export const ProgressCircle = ({ value, className, text }: ProgressProps) => {
+export const ProgressCircle = ({ value, className, name, onClick }: ProgressProps) => {
 
   return (
     <ProgressBox>
-      <div className='progress-wrap'>
-        <StyledProgress value={value} className={className} text={text}>
+      <div className='progress-wrap' onClick={onClick} >
+        <StyledProgress value={value} className={className} name={name} >
           <circle className='frame' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
           <circle className='bar' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
         </StyledProgress>
-        <strong className='text'>{text}</strong>
+        <strong className='text'>{name}</strong>
       </div>
     </ProgressBox>
   )
 }
 
 const ProgressBox = styled.div`
+  position: relative;
   .progress-wrap {
-    position: relative;
     width: 120px;
     height: 120px;
     transform: rotate(-90deg);
@@ -39,8 +40,9 @@ const ProgressBox = styled.div`
     bottom: 0;
     top: 0;
     text-align: center;
-    color: #888;
-    font-size: 16px;
+    color: #3d3d3d;
+    font-size: 18px;
+    font-weight: 600;
     line-height: 120px;
     transform: rotate(90deg);
 }
@@ -58,7 +60,7 @@ const StyledProgress = styled.svg<ProgressProps> `
     stroke-linecap: round;
     stroke-dashoffset: ${(props) => CIRCUMFERENCE * (1 - props.value / 100)};
     stroke-dasharray: ${CIRCUMFERENCE};
-    animation: progressAnimation 0.5s forwards;
+    animation: progressAnimation 1s forwards;
 
     @keyframes progressAnimation {
     from {
