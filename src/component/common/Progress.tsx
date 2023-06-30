@@ -1,20 +1,25 @@
 import styled from '@emotion/styled';
+import { ReactNode } from 'react';
 
 const RADIUS = 54;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 interface ProgressProps {
   value: number
+  children: ReactNode;
+  className: string;
+  text: string;
 }
-export const ProgressCircle = ({ value }: ProgressProps) => {
+export const ProgressCircle = ({ value, className, text }: ProgressProps) => {
 
   return (
     <ProgressBox>
       <div className='progress-wrap'>
-        <StyledProgress value={value}>
+        <StyledProgress value={value} className={className} text={text}>
           <circle className='frame' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
           <circle className='bar' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
         </StyledProgress>
+        <strong className='text'>{text}</strong>
       </div>
     </ProgressBox>
   )
@@ -25,12 +30,23 @@ const ProgressBox = styled.div`
     position: relative;
     width: 120px;
     height: 120px;
+    transform: rotate(-90deg);
   }
+  .text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+    line-height: 120px;
+    transform: rotate(90deg);
+}
 `
 
 const StyledProgress = styled.svg<ProgressProps> `
-  transform: rotate(-90deg);
-
   .frame {
     fill: transparent;
     stroke: #daecff;
