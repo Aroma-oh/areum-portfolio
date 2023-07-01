@@ -3,20 +3,17 @@ import styled from '@emotion/styled';
 interface ProgressProps {
   name: string;
   value: number;
-  className: string;
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  children?: JSX.Element[];
 }
 
 const RADIUS = 54;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-export const ProgressCircle = ({ value, className, name, onClick }: ProgressProps) => {
+export const ProgressCircle = ({ value, name }: ProgressProps) => {
 
   return (
     <ProgressBox>
-      <div className='progress-wrap' onClick={onClick} >
-        <StyledProgress value={value} className={className} name={name} >
+      <div className='progress-wrap' >
+        <StyledProgress value={value} name={name} >
           <circle className='frame' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
           <circle className='bar' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
         </StyledProgress>
@@ -53,7 +50,6 @@ const StyledProgress = styled.svg<ProgressProps> `
     fill: transparent;
     stroke: #daecff;
   }
-
   .bar {
     fill: transparent;
     stroke: #1876d1;
@@ -62,13 +58,13 @@ const StyledProgress = styled.svg<ProgressProps> `
     stroke-dasharray: ${CIRCUMFERENCE};
     animation: progressAnimation 1s forwards;
 
-    @keyframes progressAnimation {
+  /* @keyframes progressAnimation {
     from {
       stroke-dashoffset: ${CIRCUMFERENCE};
     }
     to {
       stroke-dashoffset: ${({ value }) => CIRCUMFERENCE * (1 - value / 100)};
     }
-  }
+  } */
   }
 `
