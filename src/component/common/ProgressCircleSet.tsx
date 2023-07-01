@@ -3,6 +3,7 @@ import { Skills } from '@/types/skills'
 import { ProgressCircle } from '@/component/common/ProgressCircle'
 
 interface Props {
+  data: Skills[]
   openFront: boolean;
   openBack: boolean;
   openEtc: boolean;
@@ -11,7 +12,7 @@ interface Props {
   handleOffModal: () => void;
 }
 
-export const ProgressCircles = ({ data, openFront, openBack, type, handleOpenModal, handleOffModal }: Props & { data: Skills[] }) => {
+export const ProgressCircles = ({ data, openFront, openBack, type, handleOpenModal, handleOffModal }: Props) => {
   return (
     <>
       {data.map((skill, index2) => (
