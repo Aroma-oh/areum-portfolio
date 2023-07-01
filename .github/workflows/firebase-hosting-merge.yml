@@ -7,26 +7,60 @@ name: Deploy to Firebase Hosting on merge
         branches:
             - main
 jobs:
-    build_and_deploy:
+    encode_files_as_secrets:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - run: |
-                  echo "REACT_APP_API_KEY=${{secrets.API_KEY}}" >> .env
-                  echo "REACT_APP_AUTH_DOMAIN=${{secrets.AUTH_DOMAIN}}" >> .env
-                  echo "REACT_APP_PROJECT_ID=${{secrets.PROJECT_ID}}" >> .env
-                  echo "REACT_APP_STORAGE_BUCKET=${{secrets.STORAGE_BUCKET}}" >> .env
-                  echo "REACT_APP_APP_ID=${{secrets.APP_ID}}" >> .env
-                  echo "REACT_APP_MESSAGING_SENDER_ID=${{secrets.MESSAGING_SENDER_ID}}" >> .env
-                  echo "REACT_APP_YOUR_SERVICE_ID=${{secrets.YOUR_SERVICE_ID}}" >> .env
-                  echo "REACT_APP_YOUR_TEMPLATE_ID=${{secrets.YOUR_TEMPLATE_ID}}" >> .env
-                  echo "REACT_APP_YOUR_PUBLIC_KEY=${{secrets.YOUR_PUBLIC_KEY}}" >> .env
-            - run: cat .env
-            - run: npm install
-            - run: npm ci && npm run build
-            - uses: FirebaseExtended/action-hosting-deploy@v0
-              with:
-                  repoToken: "${{ secrets.GITHUB_TOKEN }}"
-                  firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_DA410 }}"
-                  channelId: live
-                  projectId: portfolio-da410
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            - name: Encode files and store as secrets
+              run: |
+                  CREDENTIALS=$(base64 -w 0 < .firebaserc)
+                  echo "::set-secret name=CREDENTIALS::${CREDENTIALS}"
+
+                  FIREBASE_JSON=$(base64 -w 0 < .firebase.json)
+                  echo "::set-secret name=FIREBASE_JSON::${FIREBASE_JSON}"
+
+                  INDEXES_JSON=$(base64 -w 0 < .firestore.indexes.json)
+                  echo "::set-secret name=INDEXES_JSON::${INDEXES_JSON}"
+
+                  RULES=$(base64 -w 0 < .firestore.rules)
+                  echo "::set-secret name=RULES::${RULES}"
+
+                  STORAGE_RULES=$(base64 -w 0 < .storage.rules)
+                  echo "::set-secret name=STORAGE_RULES::${STORAGE_RULES}"
+        build_and_deploy:
+            runs-on: ubuntu-latest
+            steps:
+                - uses: actions/checkout@v3
+                - run: |
+                      echo "REACT_APP_API_KEY=${{secrets.API_KEY}}" >> .env
+                      echo "REACT_APP_AUTH_DOMAIN=${{secrets.AUTH_DOMAIN}}" >> .env
+                      echo "REACT_APP_PROJECT_ID=${{secrets.PROJECT_ID}}" >> .env
+                      echo "REACT_APP_STORAGE_BUCKET=${{secrets.STORAGE_BUCKET}}" >> .env
+                      echo "REACT_APP_APP_ID=${{secrets.APP_ID}}" >> .env
+                      echo "REACT_APP_MESSAGING_SENDER_ID=${{secrets.MESSAGING_SENDER_ID}}" >> .env
+                      echo "REACT_APP_YOUR_SERVICE_ID=${{secrets.YOUR_SERVICE_ID}}" >> .env
+                      echo "REACT_APP_YOUR_TEMPLATE_ID=${{secrets.YOUR_TEMPLATE_ID}}" >> .env
+                      echo "REACT_APP_YOUR_PUBLIC_KEY=${{secrets.YOUR_PUBLIC_KEY}}" >> .env
+                - run: cat .env
+                - run: npm install
+                - run: npm ci && npm run build
+                - run: |
+                      echo "$FIREBASE_RC" > .firebaserc
+                      echo "$FIREBASE_CONFIG" > .firebase.json
+                      echo "$FIRESTORE_INDEXES" > .firestore.indexes.json
+                      echo "$FIRESTORE_RULES" > .firestore.rules
+                      echo "$STORAGE_RULES" > .storage.rules
+                - env:
+                      FIREBASE_RC: ${{ secrets.FIREBASE_RC }}
+                      FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+                      FIRESTORE_INDEXES: ${{ secrets.FIRESTORE_INDEXES }}
+                      FIRESTORE_RULES: ${{ secrets.FIRESTORE_RULES }}
+                      STORAGE_RULES: ${{ secrets.STORAGE_RULES }}
+                - uses: FirebaseExtended/action-hosting-deploy@v0
+                  with:
+                      repoToken: "${{ secrets.GITHUB_TOKEN }}"
+                      firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_PORTFOLIO_DA410 }}"
+                      channelId: live
+                      projectId: portfolio-da410
