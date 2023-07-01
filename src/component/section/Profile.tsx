@@ -7,13 +7,13 @@ const Profile = () => {
       <ProfileBox id='Profile' >
         <h4>Profile</h4>
         <div className='card-container'>
-          {PROFILE.map((el) => (
-            <CardBox key={el.type}>
+          {PROFILE.map(({ icon, type, content }) => (
+            <CardBox key={type}>
               <div className='content-box'>
-                <div className='icon'>{el.icon}</div>
+                <div className='icon'>{icon}</div>
                 <div className='text-box'>
-                  <p className='type'>{el.type}</p>
-                  <p className='text'>{el.content}</p>
+                  <p className='type'>{type}</p>
+                  <p className='text'>{content}</p>
                 </div>
               </div>
             </CardBox>
@@ -25,7 +25,7 @@ const Profile = () => {
 }
 
 const ProfileBox = styled.section`
-  padding: 7% 2.5% 2.5% 0;
+  padding: 7% 0 2.5% 0;
   display: flex;
   flex-direction: column;
 
@@ -64,7 +64,7 @@ const ProfileBox = styled.section`
 `
 
 const CardBox = styled.div`
-  width: 250px;
+  width: 270px;
   min-width: 200px;
   height: 100px;
   margin: 8px;
