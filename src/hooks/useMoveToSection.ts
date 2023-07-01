@@ -6,11 +6,11 @@ export const useMoveToSection = () => {
   const handleMove = (sectionId: string) => {
 
     const sectionElement = document.getElementById(sectionId);
-    const headerHeight = document.getElementById('Portfolio').offsetHeight
+    const headerHeight = document.getElementById('Header');
 
     if (sectionElement && headerHeight) {
       const sectionTop = sectionElement.getBoundingClientRect().top;
-      window.scrollTo({ top: window.pageYOffset + sectionTop - headerHeight, behavior: 'smooth' });
+      window.scrollTo({ top: window.pageYOffset + sectionTop - headerHeight.offsetHeight, behavior: 'smooth' });
     }
 
   };

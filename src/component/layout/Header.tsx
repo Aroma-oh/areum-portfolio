@@ -67,7 +67,7 @@ function Header() {
 
   return (
     <AppBarBox
-      id='Portfolio'
+      id='Header'
       ref={headerRef}
       sx={{
         backgroundColor: isColorNav || toggle ? 'white' : 'rgb(0, 0, 0, 0.08)',
