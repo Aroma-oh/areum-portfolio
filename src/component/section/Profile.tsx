@@ -78,8 +78,6 @@ const CardBox = styled.div`
   box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
 
   .content-box {
-    /* width: 250px;
-    height: 100px; */
     padding: 26px;
     display: flex;
   }
