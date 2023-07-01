@@ -170,9 +170,9 @@ const MailBox = styled.div`
     font-weight: 500;
   }
   form {
-    width: 80%;
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
   label {
     font-weight: 600;
@@ -196,7 +196,9 @@ const MailBox = styled.div`
     border: solid 1.8px #e2716f;
     box-shadow: 5px 5px #faf3f3, -5px 5px #faf3f3, 5px -5px #faf3f3, -5px -5px #faf3f3;
   }
-  .name, .email, .content {
+  .name, .email, .content, .info {
+    position: relative;
+    width: 40vw;
     display: flex;
     flex-direction: column;
   }
