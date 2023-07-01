@@ -1,4 +1,4 @@
-export type Skills = {
+export type Skill = {
   stack: string;
   name: string;
   value: number;
@@ -6,4 +6,4 @@ export type Skills = {
   content: string;
 };
 
-export type SkillSet = [string, Skills[], () => void];
+export type SkillSet = [string, Skill[], () => void];
