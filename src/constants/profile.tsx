@@ -1,4 +1,4 @@
-import { FaAddressCard, FaPhoneAlt, FaSchool } from 'react-icons/Fa';
+import { FaAddressCard, FaPhoneAlt, FaSchool } from 'react-icons/fa';
 import { MdMarkEmailUnread } from 'react-icons/md';
 
 
