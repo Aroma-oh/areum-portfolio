@@ -14,3 +14,8 @@ export const toggleState = atom({
   key: 'toggleState',
   default: false,
 });
+
+export const headerHeightState = atom({
+  key: 'headerHeightState',
+  default: 0,
+})
