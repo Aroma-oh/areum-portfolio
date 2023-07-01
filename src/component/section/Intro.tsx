@@ -2,7 +2,7 @@
 import styled from '@emotion/styled';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
 // Image import
-import Image from "next/image";
+import Image from "next/legacy/image";
 import bgImage from '/public/intro.jpg';
 // MUI import
 import Button from '@mui/material/Button';
