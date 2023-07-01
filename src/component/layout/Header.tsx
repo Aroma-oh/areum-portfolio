@@ -1,5 +1,5 @@
 // react, hook, icon import 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useScroll } from '@/hooks/useScroll';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
 import { FiMenu } from 'react-icons/fi';
@@ -15,19 +15,28 @@ import { Theme } from '@mui/material/styles';
 import styled from '@emotion/styled';
 // recoil
 import { useRecoilValue, useRecoilState } from 'recoil'
-import { isColorNavState, toggleState } from '@/recoil/atoms'
+import { isColorNavState, toggleState, headerHeightState } from '@/recoil/atoms'
 // constant data import 
 import { MENU } from '@/constants/menu';
 import { getDbAllData } from '@/util/firebase';
 
 function Header() {
   const isColorNav = useRecoilValue(isColorNavState);
+  const [, setHeaderHeight] = useRecoilState(headerHeightState);
   const [toggle, setToggle] = useRecoilState(toggleState);
 
   // 스크롤에 따라 background color를 변경하는 훅
   useScroll();
 
-  const { handleMove, headerRef } = useMoveToSection();
+  // 헤더 높이 저장 
+  const headerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const headerHeight = headerRef.current?.offsetHeight as number;
+    setHeaderHeight(headerHeight)
+  }, [])
+
+  const { handleMove } = useMoveToSection();
 
   // MUI 컴포넌트 재사용 목적
   // MUI 컴포넌트에 sx 속성을 props로 전달
