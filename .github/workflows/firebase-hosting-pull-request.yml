@@ -9,7 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: npm run build
+      - run: |
+                  echo "REACT_APP_API_KEY=${{secrets.API_KEY}}" >> .env
+                  echo "REACT_APP_AUTH_DOMAIN=${{secrets.AUTH_DOMAIN}}" >> .env
+                  echo "REACT_APP_PROJECT_ID=${{secrets.PROJECT_ID}}" >> .env
+                  echo "REACT_APP_STORAGE_BUCKET=${{secrets.STORAGE_BUCKET}}" >> .env
+                  echo "REACT_APP_APP_ID=${{secrets.APP_ID}}" >> .env
+                  echo "REACT_APP_MESSAGING_SENDER_ID=${{secrets.MESSAGING_SENDER_ID}}" >> .env
+                  echo "REACT_APP_YOUR_SERVICE_ID=${{secrets.YOUR_SERVICE_ID}}" >> .env
+                  echo "REACT_APP_YOUR_TEMPLATE_ID=${{secrets.YOUR_TEMPLATE_ID}}" >> .env
+                  echo "REACT_APP_YOUR_PUBLIC_KEY=${{secrets.YOUR_PUBLIC_KEY}}" >> .env
+            - run: cat .env
+            - run: npm install
+      - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
