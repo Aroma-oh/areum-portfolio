@@ -1,19 +1,20 @@
-import { useRef } from 'react';
+import { useRecoilValue } from "recoil";
+import { headerHeightState } from "@/recoil/atoms";
 
 export const useMoveToSection = () => {
-  const headerRef = useRef<HTMLDivElement | null>(null);
+  const headerHeight = useRecoilValue(headerHeightState);
 
   const handleMove = (sectionId: string) => {
 
     const sectionElement = document.getElementById(sectionId);
-    const headerHeight = document.getElementById('Header');
+    const sectionTop = sectionElement?.getBoundingClientRect().top as number;
 
-    if (sectionElement && headerHeight) {
-      const sectionTop = sectionElement.getBoundingClientRect().top;
-      window.scrollTo({ top: window.pageYOffset + sectionTop - headerHeight.offsetHeight, behavior: 'smooth' });
-    }
+    window.scrollTo({
+      top: window.scrollY + sectionTop - headerHeight,
+      behavior: 'smooth'
+    });
 
   };
 
-  return { handleMove, headerRef }
+  return { handleMove }
 }
