@@ -10,19 +10,19 @@ type UseInputReturn = [
   () => void,
 ]
 
-export const useInput = (): UseInputReturn => {
-  const [form, setForm] = useState<Form>({})
+export const useInput = (initialForm: Form): UseInputReturn => {
+  const [form, setForm] = useState<Form>(initialForm)
 
   const onChange = useCallback((
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm((form) => ({ ...form, [name]: value }));
   }, []);
 
   const reset = useCallback(() => {
-    setForm({});
-  }, []);
+    setForm(initialForm);
+  }, [initialForm]);
 
   return [form, onChange, reset];
 }
