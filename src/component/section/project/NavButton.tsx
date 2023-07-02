@@ -13,7 +13,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { ProjectNav } from '@/types/project'
 
 interface Props {
-  navData: ProjectNav[];
+  navData: ProjectNav[] | undefined;
 }
 
 export const NavButton = ({ navData }: Props) => {
@@ -32,13 +32,13 @@ export const NavButton = ({ navData }: Props) => {
       value={selectProjectIndex}
       aria-label="Platform"
     >
-      {navData.map(({ type, name, create }, idx) => (
+      {navData?.map(({ type, name, create }, idx) => (
         <ToggleButton
           onClick={(event) => handleClick(event, idx)}
           key={idx}
           value={idx}
           sx={{
-            width: '400px', height: '120px',
+            width: '20vw', height: '120px',
             borderRadius: '8px'
           }}
         >
@@ -56,7 +56,7 @@ export const NavButton = ({ navData }: Props) => {
 };
 
 const NavButtonBox = styled(ToggleButtonGroup)`
-  width: 50vw;
+  width: 60vw;
   padding-bottom: 2.5%;
   .name {
     font-size: 1.4rem;
