@@ -4,16 +4,20 @@ import styled from '@emotion/styled';
 // recoil import
 import { useRecoilValue } from 'recoil';
 import { isHorizontalState } from '@/recoil/atoms';
+import { selectProject } from '@/recoil/atoms';
 // component import 
 import { ViewMode } from '@/component/section/project/ViewMode';
 import { NavButton } from '@/component/section/project/NavButton';
 import { Carouser } from '@/component/section/project/Carouser';
 import { Content } from '@/component/section/project/Content';
-
+// data
+import { PROJECTS } from '@/constants/project'
 
 
 const Project = () => {
   const isHorizon = useRecoilValue(isHorizontalState);
+  const selectedProject = useRecoilValue(selectProject);
+
 
   return (
     <ProjectBox id='Project'>
@@ -21,10 +25,23 @@ const Project = () => {
       <div className='view-mode'>
         <ViewMode />
       </div>
-      {isHorizon === true ? <NavButton /> : null}
+      {isHorizon === true && <NavButton />}
       <TextBox isHorizon={isHorizon}>
-        <Carouser />
-        <Content />
+        {isHorizon === true
+          ?
+          <>
+            <Carouser data={PROJECTS[selectedProject]} />
+            <Content data={PROJECTS[selectedProject]} />
+          </>
+          :
+          PROJECTS.map((project, idx) => (
+            <div key={idx}>
+              <Carouser data={project} />
+              <Content data={project} />
+            </div>
+          ))
+        }
+
       </TextBox>
 
 
@@ -38,7 +55,7 @@ const Project = () => {
 
         <div> 가로/세로 모드에 따라 flex-direction 다르게 주기</div>
         <div className='content-box'>
-          <div>캐러셀 : Stepper https://mui.com/material-ui/react-stepper/#text-with-carousel-effect</div>
+          <div> 🆗캐러셀 : Stepper https://mui.com/material-ui/react-stepper/#text-with-carousel-effect</div>
           <div>content box</div>
         </div>
       </div> */}
@@ -64,7 +81,6 @@ const ProjectBox = styled.section`
     font-weight: 500;
   }
   .view-mode {
-    /* padding-left: 70vw; */
     margin-bottom: 1rem;
   }
 `
