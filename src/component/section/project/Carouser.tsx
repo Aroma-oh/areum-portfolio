@@ -3,50 +3,35 @@ import styled from '@emotion/styled';
 import Image from 'next/legacy/image';
 // mui import
 import Carousel from 'react-material-ui-carousel';
-// import { ProjectNav, ProjectList, Project } from '@/types/project'
 
-interface ProjectIntro {
-  title: string;
-  content: string[];
-}
-
-interface ProjectInfo {
-  title: string;
-  href?: string;
-  content?: string;
-}
-
-interface Props {
-  data: {
-    nav: {
-      type: string,
-      name: string,
-      create: string,
-      period: number,
-    };
-    image: string[];
+interface ProjectProps {
+  nav: {
+    type: string;
+    name: string;
+    create: string;
+    period: number;
   }
-  navData: {
-    name: string,
-    period: number,
-  };
-  projectData: {
+  project: {
     image: string[],
+    intro: {
+      title: string;
+      content: string[]
+    }[],
+    info: {
+      title: string;
+      href?: string;
+      content?: string;
+    }[],
   }
 }
 
-export const Carouser = ({ data, navData, projectData }: Props) => {
-  const { image } = data;
-  console.log(navData)
-  console.log(projectData)
-  // console.log(navData.name)
-  // console.log(projectData.image)
+export const Carouser = ({ nav, project }: ProjectProps) => {
 
   return (
     <Box id='view-project'>
       <div className='title-box'>
-        <h5> {navData?.name} 프로젝트</h5>
-        <p> 개발기간 : {navData?.period}</p>
+        <h5> {nav.name} 프로젝트</h5>
+        <p> 개발기간 : {nav.period}</p>
       </div>
       <CarouselBox
         navButtonsAlwaysVisible={true}
@@ -57,7 +42,7 @@ export const Carouser = ({ data, navData, projectData }: Props) => {
           height: 'fit-content',
         }}
       >
-        {image.map((el, idx) => (
+        {project.image.map((el, idx) => (
           <div
             className='slide'
             key={idx}
