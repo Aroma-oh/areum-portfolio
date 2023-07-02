@@ -1,17 +1,23 @@
 // styled import
 import styled from '@emotion/styled';
-// type import
-import { ProjectIntro, ProjectInfo } from '@/types/project'
 
 interface Props {
-  data: {
-    intro: ProjectIntro[];
-    info: ProjectInfo[];
+  project: {
+    image: string[],
+    intro: {
+      title: string;
+      content: string[]
+    }[],
+    info: {
+      title: string;
+      href?: string;
+      content?: string;
+    }[],
   }
 }
 
-export const Content = ({ data }: Props) => {
-  const { intro, info } = data;
+export const Content = ({ project }: Props) => {
+  const { intro, info } = project;
 
   return (
     <ContentBox>
@@ -38,7 +44,6 @@ export const Content = ({ data }: Props) => {
       </div>
     </ContentBox>
   )
-
 }
 
 const ContentBox = styled.div`
