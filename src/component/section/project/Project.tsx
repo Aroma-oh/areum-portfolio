@@ -1,28 +1,39 @@
-// styled import 
+// react, styled import 
+import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 // recoil import
 import { useRecoilValue } from 'recoil';
 import { isHorizontalState } from '@/recoil/atoms';
 import { selectProject } from '@/recoil/atoms';
+// react-query import
+import { useQuery } from 'react-query';
 // component import 
 import { ViewMode } from '@/component/section/project/ViewMode';
 import { NavButton } from '@/component/section/project/NavButton';
 import { Carouser } from '@/component/section/project/Carouser';
 import { Content } from '@/component/section/project/Content';
-// type import 
+// firebase, type import 
+import { getDbAllData } from '@/util/firebase';
 import { ProjectNav, ProjectList } from '@/types/project'
 
-interface ProjectProps {
-  ssrData: {
-    nav: ProjectNav[],
-    project: ProjectList[],
-  }[]
-}
 
-const Project = ({ ssrData }: ProjectProps) => {
+interface ProjectData {
+  nav: ProjectNav[],
+  project: ProjectList[],
+}[]
+
+const Project = () => {
+  const { data } = useQuery<ProjectData[], Error>('project', () => getDbAllData<ProjectData>('project'));
+
+  const [projectData, setProjectData] = useState<ProjectData>()
+
+  useEffect(() => {
+    data && setProjectData(data[0])
+  }, data)
+
   const isHorizon = useRecoilValue(isHorizontalState);
   const selectedProject = useRecoilValue(selectProject);
-  const { nav, project } = ssrData[0];
+
 
   return (
     <ProjectBox id='Project'>
@@ -30,13 +41,13 @@ const Project = ({ ssrData }: ProjectProps) => {
       <div className='view-mode'>
         <ViewMode />
       </div>
-      {isHorizon === true && <NavButton navData={nav} />}
+      {isHorizon === true && <NavButton navData={projectData?.nav} />}
       <TextBox>
         {isHorizon === true
           ?
           <>
-            <Carouser nav={nav[selectedProject]} project={project[selectedProject]} />
-            <Content project={project[selectedProject]} />
+            <Carouser nav={projectData?.nav[selectedProject]} project={projectData?.project[selectedProject]} />
+            <Content project={projectData?.project[selectedProject]} />
           </>
           :
           // 세로모드 데이터 전달 방안 고민 필요

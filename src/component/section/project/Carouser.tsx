@@ -10,7 +10,7 @@ interface ProjectProps {
     name: string;
     create: string;
     period: number;
-  }
+  } | undefined;
   project: {
     image: string[],
     intro: {
@@ -22,7 +22,7 @@ interface ProjectProps {
       href?: string;
       content?: string;
     }[],
-  }
+  } | undefined;
 }
 
 export const Carouser = ({ nav, project }: ProjectProps) => {
@@ -30,8 +30,8 @@ export const Carouser = ({ nav, project }: ProjectProps) => {
   return (
     <Box id='view-project'>
       <div className='title-box'>
-        <h5> {nav.name} 프로젝트</h5>
-        <p> 개발기간 : {nav.period}</p>
+        <h5> {nav?.name} 프로젝트</h5>
+        <p> 개발기간 : {nav?.period}</p>
       </div>
       <CarouselBox
         navButtonsAlwaysVisible={true}
@@ -42,7 +42,7 @@ export const Carouser = ({ nav, project }: ProjectProps) => {
           height: 'fit-content',
         }}
       >
-        {project.image.map((el, idx) => (
+        {project?.image.map((el, idx) => (
           <div
             className='slide'
             key={idx}

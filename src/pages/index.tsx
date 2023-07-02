@@ -7,36 +7,31 @@ import Contact from '@/component/section/Contact'
 // firebase import
 import { getDbAllData } from '@/util/firebase';
 // next import 
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import { GetServerSideProps } from 'next'
+// react query
+import { dehydrate, QueryClient } from 'react-query';
 
-export default function Home({ ssrData }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home() {
   return (
     <>
       <Header />
       <Intro />
       <Profile />
       <Skill />
-      <Project ssrData={ssrData} />
+      <Project />
       <Contact />
     </>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const fetchedData = await getDbAllData('project');
-    console.log(fetchedData)
-    return {
-      props: {
-        ssrData: fetchedData,
-      },
-    };
-  } catch (error) {
-    console.error('Failed to fetch data:', error);
-    return {
-      props: {
-        data: [],
-      },
-    };
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('project', () => getDbAllData('project'));
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
   }
 };
