@@ -7,7 +7,7 @@ export const isColorNavState = atom({
 
 export const selectMenuState = atom({
   key: 'selectMenuState',
-  default: "",
+  default: '',
 });
 
 export const toggleState = atom({
@@ -20,7 +20,12 @@ export const headerHeightState = atom({
   default: 0,
 })
 
-export const viewModeState = atom({
-  key: 'viewModeState',
-  default: '10'
+export const isHorizontalState = atom({
+  key: 'isHorizontalState',
+  default: true,
+})
+
+export const selectProject = atom({
+  key: 'selectProject',
+  default: 0,
 })
