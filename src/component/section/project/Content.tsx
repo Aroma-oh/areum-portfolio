@@ -42,8 +42,8 @@ export const Content = ({ data }: Props) => {
 }
 
 const ContentBox = styled.div`
-
   width: 50vw;
+  margin:  auto;
   h5 {
     margin: 2.5rem 0 0.5rem 0;
     font-size: 1.3rem;
