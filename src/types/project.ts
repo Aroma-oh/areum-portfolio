@@ -16,7 +16,11 @@ export interface ProjectInfo {
   content?: string;
 }
 
-export type ProjectList = [ProjectIntro[], ProjectInfo[], string[]];
+export interface ProjectList {
+  image: string[],
+  intro: string[],
+  info: string[]
+}
 
 export interface Project {
   nav: ProjectNav[],
