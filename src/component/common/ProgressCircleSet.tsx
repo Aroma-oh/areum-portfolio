@@ -1,17 +1,18 @@
 import styled from '@emotion/styled';
-import { Skills } from '@/types/skills'
+import { Skill } from '@/types/skills'
 import { ProgressCircle } from '@/component/common/ProgressCircle'
 
 interface Props {
+  data: Skill[]
   openFront: boolean;
   openBack: boolean;
   openEtc: boolean;
   type: string;
-  handleOpenModal: (skill: Skills, stack: string) => void;
+  handleOpenModal: (skill: Skill, stack: string) => void;
   handleOffModal: () => void;
 }
 
-export const ProgressCircles = ({ data, openFront, openBack, type, handleOpenModal, handleOffModal }: Props & { data: Skills[] }) => {
+export const ProgressCircles = ({ data, openFront, openBack, type, handleOpenModal, handleOffModal }: Props) => {
   return (
     <>
       {data.map((skill, index2) => (

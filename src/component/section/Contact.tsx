@@ -48,8 +48,7 @@ const Contact = () => {
       reset()
 
     } catch (error) {
-      console.log(error)
-      reset()
+      //reset()
       setIsMailFailed(true);
     }
   }

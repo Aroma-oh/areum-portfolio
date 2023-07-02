@@ -73,9 +73,9 @@ const Skill = () => {
               {stack[1].map((skill, index2) => (
                 <div key={skill.name}>
                   {/* css 효과를 위해 프,백,기타로 컴포넌트 분리해야함 */}
-                  <SubProgressCircle translation={200} rotation={(openFront ? 52 : openBack ? 180 : 72) * index2} >
+                  {/* <SubProgressCircle translation={200} rotation={(openFront ? 52 : openBack ? 180 : 72) * index2} >
                     <ProgressCircle name={skill.name} value={skill.value} />
-                  </SubProgressCircle>
+                  </SubProgressCircle> */}
                   <div
                     className={`${skill.className} skills`}
                     onMouseEnter={() => handleOpenModal(skill, stack[0])}
