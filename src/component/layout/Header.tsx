@@ -18,7 +18,6 @@ import { useRecoilValue, useRecoilState } from 'recoil'
 import { isColorNavState, toggleState, headerHeightState } from '@/recoil/atoms'
 // constant data import 
 import { MENU } from '@/constants/menu';
-import { getDbAllData } from '@/util/firebase';
 
 function Header() {
   const isColorNav = useRecoilValue(isColorNavState);
@@ -55,10 +54,6 @@ function Header() {
       </MenuBox>
     )
   }
-  // 파이어베이스 데이터 통신 확인
-  useEffect(() => {
-    getDbAllData('아름').then(res => console.log(res))
-  }, [])
 
   const handleSelectMenu = (menu: string) => {
     handleMove(menu);
