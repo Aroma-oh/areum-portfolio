@@ -3,29 +3,8 @@ import styled from '@emotion/styled';
 import Image from 'next/legacy/image';
 // mui import
 import Carousel from 'react-material-ui-carousel';
-// import { ProjectNav, ProjectList, Project } from '@/types/project'
-
-interface ProjectIntro {
-  title: string;
-  content: string[];
-}
-
-interface ProjectInfo {
-  title: string;
-  href?: string;
-  content?: string;
-}
 
 interface Props {
-  data: {
-    nav: {
-      type: string,
-      name: string,
-      create: string,
-      period: number,
-    };
-    image: string[];
-  }
   navData: {
     name: string,
     period: number,
@@ -35,12 +14,7 @@ interface Props {
   }
 }
 
-export const Carouser = ({ data, navData, projectData }: Props) => {
-  const { image } = data;
-  console.log(navData)
-  console.log(projectData)
-  // console.log(navData.name)
-  // console.log(projectData.image)
+export const Carouser = ({ navData, projectData }: Props) => {
 
   return (
     <Box id='view-project'>
@@ -57,7 +31,7 @@ export const Carouser = ({ data, navData, projectData }: Props) => {
           height: 'fit-content',
         }}
       >
-        {image.map((el, idx) => (
+        {projectData?.image.map((el, idx) => (
           <div
             className='slide'
             key={idx}
