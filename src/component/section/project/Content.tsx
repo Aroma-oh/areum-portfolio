@@ -1,14 +1,17 @@
 // styled import
 import styled from '@emotion/styled';
-// recoil import
-import { useRecoilValue } from 'recoil';
-import { selectProject } from '@/recoil/atoms';
-// data
-import { PROJECTS } from '@/constants/project'
+// type
+import { ProjectIntro, ProjectInfo } from '@/types/project'
 
-export const Content = () => {
-  const selectedProject = useRecoilValue(selectProject);
-  const { intro, info } = PROJECTS[selectedProject];
+interface Props {
+  data: {
+    intro: ProjectIntro[];
+    info: ProjectInfo[];
+  }
+}
+
+export const Content = ({ data }: Props) => {
+  const { intro, info } = data;
 
   return (
     <ContentBox>
