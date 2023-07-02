@@ -19,3 +19,8 @@ export const headerHeightState = atom({
   key: 'headerHeightState',
   default: 0,
 })
+
+export const viewModeState = atom({
+  key: 'viewModeState',
+  default: '10'
+})
