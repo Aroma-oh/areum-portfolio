@@ -11,7 +11,7 @@ import { PROJECTS } from '@/constants/project'
 
 export const Carouser = () => {
   const selectedProject = useRecoilValue(selectProject);
-  console.log(selectedProject)
+
   return (
     <CarouselBox
       navButtonsAlwaysVisible={true}
