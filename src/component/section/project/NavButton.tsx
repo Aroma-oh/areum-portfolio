@@ -1,5 +1,7 @@
-// react, styled import
+// react, hook import
 import { MouseEvent } from 'react'
+import { useMoveToSection } from '@/hooks/useMoveToSection';
+// styled import
 import styled from '@emotion/styled';
 // recoil import
 import { useRecoilState } from 'recoil';
@@ -12,8 +14,11 @@ import { PROJECT_NAV } from '@/constants/project'
 
 export const NavButton = () => {
   const [selectProjectIndex, setSelectProjectIndex] = useRecoilState(selectProject);
+  const { handleMove } = useMoveToSection();
+
   const handleClick = (event: MouseEvent<HTMLElement>, projectIndex: number,) => {
     setSelectProjectIndex(projectIndex);
+    handleMove('view-project')
   };
 
   return (
