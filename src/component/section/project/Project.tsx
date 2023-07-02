@@ -1,4 +1,5 @@
 // react, styled import 
+import { useState, useEffect } from 'react'
 import styled from '@emotion/styled';
 // recoil import
 import { useRecoilValue } from 'recoil';
@@ -9,14 +10,35 @@ import { ViewMode } from '@/component/section/project/ViewMode';
 import { NavButton } from '@/component/section/project/NavButton';
 import { Carouser } from '@/component/section/project/Carouser';
 import { Content } from '@/component/section/project/Content';
-// data
+// data, type import
 import { PROJECTS } from '@/constants/project'
-
+import { getDbAllData } from '@/util/firebase';
+import { ProjectNav, ProjectList, Project } from '@/types/project'
 
 const Project = () => {
   const isHorizon = useRecoilValue(isHorizontalState);
   const selectedProject = useRecoilValue(selectProject);
+  const [navData, setNavData] = useState<ProjectNav[]>([]);
+  const [projectData, setProjectData] = useState<ProjectList[]>([]);
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedData1 = await getDbAllData<Project>('project');
+        setNavData(fetchedData1[0].nav);
+        setProjectData(fetchedData1[0].project)
+        console.log(fetchedData1[0].project)
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(navData)
+  console.log(projectData)
 
   return (
     <ProjectBox id='Project'>
@@ -24,18 +46,18 @@ const Project = () => {
       <div className='view-mode'>
         <ViewMode />
       </div>
-      {isHorizon === true && <NavButton />}
+      {isHorizon === true && <NavButton navData={navData} />}
       <TextBox>
         {isHorizon === true
           ?
           <>
-            <Carouser data={PROJECTS[selectedProject]} />
+            <Carouser data={PROJECTS[selectedProject]} navData={navData[selectedProject]} projectData={projectData[selectedProject]} />
             <Content data={PROJECTS[selectedProject]} />
           </>
           :
           PROJECTS.map((project, idx) => (
             <div key={idx}>
-              <Carouser data={project} />
+              {/* <Carouser data={project} /> */}
               <Content data={project} />
             </div>
           ))

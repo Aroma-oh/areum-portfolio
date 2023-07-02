@@ -1,6 +1,6 @@
 // styled import
 import styled from '@emotion/styled';
-// type
+// type import
 import { ProjectIntro, ProjectInfo } from '@/types/project'
 
 interface Props {

@@ -16,5 +16,13 @@ export interface ProjectInfo {
   content?: string;
 }
 
-// 프로젝트 소개, 프로젝트 정보, 프로젝트 이미지 
-export type ProjectList = [ProjectIntro[], ProjectInfo[], string[]]; 
+export interface ProjectList {
+  image: string[],
+  intro: string[],
+  info: string[]
+}
+
+export interface Project {
+  nav: ProjectNav[],
+  project: ProjectList[],
+}

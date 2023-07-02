@@ -1,8 +1,20 @@
 // styled, next import 
 import styled from '@emotion/styled';
 import Image from 'next/legacy/image';
-// Mui
+// mui import
 import Carousel from 'react-material-ui-carousel';
+// import { ProjectNav, ProjectList, Project } from '@/types/project'
+
+interface ProjectIntro {
+  title: string;
+  content: string[];
+}
+
+interface ProjectInfo {
+  title: string;
+  href?: string;
+  content?: string;
+}
 
 interface Props {
   data: {
@@ -14,16 +26,27 @@ interface Props {
     };
     image: string[];
   }
+  navData: {
+    name: string,
+    period: number,
+  };
+  projectData: {
+    image: string[],
+  }
 }
 
-export const Carouser = ({ data }: Props) => {
-  const { nav, image } = data;
+export const Carouser = ({ data, navData, projectData }: Props) => {
+  const { image } = data;
+  console.log(navData)
+  console.log(projectData)
+  // console.log(navData.name)
+  // console.log(projectData.image)
 
   return (
-    <Box >
+    <Box id='view-project'>
       <div className='title-box'>
-        <h5> {nav.name} 프로젝트</h5>
-        <p> 개발기간 : {nav.period}</p>
+        <h5> {navData?.name} 프로젝트</h5>
+        <p> 개발기간 : {navData?.period}</p>
       </div>
       <CarouselBox
         navButtonsAlwaysVisible={true}

@@ -15,10 +15,6 @@ const Skill = () => {
     content: "",
   })
 
-  console.log(`openFront: ${openFront}`)
-  console.log(`openBack: ${openBack}`)
-  console.log(`openEtc: ${openEtc}`)
-
   // 핸들러 관리
   const handleOpenFront = () => {
     setOpenFront(!openFront)

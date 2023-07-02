@@ -39,10 +39,10 @@ const Contact = () => {
 
     try {
       emailjs.sendForm(
-        process.env.REACT_APP_YOUR_SERVICE_ID!,
-        process.env.REACT_APP_YOUR_TEMPLATE_ID!,
+        process.env.NEXT_PUBLIC_YOUR_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_YOUR_TEMPLATE_ID!,
         formRef.current!,
-        process.env.REACT_APP_YOUR_PUBLIC_KEY!,
+        process.env.NEXT_PUBLIC_YOUR_PUBLIC_KEY!,
       )
       setIsMailSent(true);
       reset()
