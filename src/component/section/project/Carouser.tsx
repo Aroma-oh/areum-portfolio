@@ -1,7 +1,7 @@
 // styled, next import 
 import styled from '@emotion/styled';
 import Image from 'next/legacy/image';
-// Mui
+// Mui import
 import Carousel from 'react-material-ui-carousel';
 
 interface Props {
