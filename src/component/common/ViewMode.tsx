@@ -1,5 +1,3 @@
-// react, styled import 
-import { useState } from 'react'
 // mui import
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -16,7 +14,6 @@ export const ViewMode = () => {
   };
 
   return (
-
     <FormControl>
       <Select
         sx={{
@@ -29,6 +26,5 @@ export const ViewMode = () => {
         <MenuItem value={20}>세로 보기</MenuItem>
       </Select>
     </FormControl>
-
   )
 }
