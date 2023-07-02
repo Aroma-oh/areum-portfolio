@@ -4,14 +4,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 // recoil import
 import { useRecoilState } from 'recoil';
-import { viewModeState } from '@/recoil/atoms';
+import { isHorizontalState } from '@/recoil/atoms';
 
 
 export const ViewMode = () => {
-  const [viewMode, setViewMode] = useRecoilState(viewModeState);
-  const handleChange = (event: SelectChangeEvent) => {
-    setViewMode(event.target.value as string);
-  };
+  const [isHorizon, setIsHorizon] = useRecoilState(isHorizontalState);
 
   return (
     <FormControl>
@@ -19,11 +16,10 @@ export const ViewMode = () => {
         sx={{
           width: '150px', height: '45px'
         }}
-        value={viewMode}
-        onChange={handleChange}
+        value={isHorizon ? 'horizon' : 'horizontal'}
       >
-        <MenuItem value={10}>가로 보기</MenuItem>
-        <MenuItem value={20}>세로 보기</MenuItem>
+        <MenuItem value="horizon" onClick={() => setIsHorizon(true)}>가로 보기</MenuItem>
+        <MenuItem value="horizontal" onClick={() => setIsHorizon(false)}>세로 보기</MenuItem>
       </Select>
     </FormControl>
   )
