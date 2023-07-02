@@ -9,16 +9,21 @@ import { selectProject } from '@/recoil/atoms';
 // mui import
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-// data
-import { PROJECT_NAV } from '@/constants/project'
+// data type import
+import { ProjectNav } from '@/types/project'
 
-export const NavButton = () => {
+interface Props {
+  navData: ProjectNav[];
+}
+
+export const NavButton = ({ navData }: Props) => {
+
   const [selectProjectIndex, setSelectProjectIndex] = useRecoilState(selectProject);
   const { handleMove } = useMoveToSection();
 
   const handleClick = (event: MouseEvent<HTMLElement>, projectIndex: number,) => {
     setSelectProjectIndex(projectIndex);
-    handleMove('view-project')
+    handleMove('view-project');
   };
 
   return (
@@ -27,7 +32,7 @@ export const NavButton = () => {
       value={selectProjectIndex}
       aria-label="Platform"
     >
-      {PROJECT_NAV.map(({ type, name, create }, idx) => (
+      {navData.map(({ type, name, create }, idx) => (
         <ToggleButton
           onClick={(event) => handleClick(event, idx)}
           key={idx}
