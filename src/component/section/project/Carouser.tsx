@@ -1,41 +1,47 @@
 // styled, next import 
 import styled from '@emotion/styled';
 import Image from 'next/legacy/image';
-// recoil import
-import { useRecoilValue } from 'recoil';
-import { selectProject } from '@/recoil/atoms';
 // Mui
 import Carousel from 'react-material-ui-carousel';
-// data
-import { PROJECTS } from '@/constants/project'
 
-export const Carouser = () => {
-  const selectedProject = useRecoilValue(selectProject);
+interface Props {
+  data: {
+    nav: object;
+    image: string[];
+  }
+}
+
+export const Carouser = ({ data }: Props) => {
+  const { nav, image } = data;
 
   return (
-    <CarouselBox
-      navButtonsAlwaysVisible={true}
-      interval={3000}
-      animation={"slide"}
-      sx={{
-        width: '60vw',
-        height: 'fit-content',
-      }}
-    >
-      {PROJECTS[selectedProject].image.map((el, idx) => (
-        <div
-          className='slide'
-          key={idx}
-        >
-          <Image
-            src={el}
-            alt=''
-            width={500}
-            height={300}
-          />
-        </div>
-      ))}
-    </CarouselBox>
+    <div>
+      <CarouselBox
+        navButtonsAlwaysVisible={true}
+        interval={3000}
+        animation={"slide"}
+        sx={{
+          width: '60vw',
+          height: 'fit-content',
+        }}
+      >
+        {image.map((el, idx) => (
+          <div
+            className='slide'
+            key={idx}
+          >
+            <Image
+              src={el}
+              alt=''
+              width={500}
+              height={300}
+              unoptimized={false}
+            />
+          </div>
+        ))}
+      </CarouselBox>
+    </div>
+
   )
 }
 
