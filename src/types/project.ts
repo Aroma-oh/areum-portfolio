@@ -18,8 +18,15 @@ export interface ProjectInfo {
 
 export interface ProjectList {
   image: string[],
-  intro: string[],
-  info: string[]
+  intro: {
+    title: string;
+    content: string[]
+  }[],
+  info: {
+    title: string;
+    href?: string;
+    content?: string;
+  }[],
 }
 
 export interface Project {
