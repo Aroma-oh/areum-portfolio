@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
-import { Skills } from '@/types/skills'
+import { Skill } from '@/types/skills'
 import { ProgressCircle } from '@/component/common/ProgressCircle'
 
 interface Props {
-  data: Skills[]
+  data: Skill[]
   openFront: boolean;
   openBack: boolean;
   openEtc: boolean;
   type: string;
-  handleOpenModal: (skill: Skills, stack: string) => void;
+  handleOpenModal: (skill: Skill, stack: string) => void;
   handleOffModal: () => void;
 }
 
