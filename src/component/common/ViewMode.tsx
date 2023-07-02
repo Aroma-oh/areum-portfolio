@@ -4,10 +4,13 @@ import { useState } from 'react'
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+// recoil import
+import { useRecoilState } from 'recoil';
+import { viewModeState } from '@/recoil/atoms';
 
 
 export const ViewMode = () => {
-  const [viewMode, setViewMode] = useState('10');
+  const [viewMode, setViewMode] = useRecoilState(viewModeState);
   const handleChange = (event: SelectChangeEvent) => {
     setViewMode(event.target.value as string);
   };
