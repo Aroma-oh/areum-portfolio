@@ -13,16 +13,15 @@ interface Props {
       href?: string;
       content?: string;
     }[],
-  }
+  } | undefined;
 }
 
 export const Content = ({ project }: Props) => {
-  const { intro, info } = project;
 
   return (
     <ContentBox>
       <div className='intro'>
-        {intro.map(({ title, content }, idx) => (
+        {project?.intro.map(({ title, content }, idx) => (
           <div key={idx}>
             <h5>{title}</h5>
             {content.map((paragraph, idx) => (
@@ -34,7 +33,7 @@ export const Content = ({ project }: Props) => {
         ))}
       </div>
       <div className='info'>
-        {info.map(({ title, href, content }, idx) => (
+        {project?.info.map(({ title, href, content }, idx) => (
           <div key={idx} className='info-box'>
             <h6>{title}</h6>
             {href && <a href={href}>{href}</a>}
