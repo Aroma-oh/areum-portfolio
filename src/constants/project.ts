@@ -16,7 +16,7 @@ export const PROJECTS = [
     info: [
       { title: '배포 링크', href: '준비중' },
       { title: '리포지토리', href: 'https://github.com/Aroma-oh/areum-portfolio' },
-      { title: '구현 기능', content: '반응형 웹, SEO, 이미지 스프라이트, 스크롤 이동, 간편 이메일, 프로그레스바, 캐러셀, 가로/세로 모드, CI/CD' },
+      { title: '구현 기능', content: '반응형 웹, SEO, 이미지 스프라이트, 스크롤 이동, 간편 이메일, 프로그레스바, 가로/세로 모드, CI/CD' },
       { title: '기술 스택', content: 'Next.js, TypeScript, Recoil, React-query, Axios, Styled-Component, MUI' }
     ],
     image: [
