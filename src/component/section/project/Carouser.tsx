@@ -11,7 +11,7 @@ interface ProjectProps {
     create: string;
     period: number;
   }
-  project?: {
+  project: {
     image: string[],
     intro: {
       title: string;
@@ -42,7 +42,7 @@ export const Carouser = ({ nav, project }: ProjectProps) => {
           height: 'fit-content',
         }}
       >
-        {project?.image.map((el, idx) => (
+        {project.image.map((el, idx) => (
           <div
             className='slide'
             key={idx}
