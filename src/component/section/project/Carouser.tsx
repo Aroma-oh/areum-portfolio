@@ -20,7 +20,7 @@ export const Carouser = ({ data }: Props) => {
   const { nav, image } = data;
 
   return (
-    <Box >
+    <Box id='view-project'>
       <div className='title-box'>
         <h5> {nav.name} 프로젝트</h5>
         <p> 개발기간 : {nav.period}</p>
