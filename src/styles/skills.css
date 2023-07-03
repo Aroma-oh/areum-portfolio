@@ -1,101 +1,107 @@
-.bg-next {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -10px -10px;
-}
-
-.bg-node {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -105px -10px;
-}
-
-.bg-postman {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -10px -105px;
-}
-
-.bg-react-query {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -105px -105px;
-}
-
-.bg-react {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -200px -10px;
-}
-
-.bg-recoil {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -200px -105px;
-}
-
-.bg-redux-toolkit {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -10px -200px;
-}
-
-.bg-storybook {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -105px -200px;
-}
-
-.bg-styled-component {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -200px -200px;
-}
-
-.bg-typeScript {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -295px -10px;
-}
-
-.bg-webpack {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -295px -105px;
-}
-
 .bg-aws {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -295px -200px;
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -10px -10px;
 }
 
 .bg-express {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -10px -295px;
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -95px -10px;
 }
 
 .bg-figma {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -105px -295px;
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -10px -95px;
 }
 
 .bg-firebase {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -200px -295px;
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -95px -95px;
 }
 
 .bg-graphql {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -295px -295px;
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -180px -10px;
+}
+
+.bg-next {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -180px -95px;
 }
 
 .bg-mui {
-  width: 75px;
-  height: 75px;
-  background: url("/skills_sprites.png") -390px -10px;
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -10px -180px;
+}
+
+.bg-nginx {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -95px -180px;
+}
+
+.bg-node {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -180px -180px;
+}
+
+.bg-postman {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -265px -10px;
+}
+
+.bg-recoil {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -265px -95px;
+}
+
+.bg-query {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -265px -180px;
+}
+
+.bg-storybook {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -10px -265px;
+}
+
+.bg-react {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -95px -265px;
+}
+
+.bg-redux-toolkit {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -180px -265px;
+}
+
+.bg-webpack {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -265px -265px;
+}
+
+.bg-styled-component {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -350px -10px;
+}
+
+.bg-typeScript {
+  width: 65px;
+  height: 65px;
+  background: url('/skills_sprites.png') -350px -95px;
 }
