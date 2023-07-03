@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 interface ProgressProps {
-  name: string;
+  name?: string;
   value: number;
 }
 
