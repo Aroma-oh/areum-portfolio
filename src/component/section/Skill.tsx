@@ -151,18 +151,16 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
 
   margin: 0 auto;
   width: 80vw;
-  height: ${({ windowWidth, openFront, openBack, openEtc }) =>
-    windowWidth >= 900
-      ? (openFront || openEtc ? "950px" : openBack ? "800px" : "900px")
-      : (openFront || openEtc || openBack ? "1100px" : "750px")};
+  height: ${(props) =>
+    props.openFront || props.openEtc ? "950px" : props.openBack ? "600px" : "280px"};
 
   transition: 1.2s;
   
   .frontend {
-    top: ${({ openFront }) => openFront ? "450px" : "60px"};
-    left: ${({ openFront }) => openFront ? "45%" : "10%"};
-
     position: absolute;
+    left: ${(props) => (props.openFront ? "45%" : "10%")};
+    top: ${(props) => (props.openFront ? "450px" : "60px")};
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -170,18 +168,19 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     transition: 1.2s;
   }
   .backend {
-    top: ${({ openFront }) => openFront ? "450px" : "60px"};
-    right: ${({ openFront }) => openFront ? "55%" : "55%"};
-
     position: absolute;
+    right: ${(props) => (props.openBack ? "55%" : "55%")};
+    top: ${(props) => (props.openBack ? "200px" : "60px")};
+
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 1.2s;
   }
   .etc {
-    top: ${({ openFront }) => openFront ? "450px" : "60px"};
-    right: ${({ openFront }) => openFront ? "55%" : "19%"};
+    position: absolute;
+    right: ${(props) => (props.openEtc ? "45%" : "20%")};
+    top: ${(props) => (props.openEtc ? "450px" : "60px")};
 
     display: flex;
     justify-content: center;
@@ -235,7 +234,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     cursor: pointer;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 900px) {
     display: none
   }
 `
@@ -273,7 +272,7 @@ const StackCardBox = styled.div`
     text-align: center;
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 900px) {
     display: none
   }
 `
