@@ -12,7 +12,6 @@
                   echo "REACT_APP_YOUR_TEMPLATE_ID=${{secrets.YOUR_TEMPLATE_ID}}" >> .env
                   echo "REACT_APP_YOUR_PUBLIC_KEY=${{secrets.YOUR_PUBLIC_KEY}}" >> .env
             - run: cat .env
-            - run: npm install
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
