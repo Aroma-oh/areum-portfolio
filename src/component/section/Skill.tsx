@@ -169,8 +169,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   
   .frontend {
     position: absolute;
-    left: ${(props) => (props.openFront ? "45%" : "15%")};
-    top: ${(props) => (props.openFront ? "400px" : "0px")};
+    left: ${(props) => (props.openFront ? "45%" : "10%")};
+    top: ${(props) => (props.openFront ? "450px" : "60px")};
 
     display: flex;
     justify-content: center;
@@ -180,8 +180,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .backend {
     position: absolute;
-    right: ${(props) => (props.openBack ? "45%" : "50%")};
-    top: ${(props) => (props.openBack ? "300px" : "0px")};
+    right: ${(props) => (props.openBack ? "45%" : "55%")};
+    top: ${(props) => (props.openBack ? "200px" : "60px")};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,8 +189,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .etc {
     position: absolute;
-    right: ${(props) => (props.openEtc ? "45%" : "15%")};
-    top: ${(props) => (props.openEtc ? "400px" : "0px")};
+    right: ${(props) => (props.openEtc ? "45%" : "20%")};
+    top: ${(props) => (props.openEtc ? "450px" : "60px")};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -209,8 +209,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .skills {
     position: absolute;
-    bottom: 12%;
-    left: 12%;
+    bottom: 20%;
+    left: 20%;
     z-index: 4;
   }
 
@@ -228,7 +228,6 @@ const SubProgressCircle = styled.div<SubProgressCircleProps>`
   position: absolute;
   top: 50%;
   left: 50%;
-  transition: opacity 0.5s ease; 
 
   transform: 
     rotate(${(props) => props.rotation}deg)
