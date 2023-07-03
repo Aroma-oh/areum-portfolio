@@ -39,7 +39,7 @@ export const FRONTEND = [
     stack: 'frontend',
     name: 'React-query',
     value: 40,
-    className: 'bg-react-query',
+    className: 'bg-query',
     content: 'React-query 사용하여 캐싱된 데이터를 가져와봤어요.'
   },
   {

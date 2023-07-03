@@ -1,17 +1,17 @@
 .bg-experienced {
   width: 250px;
-  height: 622px;
-  background: url("/positions_sprites.png") -280px -10px;
-}
-
-.bg-backend {
-  width: 250px;
-  height: 303px;
-  background: url("/positions_sprites.png") -550px -10px;
+  height: 594px;
+  background: url('/positions_sprites.png') -280px -10px;
 }
 
 .bg-frontend {
   width: 250px;
-  height: 791px;
-  background: url("/positions_sprites.png") -10px -10px;
+  height: 778px;
+  background: url('/positions_sprites.png') -10px -10px;
+}
+
+.bg-backend {
+  width: 250px;
+  height: 311px;
+  background: url('/positions_sprites.png') -550px -10px;
 }

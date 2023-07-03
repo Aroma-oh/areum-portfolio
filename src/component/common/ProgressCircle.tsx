@@ -25,6 +25,7 @@ export const ProgressCircle = ({ value, name }: ProgressProps) => {
 
 const ProgressBox = styled.div`
   position: relative;
+  
   .progress-wrap {
     width: 120px;
     height: 120px;
@@ -46,6 +47,8 @@ const ProgressBox = styled.div`
 `
 
 const StyledProgress = styled.svg<ProgressProps> `
+  width: 120px;
+  height: 120px;
   .frame {
     fill: transparent;
     stroke: #daecff;
