@@ -100,16 +100,16 @@ const Skill = () => {
             </div>
           ))}
         </ProgressCircleBox>
-        <StackCard>
+        <StackCardBox>
           {skills.map((skill, index) => (
             <div key={index} className='box'>
-              <h6>{skill[0]}</h6>
-              <div className={skill[3]}></div>
+              <h6> 🛠 {skill[0]} 🛠 </h6>
+              <StackCard >
+                <div className={skill[3]}></div>
+              </StackCard>
             </div>
           ))}
-        </StackCard>
-
-
+        </StackCardBox>
       </div>
     </SkillBox>
   )
@@ -159,16 +159,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   transition: 1.2s;
   
   .frontend {
-    ${({ windowWidth, openFront, openBack }) =>
-    windowWidth >= 900
-      ? `
-        left: ${openFront ? "45%" : "10%"};
-        top: ${openFront ? "450px" : "60px"};
-        `
-      : `
-        right: ${openFront ? "58%" : "58%"};
-        top: ${openFront ? "300px" : openBack ? "650px" : "80px"};
-    `};
+    top: ${({ openFront }) => openFront ? "450px" : "60px"};
+    left: ${({ openFront }) => openFront ? "45%" : "10%"};
 
     position: absolute;
     display: flex;
@@ -178,16 +170,9 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     transition: 1.2s;
   }
   .backend {
-    ${({ windowWidth, openFront, openBack }) =>
-    windowWidth >= 900
-      ? `
-        right: ${openBack ? "55%" : "55%"};
-        top: ${openBack ? "450px" : "60px"};
-        `
-      : `
-        right: ${openBack ? "58%" : "58%"};
-        top: ${openBack ? "250px" : openFront ? "700px" : "300px"};
-    `};
+    top: ${({ openFront }) => openFront ? "450px" : "60px"};
+    right: ${({ openFront }) => openFront ? "55%" : "55%"};
+
     position: absolute;
     display: flex;
     justify-content: center;
@@ -195,18 +180,9 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     transition: 1.2s;
   }
   .etc {
-    right: ${(props) => (props.openEtc ? "45%" : "20%")};
-    top: ${(props) => (props.openEtc ? "450px" : "60px")};
-    ${({ windowWidth, openFront, openBack, openEtc }) =>
-    windowWidth >= 900
-      ? `
-        right: ${openEtc ? "55%" : "55%"};
-        top: ${openEtc ? "450px" : "60px"};
-        `
-      : `
-        right: ${openEtc ? "58%" : "58%"};
-        top: ${openEtc ? "700px" : openFront || openBack ? "900px" : "520px"};
-`};
+    top: ${({ openFront }) => openFront ? "450px" : "60px"};
+    right: ${({ openFront }) => openFront ? "55%" : "19%"};
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -275,19 +251,16 @@ const SubProgressCircle = styled.div<SubProgressCircleProps>`
     : `rotate(0deg) translate(0px) rotate(0deg)`};
 `
 
-const StackCard = styled.div`
+const StackCardBox = styled.div`
   position: relative;
   width: 60vw;
   height: fit-content;
-  margin: 2rem auto;
+  margin: 4rem auto;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
+  align-items: center;
 
   .box {
     display: flex;
@@ -297,11 +270,21 @@ const StackCard = styled.div`
 
   h6 {
     font-size: 1.5rem;
-    margin: 1rem;
+    text-align: center;
   }
 
   @media (min-width: 600px) {
     display: none
   }
+`
+
+const StackCard = styled.div`
+  margin: 1rem auto;
+  padding:  2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
+
+
 `
 export default Skill;
