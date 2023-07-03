@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
 import { ProgressCircle } from '@/component/common/ProgressCircle'
 import { SkillSet, OpenModalDataProps, ProgressCircleProps, SubProgressCircleProps } from '@/types/skills'
@@ -47,6 +47,18 @@ const Skill = () => {
     setOpenModal(false);
   }
 
+  // 브라우저 사이즈 관리 코드
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+  }, []);
+
   // 데이터 관리
   const skills: SkillSet[] = [
     ["frontend", FRONTEND, handleOpenFront],
@@ -58,9 +70,9 @@ const Skill = () => {
     <SkillBox id='Skill' >
       <h4>Skill</h4>
       <div className='skill-container'>
-        <ProgressCircleBox openFront={openFront} openBack={openBack} openEtc={openEtc} openModal={openModal}>
+        <ProgressCircleBox windowWidth={windowWidth} openFront={openFront} openBack={openBack} openEtc={openEtc} openModal={openModal}>
           {skills.map((stack, index1) => (
-            <div key={index1} className={stack[0]}>
+            <div key={index1} className={`${stack[0]}`}>
               {stack[1].map((skill, index2) => (
                 <div key={skill.name}>
                   <SubProgressCircle rotation={360 / stack[1].length * index2}
@@ -106,7 +118,7 @@ const SkillBox = styled.section`
     align-self: center;
     font-size: 2rem;
     font-weight: 500;
-  }
+  }  
 `
 
 const Card = styled.div`
@@ -125,19 +137,28 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   align-items: center;
   position: relative;
 
-  width: 80vw;
   margin: 0 auto;
-  
-  height: ${(props) =>
-    props.openFront || props.openEtc ? "950px" : props.openBack ? "600px" : "280px"};
+  width: 80vw;
+  height: ${({ windowWidth, openFront, openBack, openEtc }) =>
+    windowWidth >= 900
+      ? (openFront || openEtc ? "950px" : openBack ? "800px" : "900px")
+      : (openFront || openEtc || openBack ? "1100px" : "750px")};
 
   transition: 1.2s;
   
   .frontend {
-    position: absolute;
-    left: ${(props) => (props.openFront ? "45%" : "10%")};
-    top: ${(props) => (props.openFront ? "450px" : "60px")};
+    ${({ windowWidth, openFront, openBack }) =>
+    windowWidth >= 900
+      ? `
+        left: ${openFront ? "45%" : "10%"};
+        top: ${openFront ? "450px" : "60px"};
+        `
+      : `
+        right: ${openFront ? "58%" : "58%"};
+        top: ${openFront ? "300px" : openBack ? "650px" : "80px"};
+    `};
 
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,22 +166,40 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     transition: 1.2s;
   }
   .backend {
+    ${({ windowWidth, openFront, openBack }) =>
+    windowWidth >= 900
+      ? `
+        right: ${openBack ? "55%" : "55%"};
+        top: ${openBack ? "450px" : "60px"};
+        `
+      : `
+        right: ${openBack ? "58%" : "58%"};
+        top: ${openBack ? "250px" : openFront ? "700px" : "300px"};
+    `};
     position: absolute;
-    right: ${(props) => (props.openBack ? "55%" : "55%")};
-    top: ${(props) => (props.openBack ? "200px" : "60px")};
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 1.2s;
   }
   .etc {
-    position: absolute;
     right: ${(props) => (props.openEtc ? "45%" : "20%")};
     top: ${(props) => (props.openEtc ? "450px" : "60px")};
+    ${({ windowWidth, openFront, openBack, openEtc }) =>
+    windowWidth >= 900
+      ? `
+        right: ${openEtc ? "55%" : "55%"};
+        top: ${openEtc ? "450px" : "60px"};
+        `
+      : `
+        right: ${openEtc ? "58%" : "58%"};
+        top: ${openEtc ? "700px" : openFront || openBack ? "900px" : "520px"};
+`};
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 1.2s;
+    position: absolute;
   }
   .stack-circle {
     background-color: white;
@@ -206,6 +245,10 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     transform: translate(-50%, -50%);
 
     cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    display: none
   }
 `
 
