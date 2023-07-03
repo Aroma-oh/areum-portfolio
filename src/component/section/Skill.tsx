@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
 import { ProgressCircle } from '@/component/common/ProgressCircle'
 import { SkillSet, OpenModalDataProps, ProgressCircleProps, SubProgressCircleProps } from '@/types/skills'
+
+
 const Skill = () => {
 
   // 상태 관리
@@ -61,9 +63,9 @@ const Skill = () => {
 
   // 데이터 관리
   const skills: SkillSet[] = [
-    ["frontend", FRONTEND, handleOpenFront],
-    ["backend", BACKEND, handleOpenBack],
-    ["etc", ETC, handleOpenEtc],
+    ["frontend", FRONTEND, handleOpenFront, 'bg-frontend'],
+    ["backend", BACKEND, handleOpenBack, 'bg-backend'],
+    ["etc", ETC, handleOpenEtc, 'bg-experienced'],
   ];
 
   return (
@@ -98,6 +100,16 @@ const Skill = () => {
             </div>
           ))}
         </ProgressCircleBox>
+        <StackCard>
+          {skills.map((skill, index) => (
+            <div key={index} className='box'>
+              <h6>{skill[0]}</h6>
+              <div className={skill[3]}></div>
+            </div>
+          ))}
+        </StackCard>
+
+
       </div>
     </SkillBox>
   )
@@ -263,4 +275,33 @@ const SubProgressCircle = styled.div<SubProgressCircleProps>`
     : `rotate(0deg) translate(0px) rotate(0deg)`};
 `
 
+const StackCard = styled.div`
+  position: relative;
+  width: 60vw;
+  height: fit-content;
+  margin: 2rem auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h6 {
+    font-size: 1.5rem;
+    margin: 1rem;
+  }
+
+  @media (min-width: 600px) {
+    display: none
+  }
+`
 export default Skill;
