@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 interface ProgressProps {
-  name: string;
+  name?: string;
   value: number;
 }
 
@@ -57,7 +57,7 @@ const StyledProgress = styled.svg<ProgressProps> `
     stroke-dashoffset: ${(props) => CIRCUMFERENCE * (1 - props.value / 100)};
     stroke-dasharray: ${CIRCUMFERENCE};
     animation: progressAnimation 1s forwards;
-
+  }
   /* @keyframes progressAnimation {
     from {
       stroke-dashoffset: ${CIRCUMFERENCE};
@@ -66,5 +66,4 @@ const StyledProgress = styled.svg<ProgressProps> `
       stroke-dashoffset: ${({ value }) => CIRCUMFERENCE * (1 - value / 100)};
     }
   } */
-  }
 `

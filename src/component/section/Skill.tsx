@@ -68,14 +68,37 @@ const Skill = () => {
             <div key={index1} className={stack[0]}>
               {stack[1].map((skill, index2) => (
                 <div key={skill.name}>
-                  {/* css 효과를 위해 프,백,기타로 컴포넌트 분리해야함 */}
-                  {/* <SubProgressCircle translation={200} rotation={(openFront ? 52 : openBack ? 180 : 72) * index2} >
-                    <ProgressCircle name={skill.name} value={skill.value} />
-                  </SubProgressCircle> */}
-                  <div
-                    className={`${skill.className} skills`}
-                    onMouseEnter={() => handleOpenModal(skill, stack[0])}
-                    onMouseLeave={handleOffModal} />
+                  {
+                    skill.stack === 'frontend' &&
+                    <FrontCircle translation={200} rotation={45 * index2} openFront={openFront}>
+                      <ProgressCircle value={skill.value} />
+                      {openFront && <div
+                        className={`${skill.className} skills`}
+                        onMouseEnter={() => handleOpenModal(skill, stack[0])}
+                        onMouseLeave={handleOffModal} />}
+                    </FrontCircle>
+                  }
+                  {
+                    skill.stack === 'backend' &&
+                    <BackCircle translation={200} rotation={60 * index2} openBack={openBack}>
+                      <ProgressCircle value={skill.value} />
+                      {openBack && <div
+                        className={`${skill.className} skills`}
+                        onMouseEnter={() => handleOpenModal(skill, stack[0])}
+                        onMouseLeave={handleOffModal} />}
+                    </BackCircle>
+                  }
+                  {
+                    skill.stack === 'etc' &&
+                    <EtcCircle translation={200} rotation={72 * index2} openEtc={openEtc}>
+                      <ProgressCircle value={skill.value} />
+                      {openEtc && <div
+                        className={`${skill.className} skills`}
+                        onMouseEnter={() => handleOpenModal(skill, stack[0])}
+                        onMouseLeave={handleOffModal} />}
+                    </EtcCircle>
+                  }
+
                 </div>
               ))}
               <div onClick={stack[2]} className='stack-circle'>
@@ -97,7 +120,7 @@ const Skill = () => {
 
 const SkillBox = styled.section`
   position: relative;
-
+  width: 100vw;
   height: fit-content;
   padding: 7% 0 0 0 ;
   display: flex;
@@ -135,7 +158,10 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100%;
+
+  width: 80vw;
+  margin: 0 auto;
+  
   height: ${(props) =>
     props.openFront || props.openEtc ? "950px" : props.openBack ? "600px" : "280px"};
 
@@ -143,8 +169,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   
   .frontend {
     position: absolute;
-    left: ${(props) => (props.openFront ? "45%" : "100px")};
-    top: ${(props) => (props.openFront ? "400px" : "50px")};
+    left: ${(props) => (props.openFront ? "45%" : "10%")};
+    top: ${(props) => (props.openFront ? "450px" : "60px")};
 
     display: flex;
     justify-content: center;
@@ -154,8 +180,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .backend {
     position: absolute;
-    right: ${(props) => (props.openBack ? "45%" : "45%")};
-    top: ${(props) => (props.openBack ? "300px" : "50px")};
+    right: ${(props) => (props.openBack ? "45%" : "55%")};
+    top: ${(props) => (props.openBack ? "200px" : "60px")};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,8 +189,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .etc {
     position: absolute;
-    right: ${(props) => (props.openEtc ? "45%" : "100px")};
-    top: ${(props) => (props.openEtc ? "400px" : "50px")};
+    right: ${(props) => (props.openEtc ? "45%" : "20%")};
+    top: ${(props) => (props.openEtc ? "450px" : "60px")};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,14 +198,20 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .stack-circle {
     position: absolute;
-    top: 10%;
-    left: 10%;
+    top: 12%;
+    left: 12%;
   }
   .modal {
     display: ${(props) => (props.openModal ? "" : "none")};
     position: absolute;
     width: 250px;
     height: 200px;
+  }
+  .skills {
+    position: absolute;
+    bottom: 20%;
+    left: 20%;
+    z-index: 4;
   }
 
   @media (max-width: 900px) {
@@ -196,7 +228,6 @@ const SubProgressCircle = styled.div<SubProgressCircleProps>`
   position: absolute;
   top: 50%;
   left: 50%;
-  transition: opacity 0.5s ease; 
 
   transform: 
     rotate(${(props) => props.rotation}deg)
@@ -208,6 +239,20 @@ const SubProgressCircle = styled.div<SubProgressCircleProps>`
   }
 `;
 
+interface StackProps {
+  openFront?: boolean;
+  openBack?: boolean;
+  openEtc?: boolean;
+}
+const FrontCircle = styled(SubProgressCircle) <StackProps>`
+  transform: ${(props) => !props.openFront && "rotate(0deg) translate(0px) rotate(-0deg)"}
+`
+const BackCircle = styled(SubProgressCircle) <StackProps>`
+  transform: ${(props) => !props.openBack && "rotate(0deg) translate(0px) rotate(-0deg)"}
+`
+const EtcCircle = styled(SubProgressCircle) <StackProps>`
+  transform: ${(props) => !props.openEtc && "rotate(0deg) translate(0px) rotate(-0deg)"}
+`
 
 
 export default Skill;

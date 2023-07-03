@@ -67,14 +67,14 @@ const Project = () => {
 const ProjectBox = styled.section`
   position: relative;
   height: fit-content; 
-  padding: 2.5% 2.5% 2.5% 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   h4 {
-    margin-bottom: 3rem;
+    margin: 3rem;
+    padding-left: 1.5rem;
     align-self: center;
     font-size: 2rem;
     font-weight: 500;
