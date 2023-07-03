@@ -2,8 +2,9 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
 import { ProgressCircle } from '@/component/common/ProgressCircle'
-import { SkillSet } from '@/types/skills'
+import { SkillSet, OpenModalDataProps, ProgressCircleProps, SubProgressCircleProps } from '@/types/skills'
 const Skill = () => {
+
   // 상태 관리
   const [openFront, setOpenFront] = useState(true);
   const [openBack, setOpenBack] = useState(false);
@@ -37,13 +38,7 @@ const Skill = () => {
     setOpenModal(false)
   }
 
-  interface ModalDataProps {
-    stack: string;
-    name: string;
-    content: string;
-  }
-
-  const handleOpenModal = (skills: ModalDataProps, stack: string) => {
+  const handleOpenModal = (skills: OpenModalDataProps, stack: string) => {
     setModalData({ stack, name: skills.name, content: skills.content });
     setOpenModal(true);
   }
@@ -68,37 +63,15 @@ const Skill = () => {
             <div key={index1} className={stack[0]}>
               {stack[1].map((skill, index2) => (
                 <div key={skill.name}>
-                  {
-                    skill.stack === 'frontend' &&
-                    <FrontCircle translation={200} rotation={45 * index2} openFront={openFront}>
-                      <ProgressCircle value={skill.value} />
-                      {openFront && <div
-                        className={`${skill.className} skills`}
-                        onMouseEnter={() => handleOpenModal(skill, stack[0])}
-                        onMouseLeave={handleOffModal} />}
-                    </FrontCircle>
-                  }
-                  {
-                    skill.stack === 'backend' &&
-                    <BackCircle translation={200} rotation={60 * index2} openBack={openBack}>
-                      <ProgressCircle value={skill.value} />
-                      {openBack && <div
-                        className={`${skill.className} skills`}
-                        onMouseEnter={() => handleOpenModal(skill, stack[0])}
-                        onMouseLeave={handleOffModal} />}
-                    </BackCircle>
-                  }
-                  {
-                    skill.stack === 'etc' &&
-                    <EtcCircle translation={200} rotation={72 * index2} openEtc={openEtc}>
-                      <ProgressCircle value={skill.value} />
-                      {openEtc && <div
-                        className={`${skill.className} skills`}
-                        onMouseEnter={() => handleOpenModal(skill, stack[0])}
-                        onMouseLeave={handleOffModal} />}
-                    </EtcCircle>
-                  }
-
+                  <SubProgressCircle rotation={360 / stack[1].length * index2}
+                    isRotate={stack[0] === 'frontend' ? openFront : stack[0] === 'backend' ? openBack : openEtc}
+                  >
+                    <ProgressCircle value={skill.value} />
+                    <div
+                      className={`${skill.className} skills`}
+                      onMouseEnter={() => handleOpenModal(skill, stack[0])}
+                      onMouseLeave={handleOffModal} />
+                  </SubProgressCircle>
                 </div>
               ))}
               <div onClick={stack[2]} className='stack-circle'>
@@ -106,8 +79,8 @@ const Skill = () => {
               </div>
               {modalData.stack === stack[0] && (
                 <Card className='modal'>
-                  <div>{modalData.name}</div>
-                  <div>{modalData.content}</div>
+                  <div className='modal-name'>{modalData.name}</div>
+                  <div className='modal-content'>{modalData.content}</div>
                 </Card>
               )}
             </div>
@@ -118,9 +91,10 @@ const Skill = () => {
   )
 }
 
+
 const SkillBox = styled.section`
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: fit-content;
   padding: 7% 0 0 0 ;
   display: flex;
@@ -144,14 +118,6 @@ const Card = styled.div`
   border-radius: 8px;
   box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
 `
-
-interface ProgressCircleProps {
-  openFront: boolean;
-  openBack: boolean;
-  openEtc: boolean;
-  openModal: boolean;
-
-}
 
 const ProgressCircleBox = styled.div<ProgressCircleProps>`
   display: flex;
@@ -180,7 +146,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .backend {
     position: absolute;
-    right: ${(props) => (props.openBack ? "45%" : "55%")};
+    right: ${(props) => (props.openBack ? "55%" : "55%")};
     top: ${(props) => (props.openBack ? "200px" : "60px")};
     display: flex;
     justify-content: center;
@@ -197,62 +163,61 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     transition: 1.2s;
   }
   .stack-circle {
+    background-color: white;
     position: absolute;
     top: 12%;
     left: 12%;
+    z-index: 10;
+    cursor: pointer;
+    border-radius: 50%;
   }
   .modal {
     display: ${(props) => (props.openModal ? "" : "none")};
     position: absolute;
-    width: 250px;
-    height: 200px;
+    width: 200px;
+    height: 150px;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-17%, -10%);
+
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
+
+    z-index: 10;
+  }
+  .modal-name {
+    width: fit-content;
+    background-color: #c6e3ff;
+    border-radius: 12px;
+    margin: 0 1rem;
+    padding: 0.2rem 0.5rem;
+    font-weight: 600;
+  }
+  .modal-content {
+    margin: 1rem 1.5rem;
+    word-break: keep-all;
   }
   .skills {
     position: absolute;
-    bottom: 20%;
-    left: 20%;
-    z-index: 4;
-  }
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
-  @media (max-width: 900px) {
-    /* display: none; */
+    cursor: pointer;
   }
 `
-
-interface SubProgressCircleProps {
-  translation: number;
-  rotation: number;
-}
 
 const SubProgressCircle = styled.div<SubProgressCircleProps>`
   position: absolute;
   top: 50%;
   left: 50%;
-
+  transition: 1.2s;
   transform: 
-    rotate(${(props) => props.rotation}deg)
-    translate(${(props) => props.translation}px)
-    rotate(-${(props) => props.rotation}deg);
-
-  @media (max-width: 900px) {
-    /* display: none; */
-  }
-`;
-
-interface StackProps {
-  openFront?: boolean;
-  openBack?: boolean;
-  openEtc?: boolean;
-}
-const FrontCircle = styled(SubProgressCircle) <StackProps>`
-  transform: ${(props) => !props.openFront && "rotate(0deg) translate(0px) rotate(-0deg)"}
+  ${({ isRotate, rotation }) => isRotate
+    ? ` rotate(${rotation}deg) translate(200px) rotate(-${rotation}deg)`
+    : `rotate(0deg) translate(0px) rotate(0deg)`};
 `
-const BackCircle = styled(SubProgressCircle) <StackProps>`
-  transform: ${(props) => !props.openBack && "rotate(0deg) translate(0px) rotate(-0deg)"}
-`
-const EtcCircle = styled(SubProgressCircle) <StackProps>`
-  transform: ${(props) => !props.openEtc && "rotate(0deg) translate(0px) rotate(-0deg)"}
-`
-
 
 export default Skill;
