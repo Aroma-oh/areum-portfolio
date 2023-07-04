@@ -24,8 +24,7 @@ export default function Home() {
   )
 }
 
-
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetServerSideProps = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery('project', () => getDbAllData('project'));
