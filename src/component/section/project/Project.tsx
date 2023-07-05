@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 // recoil import
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { isHorizontalState } from '@/recoil/atoms';
 import { selectProject } from '@/recoil/atoms';
 // react-query import
@@ -18,16 +18,32 @@ import { ProjectType } from '@/types/project'
 
 
 const Project = () => {
+  const selectedProject = useRecoilValue(selectProject);
+
+  // 데이터 관리를 위한 코드
   const { data, isError } = useQuery<ProjectType[]>('project', () => getDbAllData<ProjectType>('project'));
 
   const [projectData, setProjectData] = useState<ProjectType>();
 
   useEffect(() => {
-    data && setProjectData(data[0])
+    data && setProjectData(data[0]);
   }, [data]);
 
-  const isHorizon = useRecoilValue(isHorizontalState);
-  const selectedProject = useRecoilValue(selectProject);
+  // 반응형을 위한 코드
+  const [isHorizon, setIsHorizon] = useRecoilState(isHorizontalState);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+  }, [windowWidth]);
+
+  useEffect(() => {
+    setIsHorizon(windowWidth < 600 ? false : true);
+  })
 
   if (isError) return <div>잠시 후 다시 시도해주세요.</div>; // 스켈레톤으로 변경 예정
 
