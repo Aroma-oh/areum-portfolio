@@ -32,19 +32,10 @@ const Project = () => {
 
   // 반응형을 위한 코드
   const [isHorizon, setIsHorizon] = useRecoilState(isHorizontalState);
-  const [windowWidth, setWindowWidth] = useState(1024);
 
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-  }, [windowWidth]);
-
-  useEffect(() => {
-    setIsHorizon(windowWidth > 600 ? true : false);
-  }, [windowWidth]);
+    setIsHorizon(window.innerWidth > 600 ? true : false);
+  }, [window.innerWidth]);
 
   if (isError) return (
     <LoadingBox >
