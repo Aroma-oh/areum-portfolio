@@ -1,7 +1,11 @@
+// styled, react import 
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
+// data import 
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
+// component import 
 import { ProgressCircle } from '@/component/section/skill/ProgressCircle'
+// type import 
 import { SkillSet, OpenModalDataProps, ProgressCircleProps, SubProgressCircleProps } from '@/types/skills'
 
 
