@@ -1,3 +1,5 @@
+// styled import 
+import styled from '@emotion/styled';
 // react, hook, icon import 
 import { useEffect, useRef } from 'react'
 import { useScroll } from '@/hooks/useScroll';
@@ -10,8 +12,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { SxProps } from '@mui/system';
-// styled import 
-import styled from '@emotion/styled';
 // recoil
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { isColorNavState, toggleState, headerHeightState } from '@/recoil/atoms'
