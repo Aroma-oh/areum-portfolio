@@ -1,6 +1,7 @@
-// react, styled import 
-import { useEffect, useState } from 'react';
+// styled, react import 
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
+import ReactLoading from 'react-loading';
 // recoil import
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { isHorizontalState } from '@/recoil/atoms';
@@ -45,7 +46,11 @@ const Project = () => {
     setIsHorizon(windowWidth < 600 ? false : true);
   })
 
-  if (isError) return <div>잠시 후 다시 시도해주세요.</div>; // 스켈레톤으로 변경 예정
+  if (isError) return (
+    <LoadingBox >
+      <ReactLoading type='bubbles' color='#1876d1' height='10vh' width='10vw' />
+    </LoadingBox>
+  )
 
   return (
     <ProjectBox id='Project'>
@@ -74,9 +79,19 @@ const Project = () => {
   )
 }
 
+const LoadingBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  height: 400px;
+  width: 100%;
+`
+
 const ProjectBox = styled.section`
   position: relative;
   height: fit-content; 
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
