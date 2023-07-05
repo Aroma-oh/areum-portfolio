@@ -7,11 +7,13 @@ import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
 import { ProgressCircle } from '@/component/section/skill/ProgressCircle'
 // type import 
 import { SkillSet, OpenModalDataProps, ProgressCircleProps, SubProgressCircleProps } from '@/types/skills'
-
+// custom hook import 
+import { useMoveToSection } from '@/hooks/useMoveToSection'
 
 const Skill = () => {
 
   // 상태 관리
+  const { handleMove } = useMoveToSection();
   const [openFront, setOpenFront] = useState(true);
   const [openBack, setOpenBack] = useState(false);
   const [openEtc, setOpenEtc] = useState(false);
@@ -53,6 +55,12 @@ const Skill = () => {
     setOpenModal(false);
   }
 
+  const handleMoveScroll = () => {
+    if (openFront || openBack || openEtc) {
+      handleMove('skill-container')
+    }
+  }
+
   // 브라우저 사이즈 관리 코드
   const [windowWidth, setWindowWidth] = useState(0);
 
@@ -75,7 +83,7 @@ const Skill = () => {
   return (
     <SkillBox id='Skill' >
       <h4>Skill</h4>
-      <div className='skill-container'>
+      <div className='skill-container' id='skill-container'>
         <ProgressCircleBox windowWidth={windowWidth} openFront={openFront} openBack={openBack} openEtc={openEtc} openModal={openModal}>
           {skills.map((stack, index1) => (
             <div key={index1} className={`${stack[0]}`}>
@@ -92,7 +100,7 @@ const Skill = () => {
                   </SubProgressCircle>
                 </div>
               ))}
-              <div onClick={stack[2]} className='stack-circle'>
+              <div onClick={() => { stack[2](); handleMoveScroll(); }} className='stack-circle'>
                 <ProgressCircle name={stack[0]} value={100} />
               </div>
               {modalData.stack === stack[0] && (

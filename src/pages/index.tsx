@@ -1,3 +1,4 @@
+// component import 
 import Header from "@/component/layout/Header"
 import Intro from "@/component/section/Intro"
 import Profile from "@/component/section/Profile"
@@ -9,12 +10,18 @@ import Footer from '@/component/layout/Footer'
 import { getDbAllData } from '@/util/firebase';
 // next import 
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 // react query
 import { dehydrate, QueryClient } from 'react-query';
 
 export default function Home() {
   return (
     <>
+      <div>
+        <Head>
+          <title>프론트엔드 오아름 - 포트폴리오</title>
+        </Head>
+      </div>
       <Header />
       <Intro />
       <Profile />

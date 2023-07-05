@@ -57,6 +57,9 @@ const ContentBox = styled.div`
   align-items: center;
   flex-direction: column;
   position: absolute;
+
+  word-break: keep-all;
+
   
   h1 {
     font-size: 3rem;
@@ -69,6 +72,7 @@ const ContentBox = styled.div`
     font-size: 2rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
+    text-align: center;
   }
   hr {
     width: 3rem;
@@ -79,7 +83,8 @@ const ContentBox = styled.div`
     font-size: 1.2rem;
     text-align: center;
     line-height: 1.5rem;
-    margin-bottom: 3rem;
+    margin: 0 1rem 3rem 1rem;
+    word-break: keep-all;
   }
 `
 

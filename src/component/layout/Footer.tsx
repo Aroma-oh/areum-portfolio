@@ -26,6 +26,7 @@ function Footer() {
 
 const FooterBox = styled.section`
   height: 150px;
+  margin: 0 2rem;
 
   display: flex;
   flex-direction: column;
