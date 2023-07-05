@@ -288,6 +288,5 @@ const StackCard = styled.div`
   border-radius: 8px;
   box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
 
-
 `
 export default Skill;
