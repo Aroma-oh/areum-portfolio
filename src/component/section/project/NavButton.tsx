@@ -10,18 +10,18 @@ import { selectProject } from '@/recoil/atoms';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 // data type import
-import { ProjectNav } from '@/types/project'
+import { ProjectList } from '@/types/project'
 
 interface Props {
-  navData: ProjectNav[] | undefined;
-}
+  project: ProjectList[] | undefined;
+};
 
-export const NavButton = ({ navData }: Props) => {
+export const NavButton = ({ project }: Props) => {
 
   const [selectProjectIndex, setSelectProjectIndex] = useRecoilState(selectProject);
   const { handleMove } = useMoveToSection();
 
-  const handleClick = (event: MouseEvent<HTMLElement>, projectIndex: number,) => {
+  const handleClick = (projectIndex: number,) => {
     setSelectProjectIndex(projectIndex);
     handleMove('view-project');
   };
@@ -32,9 +32,9 @@ export const NavButton = ({ navData }: Props) => {
       value={selectProjectIndex}
       aria-label="Platform"
     >
-      {navData?.map(({ type, name, create }, idx) => (
+      {project?.map((el, idx) => (
         <ToggleButton
-          onClick={(event) => handleClick(event, idx)}
+          onClick={() => handleClick(idx)}
           key={idx}
           value={idx}
           sx={{
@@ -44,9 +44,9 @@ export const NavButton = ({ navData }: Props) => {
         >
           {
             <div>
-              <div>{type}</div>
-              <div className='name'>{name}</div>
-              <div>- {create} -</div>
+              <div>{el.nav.type}</div>
+              <div className='name'>{el.nav.name}</div>
+              <div>- {el.nav.create} -</div>
             </div>
           }
         </ToggleButton>
@@ -60,6 +60,11 @@ const NavButtonBox = styled(ToggleButtonGroup)`
   padding-bottom: 2.5%;
   .name {
     font-size: 1.4rem;
+  }
+  @media(max-width: 750px) {
+    .name {
+      font-size: 1.2rem;
+    }
   }
 `
 
