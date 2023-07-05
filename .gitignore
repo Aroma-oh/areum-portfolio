@@ -8,6 +8,11 @@
 # env
 .env
 
+#firebase
+.firebaserc
+firestore.indexes.json
+firestore.rules
+
 # testing
 /coverage
 

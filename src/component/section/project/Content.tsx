@@ -1,23 +1,12 @@
 // styled import
 import styled from '@emotion/styled';
+import { ProjectList } from '@/types/project'
 
 interface Props {
-  project: {
-    image: string[],
-    intro: {
-      title: string;
-      content: string[]
-    }[],
-    info: {
-      title: string;
-      href?: string;
-      content?: string;
-    }[],
-  } | undefined;
-}
+  project: ProjectList | undefined;
+}[]
 
 export const Content = ({ project }: Props) => {
-
   return (
     <ContentBox>
       <div className='intro'>
@@ -36,7 +25,7 @@ export const Content = ({ project }: Props) => {
         {project?.info.map(({ title, href, content }, idx) => (
           <div key={idx} className='info-box'>
             <h6>{title}</h6>
-            {href && <a href={href}>{href}</a>}
+            {href && <a href={href} target="_blank">{href}</a>}
             <div>{content}</div>
           </div>
         ))}
@@ -80,5 +69,16 @@ const ContentBox = styled.div`
     display: flex;
     height: fit-content;
     margin: 1rem 0;
+  }
+
+  @media (max-width: 900px) {
+    width: 70vw;
+    .info-box {
+      flex-direction: column;
+    }
+    h6 {
+      margin: 0.5rem 0;
+      width: 100%;
+    }
   }
 `

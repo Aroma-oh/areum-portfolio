@@ -1,8 +1,9 @@
-// react, styled import 
-import { useEffect, useState } from 'react';
+// styled, react import 
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
+import ReactLoading from 'react-loading';
 // recoil import
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { isHorizontalState } from '@/recoil/atoms';
 import { selectProject } from '@/recoil/atoms';
 // react-query import
@@ -14,26 +15,42 @@ import { Carouser } from '@/component/section/project/Carouser';
 import { Content } from '@/component/section/project/Content';
 // firebase, type import 
 import { getDbAllData } from '@/util/firebase';
-import { ProjectNav, ProjectList } from '@/types/project'
+import { ProjectType } from '@/types/project'
 
-
-interface ProjectData {
-  nav: ProjectNav[],
-  project: ProjectList[],
-}[]
 
 const Project = () => {
-  const { data } = useQuery<ProjectData[], Error>('project', () => getDbAllData<ProjectData>('project'));
-
-  const [projectData, setProjectData] = useState<ProjectData>()
-
-  useEffect(() => {
-    data && setProjectData(data[0])
-  }, data)
-
-  const isHorizon = useRecoilValue(isHorizontalState);
   const selectedProject = useRecoilValue(selectProject);
 
+  // 데이터 관리를 위한 코드
+  const { data, isError } = useQuery<ProjectType[]>('project', () => getDbAllData<ProjectType>('project'));
+
+  const [projectData, setProjectData] = useState<ProjectType>();
+
+  useEffect(() => {
+    data && setProjectData(data[0]);
+  }, [data]);
+
+  // 반응형을 위한 코드
+  const [isHorizon, setIsHorizon] = useRecoilState(isHorizontalState);
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+  }, [windowWidth]);
+
+  useEffect(() => {
+    setIsHorizon(windowWidth < 600 ? false : true);
+  })
+
+  if (isError) return (
+    <LoadingBox >
+      <ReactLoading type='bubbles' color='#1876d1' height='10vh' width='10vw' />
+    </LoadingBox>
+  )
 
   return (
     <ProjectBox id='Project'>
@@ -41,40 +58,48 @@ const Project = () => {
       <div className='view-mode'>
         <ViewMode />
       </div>
-      {isHorizon === true && <NavButton navData={projectData?.nav} />}
+      {isHorizon && <NavButton project={projectData?.project} />}
       <TextBox>
-        {isHorizon === true
+        {isHorizon
           ?
           <>
-            <Carouser nav={projectData?.nav[selectedProject]} project={projectData?.project[selectedProject]} />
+            <Carouser project={projectData?.project[selectedProject]} />
             <Content project={projectData?.project[selectedProject]} />
           </>
           :
-          // 세로모드 데이터 전달 방안 고민 필요
-          // nav.map((el, idx) => (
-          //   <div key={idx}>
-          //     <Carouser nav={el[idx]} />
-          //     <Content ssrData={ssrData} />
-          //   </div>
-          // ))
-          null
+          projectData?.project.map((el, idx) => (
+            <div key={idx}>
+              <Carouser project={el} />
+              <Content project={el} />
+            </div>
+          ))
         }
       </TextBox>
     </ProjectBox>
   )
 }
 
+const LoadingBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  height: 400px;
+  width: 100%;
+`
+
 const ProjectBox = styled.section`
   position: relative;
   height: fit-content; 
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-left: 1.5rem;
 
   h4 {
     margin: 3rem;
-    padding-left: 1.5rem;
     align-self: center;
     font-size: 2rem;
     font-weight: 500;

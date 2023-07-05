@@ -4,11 +4,14 @@ const nextConfig = {
 
   images: {
     domains: ['firebasestorage.googleapis.com'],
+    unoptimized: true,
   },
 
   experimental: {
     forceSwcTransforms: true, // 컴파일러 속도 향상
   },
+
+  // output: 'export',
 }
 
 module.exports = nextConfig

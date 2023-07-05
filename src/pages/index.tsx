@@ -7,7 +7,7 @@ import Contact from '@/component/section/Contact'
 // firebase import
 import { getDbAllData } from '@/util/firebase';
 // next import 
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 // react query
 import { dehydrate, QueryClient } from 'react-query';
 
@@ -25,7 +25,7 @@ export default function Home() {
 }
 
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery('project', () => getDbAllData('project'));
