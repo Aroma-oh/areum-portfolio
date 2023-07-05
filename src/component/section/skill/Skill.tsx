@@ -1,7 +1,11 @@
+// styled, react import 
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
+// data import 
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
+// component import 
 import { ProgressCircle } from '@/component/section/skill/ProgressCircle'
+// type import 
 import { SkillSet, OpenModalDataProps, ProgressCircleProps, SubProgressCircleProps } from '@/types/skills'
 
 
@@ -283,7 +287,6 @@ const StackCard = styled.div`
   background-color: white;
   border-radius: 8px;
   box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
-
 
 `
 export default Skill;

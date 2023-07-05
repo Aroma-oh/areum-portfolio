@@ -48,6 +48,9 @@ export const Carouser = ({ project }: Props) => {
 }
 
 const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .title-box {
     text-align: center;
     margin: 2rem 0 3.5rem 0;

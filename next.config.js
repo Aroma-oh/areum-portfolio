@@ -10,8 +10,6 @@ const nextConfig = {
   experimental: {
     forceSwcTransforms: true, // 컴파일러 속도 향상
   },
-
-  // output: 'export',
 }
 
 module.exports = nextConfig

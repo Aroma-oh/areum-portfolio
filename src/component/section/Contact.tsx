@@ -30,7 +30,7 @@ const Contact = () => {
     }, 3000);
   }, [isMailSent, isMailFailed, isValidEmail]);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!emailValidation.test(form.email)) {
@@ -38,7 +38,7 @@ const Contact = () => {
     }
 
     try {
-      emailjs.sendForm(
+      await emailjs.sendForm(
         process.env.NEXT_PUBLIC_YOUR_SERVICE_ID!,
         process.env.NEXT_PUBLIC_YOUR_TEMPLATE_ID!,
         formRef.current!,
@@ -46,9 +46,7 @@ const Contact = () => {
       )
       setIsMailSent(true);
       reset()
-
     } catch (error) {
-      //reset()
       setIsMailFailed(true);
     }
   }
@@ -203,6 +201,13 @@ const MailBox = styled.div`
   }
   .button {
     margin: 2rem 8rem;
+  }
+
+  @media(max-width: 600px) {
+    width: 80%;
+    .name, .email, .content, .info {
+      width: 60vw;
+    }
   }
 `
 

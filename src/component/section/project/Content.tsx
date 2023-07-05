@@ -26,7 +26,7 @@ export const Content = ({ project }: Props) => {
           <div key={idx} className='info-box'>
             <h6>{title}</h6>
             {href && <a href={href} target="_blank">{href}</a>}
-            <div>{content}</div>
+            <div className='info-text'>{content}</div>
           </div>
         ))}
       </div>
@@ -51,7 +51,7 @@ const ContentBox = styled.div`
     font-size: 1rem;
     font-weight: 600;
     color: #1876d1;
-    +div {
+    .info-text {
       width: 40vw;
     }
   }
@@ -79,6 +79,10 @@ const ContentBox = styled.div`
     h6 {
       margin: 0.5rem 0;
       width: 100%;
+    }
+    .info-text { 
+      width: 70vw;
+      line-height: 1.3rem;
     }
   }
 `
