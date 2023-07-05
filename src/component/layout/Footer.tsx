@@ -37,6 +37,7 @@ const FooterBox = styled.section`
 
   div {
     margin: 0.6rem;
+    text-align: center;
   }
   a {
     margin: 0 0.6rem;
