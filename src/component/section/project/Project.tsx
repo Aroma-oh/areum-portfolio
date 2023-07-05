@@ -32,7 +32,7 @@ const Project = () => {
 
   // 반응형을 위한 코드
   const [isHorizon, setIsHorizon] = useRecoilState(isHorizontalState);
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(1024);
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,8 +43,8 @@ const Project = () => {
   }, [windowWidth]);
 
   useEffect(() => {
-    setIsHorizon(windowWidth < 600 ? false : true);
-  })
+    setIsHorizon(windowWidth > 600 ? true : false);
+  }, [windowWidth]);
 
   if (isError) return (
     <LoadingBox >
@@ -91,12 +91,11 @@ const LoadingBox = styled.div`
 const ProjectBox = styled.section`
   position: relative;
   height: fit-content; 
-  min-height: 600px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 1.5rem;
 
   h4 {
     margin: 3rem;
