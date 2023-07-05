@@ -5,7 +5,7 @@ import { MdMarkEmailUnread } from 'react-icons/md';
 export const PROFILE = [
   {
     icon: <FaAddressCard />,
-    type: 'Name',
+    type: 'NAME',
     content: '오아름',
   },
   {
