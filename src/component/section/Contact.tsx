@@ -8,6 +8,8 @@ import Alert from '@mui/material/Alert';
 import { useInput } from '@/hooks/useInput'
 import { useState, useRef, useEffect, FormEvent } from 'react'
 import { emailValidation } from '@/util/validation'
+// confetti
+import JSConfetti from 'js-confetti'
 
 const Contact = () => {
   const [form, onChange, reset] = useInput({
@@ -46,6 +48,12 @@ const Contact = () => {
       )
       setIsMailSent(true);
       reset()
+      const jsConfetti = new JSConfetti();
+      jsConfetti.addConfetti({
+        emojis: ['🤍', '💙'],
+        emojiSize: 50,
+        confettiNumber: 100,
+      });
     } catch (error) {
       setIsMailFailed(true);
     }
