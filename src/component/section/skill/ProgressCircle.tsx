@@ -50,7 +50,7 @@ const StyledProgress = styled.svg<ProgressProps> `
   width: 120px;
   height: 120px;
   .frame {
-    fill: transparent;
+    fill: white;
     stroke: #daecff;
   }
   .bar {
