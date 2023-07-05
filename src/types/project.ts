@@ -17,19 +17,13 @@ export interface ProjectInfo {
 }
 
 export interface ProjectList {
+  nav: ProjectNav,
   image: string[],
-  intro: {
-    title: string;
-    content: string[]
-  }[],
-  info: {
-    title: string;
-    href?: string;
-    content?: string;
-  }[],
+  intro: ProjectIntro[],
+  info: ProjectInfo[],
 }
 
-export interface Project {
-  nav: ProjectNav[],
+export interface ProjectType {
+  nav?: ProjectNav[],
   project: ProjectList[],
 }
