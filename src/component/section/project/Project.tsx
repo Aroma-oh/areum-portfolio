@@ -106,6 +106,11 @@ const ProjectBox = styled.section`
   .view-mode {
     margin-bottom: 1rem;
   }
+  @media(max-width: 600px) {
+    h4 {
+      margin: 5rem 3rem 0 3rem;
+    }
+  }
 `
 const TextBox = styled.div`
   display: flex;
