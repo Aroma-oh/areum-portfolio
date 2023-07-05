@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Image from 'next/legacy/image';
 // mui import
 import Carousel from 'react-material-ui-carousel';
+// type import
 import { ProjectList } from '@/types/project'
 
 interface Props {
@@ -17,6 +18,7 @@ export const Carouser = ({ project }: Props) => {
         <h5> {project?.nav.name} 프로젝트</h5>
         <p> 개발기간 : {project?.nav.period}일</p>
       </div>
+      <p className='sub-text'>이미지에 마우스를 올리면 auto play를 멈출 수 있습니다.</p>
       <CarouselBox
         navButtonsAlwaysVisible={true}
         interval={3000}
@@ -42,7 +44,6 @@ export const Carouser = ({ project }: Props) => {
         ))}
       </CarouselBox>
     </Box>
-
   )
 }
 
@@ -50,6 +51,13 @@ const Box = styled.div`
   .title-box {
     text-align: center;
     margin: 2rem 0 3.5rem 0;
+  }
+  .sub-text {
+    margin: 2rem 1rem;
+    text-align: center;
+    word-break: keep-all;
+    color: #888888;
+    font-size: 1rem;
   }
   h5 {
     margin: 2.5rem 0 0.8rem 0;
