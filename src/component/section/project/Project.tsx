@@ -32,10 +32,19 @@ const Project = () => {
 
   // 반응형을 위한 코드
   const [isHorizon, setIsHorizon] = useRecoilState(isHorizontalState);
+  const [windowWidth, setWindowWidth] = useState(1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+  }, [windowWidth]);
 
   useEffect(() => {
     setIsHorizon(window.innerWidth > 600 ? true : false);
-  }, [window.innerWidth]);
+  }, [windowWidth]);
 
   if (isError) return (
     <LoadingBox >
@@ -47,7 +56,7 @@ const Project = () => {
     <ProjectBox id='Project'>
       <h4>Project</h4>
       <div className='view-mode'>
-        <ViewMode />
+        {isHorizon && <ViewMode />}
       </div>
       {isHorizon && <NavButton project={projectData?.project} />}
       <TextBox>
