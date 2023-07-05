@@ -14,26 +14,22 @@ import { Carouser } from '@/component/section/project/Carouser';
 import { Content } from '@/component/section/project/Content';
 // firebase, type import 
 import { getDbAllData } from '@/util/firebase';
-import { ProjectNav, ProjectList } from '@/types/project'
+import { ProjectType } from '@/types/project'
 
-
-interface ProjectData {
-  nav: ProjectNav[],
-  project: ProjectList[],
-}[]
 
 const Project = () => {
-  const { data } = useQuery<ProjectData[], Error>('project', () => getDbAllData<ProjectData>('project'));
+  const { data, isError } = useQuery<ProjectType[]>('project', () => getDbAllData<ProjectType>('project'));
 
-  const [projectData, setProjectData] = useState<ProjectData>()
+  const [projectData, setProjectData] = useState<ProjectType>();
 
   useEffect(() => {
     data && setProjectData(data[0])
-  }, data)
+  }, [data]);
 
   const isHorizon = useRecoilValue(isHorizontalState);
   const selectedProject = useRecoilValue(selectProject);
 
+  if (isError) return <div>잠시 후 다시 시도해주세요.</div>; // 스켈레톤으로 변경 예정
 
   return (
     <ProjectBox id='Project'>
@@ -41,23 +37,21 @@ const Project = () => {
       <div className='view-mode'>
         <ViewMode />
       </div>
-      {isHorizon === true && <NavButton navData={projectData?.nav} />}
+      {isHorizon && <NavButton project={projectData?.project} />}
       <TextBox>
-        {isHorizon === true
+        {isHorizon
           ?
           <>
-            <Carouser nav={projectData?.nav[selectedProject]} project={projectData?.project[selectedProject]} />
+            <Carouser project={projectData?.project[selectedProject]} />
             <Content project={projectData?.project[selectedProject]} />
           </>
           :
-          // 세로모드 데이터 전달 방안 고민 필요
-          // nav.map((el, idx) => (
-          //   <div key={idx}>
-          //     <Carouser nav={el[idx]} />
-          //     <Content ssrData={ssrData} />
-          //   </div>
-          // ))
-          null
+          projectData?.project.map((el, idx) => (
+            <div key={idx}>
+              <Carouser project={el} />
+              <Content project={el} />
+            </div>
+          ))
         }
       </TextBox>
     </ProjectBox>
@@ -71,10 +65,10 @@ const ProjectBox = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-left: 1.5rem;
 
   h4 {
     margin: 3rem;
-    padding-left: 1.5rem;
     align-self: center;
     font-size: 2rem;
     font-weight: 500;
