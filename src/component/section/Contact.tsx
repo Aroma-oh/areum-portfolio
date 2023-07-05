@@ -202,6 +202,13 @@ const MailBox = styled.div`
   .button {
     margin: 2rem 8rem;
   }
+
+  @media(max-width: 600px) {
+    width: 80%;
+    .name, .email, .content, .info {
+      width: 60vw;
+    }
+  }
 `
 
 export default Contact;
