@@ -1,5 +1,5 @@
 // component import 
-import Header from "@/component/layout/Header"
+import Header from "@/component/layout/header/Header"
 import Intro from "@/component/section/Intro"
 import Profile from "@/component/section/Profile"
 import Project from '@/component/section/project/Project'
