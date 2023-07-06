@@ -1,20 +1,14 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, ChangeEvent } from 'react';
 
 interface Form {
   [name: string]: string;
 }
 
-type UseInputReturn = [
-  Form,
-  (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
-  () => void,
-]
-
-export const useInput = (initialForm: Form): UseInputReturn => {
+export const useInput = (initialForm: Form) => {
   const [form, setForm] = useState<Form>(initialForm)
 
   const onChange = useCallback((
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setForm((form) => ({ ...form, [name]: value }));
@@ -24,5 +18,5 @@ export const useInput = (initialForm: Form): UseInputReturn => {
     setForm(initialForm);
   }, [initialForm]);
 
-  return [form, onChange, reset];
+  return [form, onChange, reset] as const;
 }
