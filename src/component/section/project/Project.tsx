@@ -11,7 +11,7 @@ import { useQuery } from 'react-query';
 // component import 
 import { ViewMode } from '@/component/section/project/ViewMode';
 import { NavButton } from '@/component/section/project/NavButton';
-import { Carouser } from '@/component/section/project/Carouser';
+import { Carousel } from '@/component/section/project/Carousel';
 import { Content } from '@/component/section/project/Content';
 // firebase, type import 
 import { getDbAllData } from '@/util/firebase';
@@ -63,13 +63,13 @@ const Project = () => {
         {isHorizon
           ?
           <>
-            <Carouser project={projectData?.project[selectedProject]} />
+            <Carousel project={projectData?.project[selectedProject]} />
             <Content project={projectData?.project[selectedProject]} />
           </>
           :
           projectData?.project.map((el, idx) => (
             <div key={idx}>
-              <Carouser project={el} />
+              <Carousel project={el} />
               <Content project={el} />
             </div>
           ))
