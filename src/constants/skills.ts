@@ -76,7 +76,7 @@ export const BACKEND = [
   {
     stack: 'backend',
     name: 'Firebase',
-    value: 10,
+    value: 20,
     className: 'bg-firebase',
     content: 'Firebase로 데이터베이스를 활용해 봤어요.'
   },

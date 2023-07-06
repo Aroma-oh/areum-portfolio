@@ -26,19 +26,20 @@ const Project = () => {
 
   // 반응형을 위한 코드
   const [isHorizon, setIsHorizon] = useRecoilState(isHorizontalState);
-  const [windowWidth, setWindowWidth] = useState(1024);
+  const [isViewMode, setIsViewMode] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+      const windowWidth = window.innerWidth;
+      setIsHorizon(windowWidth > 600);
+      setIsViewMode(windowWidth > 600);
     };
 
     window.addEventListener('resize', handleResize);
-  }, [windowWidth]);
+    handleResize();
 
-  useEffect(() => {
-    setIsHorizon(window.innerWidth > 600 ? true : false);
-  }, [windowWidth]);
+  }, []);
+
 
 
   if (isError || !data) return (
@@ -52,7 +53,7 @@ const Project = () => {
     <ProjectBox id='Project'>
       <h4>Project</h4>
       <div className='view-mode'>
-        {windowWidth > 600 && <ViewMode />}
+        {isViewMode && <ViewMode />}
       </div>
       {isHorizon && <NavButton project={data[0]?.project} />}
       <TextBox>
