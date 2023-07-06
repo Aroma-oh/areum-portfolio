@@ -26,7 +26,7 @@ function Header() {
 
   useEffect(() => {
     const resizeHandler = () => setToggle(false);
-    window.addEventListener('resize', resizeHandler)
+    window.addEventListener('resize', resizeHandler);
   }, [])
 
 
