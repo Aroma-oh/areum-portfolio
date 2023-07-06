@@ -18,12 +18,11 @@ export interface ProjectInfo {
 
 export interface ProjectList {
   nav: ProjectNav,
-  image: string[],
   intro: ProjectIntro[],
   info: ProjectInfo[],
+  image: string[],
 }
 
 export interface ProjectType {
-  nav?: ProjectNav[],
   project: ProjectList[],
 }
