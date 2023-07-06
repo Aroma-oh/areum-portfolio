@@ -32,7 +32,7 @@ export const NavButton = ({ project }: Props) => {
       value={selectProjectIndex}
       aria-label="Platform"
     >
-      {project?.map((el, idx) => (
+      {project?.map(({ nav }, idx) => (
         <ToggleButton
           onClick={() => handleClick(idx)}
           key={idx}
@@ -44,9 +44,9 @@ export const NavButton = ({ project }: Props) => {
         >
           {
             <div>
-              <div>{el.nav.type}</div>
-              <div className='name'>{el.nav.name}</div>
-              <div>- {el.nav.create} -</div>
+              <div>{nav.type}</div>
+              <div className='name'>{nav.name}</div>
+              <div>- {nav.create} -</div>
             </div>
           }
         </ToggleButton>

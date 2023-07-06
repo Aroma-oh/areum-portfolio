@@ -54,16 +54,16 @@ const Project = () => {
       <div className='view-mode'>
         {isHorizon && <ViewMode />}
       </div>
-      {isHorizon && <NavButton project={data[0].project} />}
+      {isHorizon && <NavButton project={data[0]?.project} />}
       <TextBox>
         {isHorizon
           ?
           <>
-            <Carousel project={data[0].project[selectedProject]} />
-            <Content project={data[0].project[selectedProject]} />
+            <Carousel project={data[0]?.project[selectedProject]} />
+            <Content project={data[0]?.project[selectedProject]} />
           </>
           :
-          data[0].project.map((el, idx) => (
+          data[0]?.project.map((el, idx) => (
             <div key={idx}>
               <Carousel project={el} />
               <Content project={el} />
