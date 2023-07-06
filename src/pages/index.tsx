@@ -4,6 +4,7 @@ import Intro from "@/component/section/Intro"
 import Profile from "@/component/section/Profile"
 import Project from '@/component/section/project/Project'
 import Skill from '@/component/section/skill/Skill'
+
 import Contact from '@/component/section/Contact'
 import Footer from '@/component/layout/Footer'
 // firebase import
