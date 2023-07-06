@@ -4,7 +4,6 @@ import Intro from "@/component/section/Intro"
 import Profile from "@/component/section/Profile"
 import Project from '@/component/section/project/Project'
 import Skill from '@/component/section/skill/Skill'
-
 import Contact from '@/component/section/Contact'
 import Footer from '@/component/layout/Footer'
 // firebase import
@@ -34,8 +33,6 @@ export default function Home() {
   )
 }
 
-// 성능저하 때문에 정적 배포가 더 낫다. 
-// 동적으로 필요한 부분만 상태관리로 바꾸기 -> 리액트 쿼리로 서버 상태
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
 
@@ -47,6 +44,3 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }
 };
-
-// db 조회말고 넥스트서버로 보내기
-//   / api / project
