@@ -24,12 +24,6 @@ const Project = () => {
   // 데이터 관리를 위한 코드
   const { data, isError } = useQuery<ProjectType[]>('project', () => getDbAllData<ProjectType>('project'));
 
-  const [projectData, setProjectData] = useState<ProjectType>();
-
-  useEffect(() => {
-    data && setProjectData(data[0]);
-  }, [data]);
-
   // 반응형을 위한 코드
   const [isHorizon, setIsHorizon] = useRecoilState(isHorizontalState);
   const [windowWidth, setWindowWidth] = useState(1024);
@@ -46,9 +40,11 @@ const Project = () => {
     setIsHorizon(window.innerWidth > 600 ? true : false);
   }, [windowWidth]);
 
-  if (isError) return (
+
+  if (isError || !data) return (
     <LoadingBox >
       <ReactLoading type='bubbles' color='#1876d1' height='10vh' width='10vw' />
+      <p>잠시 후에 다시 시도해주세요.</p>
     </LoadingBox>
   )
 
@@ -58,16 +54,16 @@ const Project = () => {
       <div className='view-mode'>
         {isHorizon && <ViewMode />}
       </div>
-      {isHorizon && <NavButton project={projectData?.project} />}
+      {isHorizon && <NavButton project={data[0].project} />}
       <TextBox>
         {isHorizon
           ?
           <>
-            <Carousel project={projectData?.project[selectedProject]} />
-            <Content project={projectData?.project[selectedProject]} />
+            <Carousel project={data[0].project[selectedProject]} />
+            <Content project={data[0].project[selectedProject]} />
           </>
           :
-          projectData?.project.map((el, idx) => (
+          data[0].project.map((el, idx) => (
             <div key={idx}>
               <Carousel project={el} />
               <Content project={el} />
@@ -81,11 +77,17 @@ const Project = () => {
 
 const LoadingBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   
   height: 400px;
   width: 100%;
+
+  p {
+    margin: 3rem;
+    font-size: 1.2rem;
+  }
 `
 
 const ProjectBox = styled.section`
