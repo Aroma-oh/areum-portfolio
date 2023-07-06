@@ -8,7 +8,7 @@ import { ProjectList } from '@/types/project'
 
 interface Props {
   project: ProjectList | undefined;
-}[]
+}[];
 
 export const Carousel = ({ project }: Props) => {
 
