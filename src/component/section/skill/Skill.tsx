@@ -35,13 +35,11 @@ const Skill = () => {
     }));
   };
 
-  const handleOpenModal = (skills: OpenModalDataProps, stack: string) => {
-    setModalData({ stack, name: skills.name, content: skills.content });
-    setOpenModal(true);
-  }
-
-  const handleOffModal = () => {
-    setOpenModal(false);
+  const handleModal = (isOpen: boolean, skills?: OpenModalDataProps, stack?: string) => {
+    if (isOpen && skills && stack) {
+      setModalData({ stack, name: skills.name, content: skills.content });
+    }
+    setOpenModal(isOpen);
   }
 
   const { handleMove } = useMoveToSection();
@@ -86,8 +84,8 @@ const Skill = () => {
                     <ProgressCircle value={skill.value} />
                     <div
                       className={`${skill.className} skills`}
-                      onMouseEnter={() => handleOpenModal(skill, stack[0])}
-                      onMouseLeave={handleOffModal} />
+                      onMouseEnter={() => handleModal(true, skill, stack[0])}
+                      onMouseLeave={() => handleModal(false)} />
                   </ProgressCircleAnimation>
                 </div>
               ))}
