@@ -15,7 +15,6 @@ export interface OpenModalDataProps {
 }
 
 export interface ProgressCircleProps {
-  windowWidth: number;
   openModal: boolean;
   openStack: {
     frontend: boolean;
