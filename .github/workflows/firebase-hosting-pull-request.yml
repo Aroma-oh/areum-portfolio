@@ -1,7 +1,14 @@
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: |
+name: Deploy to Firebase Hosting on merge
+"on":
+    push:
+        branches:
+            - main
+jobs:
+    build_and_preview:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - run: |
                   echo "REACT_APP_API_KEY=${{secrets.API_KEY}}" >> .env
                   echo "REACT_APP_AUTH_DOMAIN=${{secrets.AUTH_DOMAIN}}" >> .env
                   echo "REACT_APP_PROJECT_ID=${{secrets.PROJECT_ID}}" >> .env
@@ -12,7 +19,7 @@
                   echo "REACT_APP_YOUR_TEMPLATE_ID=${{secrets.YOUR_TEMPLATE_ID}}" >> .env
                   echo "REACT_APP_YOUR_PUBLIC_KEY=${{secrets.YOUR_PUBLIC_KEY}}" >> .env
             - run: cat .env
-      - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+            - run: npm ci && npm run build
+            - uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                  repoToken: "${{ secrets.GITHUB_TOKEN }}"
