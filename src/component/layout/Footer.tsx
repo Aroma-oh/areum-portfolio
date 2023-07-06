@@ -12,10 +12,10 @@ function Footer() {
         Copyright 2023. 오아름. All rights reserved.
       </div>
       <div>
-        <a href='https://github.com/Aroma-oh' target="_blank">
+        <a href='https://github.com/Aroma-oh' target="_blank" aria-label='깃허브 링크'>
           <BsGithub />
         </a>
-        <a href='https://velog.io/@on002way' target="_blank">
+        <a href='https://velog.io/@on002way' target="_blank" aria-label='벨로그 링크'>
           <SiVelog />
         </a>
       </div>
