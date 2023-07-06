@@ -22,7 +22,7 @@ const Intro = () => {
       />
       <ContentBox>
         <h1>오아름</h1>
-        <h4>프론트엔드 포트폴리오</h4>
+        <h2>프론트엔드 포트폴리오</h2>
         <hr />
         <p>
           안녕하세요, <br />
@@ -68,7 +68,7 @@ const ContentBox = styled.div`
     margin-bottom: 0.9rem;
     color: inherit;
   }
-  h4 {
+  h2 {
     font-size: 2rem;
     font-weight: 500;
     margin-bottom: 1.5rem;
