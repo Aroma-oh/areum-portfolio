@@ -1,6 +1,6 @@
 // styled, react import 
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // data import 
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
 // component import 
