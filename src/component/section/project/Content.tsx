@@ -25,7 +25,7 @@ export const Content = ({ project }: Props) => {
         {project?.info.map(({ title, href, content }, idx) => (
           <div key={idx} className='info-box'>
             <h6>{title}</h6>
-            {href && <a href={href} target="_blank" className='info-text'>{href}</a>}
+            {href && <a href={href} target="_blank" className='info-text' aria-label='프로젝트 링크'>{href}</a>}
             <div className='info-text'>{content}</div>
           </div>
         ))}

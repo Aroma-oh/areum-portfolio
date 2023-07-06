@@ -115,7 +115,7 @@ const Skill = () => {
         <StackCardBox>
           {skills.map((skill, index) => (
             <div key={index} className='box'>
-              <h6> 🛠 {skill[0]} 🛠 </h6>
+              <h5> 🛠 {skill[0]} 🛠 </h5>
               <StackCard >
                 <div className={skill[3]}></div>
               </StackCard>
@@ -279,7 +279,7 @@ const StackCardBox = styled.div`
     justify-content: center;
   }
 
-  h6 {
+  h5 {
     font-size: 1.5rem;
     text-align: center;
   }
