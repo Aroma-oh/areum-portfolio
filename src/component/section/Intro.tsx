@@ -82,7 +82,7 @@ const ContentBox = styled.div`
   p {
     font-size: 1.2rem;
     text-align: center;
-    line-height: 1.5rem;
+    line-height: 1.7rem;
     margin: 0 1rem 3rem 1rem;
     word-break: keep-all;
   }
