@@ -25,7 +25,7 @@ export const Content = ({ project }: Props) => {
         {project?.info.map(({ title, href, content }, idx) => (
           <div key={idx} className='info-box'>
             <h6>{title}</h6>
-            {href && <a href={href} target="_blank">{href}</a>}
+            {href && <a href={href} target="_blank" className='info-text'>{href}</a>}
             <div className='info-text'>{content}</div>
           </div>
         ))}
@@ -45,6 +45,10 @@ const ContentBox = styled.div`
   }
   p {
     margin-bottom: 0.8rem;
+  }
+  a {
+    width: 40vw;
+    word-break: break-all;
   }
   h6 {
     width: 10vw;
