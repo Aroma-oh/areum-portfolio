@@ -1,63 +1,24 @@
 // styled import 
 import styled from '@emotion/styled';
-// react, hook, icon import 
+// react, custom hook, icon import 
 import { useEffect, useRef } from 'react'
 import { useScroll } from '@/hooks/useScroll';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
 import { FiMenu } from 'react-icons/fi';
 // mui import
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { SxProps } from '@mui/system';
-// recoil
+// recoil import
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { isColorNavState, toggleState, headerHeightState } from '@/recoil/atoms'
-// constant data import 
-import { MENU } from '@/constants/menu';
+// component import
+import { Menu } from '@/component/layout/header/Menu'
 
 function Header() {
   const isColorNav = useRecoilValue(isColorNavState);
   const [, setHeaderHeight] = useRecoilState(headerHeightState);
   const [toggle, setToggle] = useRecoilState(toggleState);
-
-  // 스크롤에 따라 background color를 변경하는 훅
-  useScroll();
-
-  // 헤더 높이 저장 
-  const headerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const headerHeight = headerRef.current?.offsetHeight as number;
-    setHeaderHeight(headerHeight)
-  }, [])
-
-  const { handleMove } = useMoveToSection();
-
-  // MUI 컴포넌트 재사용 목적
-  // MUI 컴포넌트에 sx 속성을 props로 전달
-  const Menu = ({ sx }: { sx: SxProps }) => {
-    return (
-      <MenuBox className="menu-box" sx={sx}>
-        {MENU.map((el) => (
-          <Button
-            className="menu-button"
-            key={el}
-            onClick={() => handleSelectMenu(el)}
-          >
-            {el}
-          </Button>
-        ))}
-      </MenuBox>
-    )
-  }
-
-  const handleSelectMenu = (menu: string) => {
-    handleMove(menu);
-    setToggle(false);
-  }
 
   const handleToggleMenu = () => {
     setToggle(!toggle)
@@ -65,8 +26,23 @@ function Header() {
 
   useEffect(() => {
     const resizeHandler = () => setToggle(false);
-    window.addEventListener('resize', resizeHandler)
+    window.addEventListener('resize', resizeHandler);
   }, [])
+
+
+  // 스크롤에 따라 background color를 변경하는 훅
+  useScroll();
+
+  // 선택 섹션으로 스크롤 이동하는 훅
+  const { handleMove } = useMoveToSection();
+
+  // 헤더 높이 저장 
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const headerHeight = headerRef.current?.offsetHeight as number;
+    setHeaderHeight(headerHeight)
+  }, [])
+
 
   return (
     <AppBarBox
@@ -125,21 +101,6 @@ const AppBarBox = styled(AppBar)`
     }
   }
 `
-
-const MenuBox = styled(Box)`
-  .menu-button {
-    color: inherit;
-    margin-top: 2px;
-  }
-  @media (min-width: 900px) {
-    .menu-button {
-      :hover {
-      background-color: rgb(255,255,255, 0.2);
-      border-radius: 6px;
-    }
-  }
-}
-`;
 
 const TypoBox = styled(Typography)`
   font-weight: 700;

@@ -15,7 +15,6 @@ export interface OpenModalDataProps {
 }
 
 export interface ProgressCircleProps {
-  windowWidth: number;
   openModal: boolean;
   openStack: {
     frontend: boolean;
@@ -24,7 +23,7 @@ export interface ProgressCircleProps {
   };
 }
 
-export interface SubProgressCircleProps {
+export interface CircleAnimationProps {
   translation?: number;
   rotation: number;
   rotate?: number;

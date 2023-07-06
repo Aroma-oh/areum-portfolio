@@ -2,15 +2,15 @@
 import styled from '@emotion/styled';
 import Image from 'next/legacy/image';
 // mui import
-import Carousel from 'react-material-ui-carousel';
+import MuiCarousel from 'react-material-ui-carousel';
 // type import
 import { ProjectList } from '@/types/project'
 
 interface Props {
   project: ProjectList | undefined;
-}[]
+}[];
 
-export const Carouser = ({ project }: Props) => {
+export const Carousel = ({ project }: Props) => {
 
   return (
     <Box id='view-project'>
@@ -72,7 +72,7 @@ const Box = styled.div`
     font-size: 1.2rem;
   }
 `
-const CarouselBox = styled(Carousel)`
+const CarouselBox = styled(MuiCarousel)`
   margin-bottom: 2rem;
   .slide {
     display: flex;

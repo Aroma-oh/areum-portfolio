@@ -3,19 +3,20 @@ import styled from '@emotion/styled';
 interface ProgressProps {
   name?: string;
   value: number;
+  open?: boolean;
 }
 
 const RADIUS = 54;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-export const ProgressCircle = ({ value, name }: ProgressProps) => {
+export const ProgressCircle = ({ value, name, open }: ProgressProps) => {
 
   return (
     <ProgressBox>
       <div className='progress-wrap' >
-        <StyledProgress value={value} name={name} >
+        <StyledProgress value={value} name={name} open={open}>
           <circle className='frame' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
-          <circle className='bar' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
+          <circle className={`bar ${open ? 'animate' : ''}`} cx={60} cy={60} r={RADIUS} strokeWidth="12" />
         </StyledProgress>
         <strong className='text'>{name}</strong>
       </div>
@@ -57,16 +58,11 @@ const StyledProgress = styled.svg<ProgressProps> `
     fill: transparent;
     stroke: #1876d1;
     stroke-linecap: round;
-    stroke-dashoffset: ${(props) => CIRCUMFERENCE * (1 - props.value / 100)};
+    stroke-dashoffset: ${({ name, value }) => name ? CIRCUMFERENCE * (1 - value / 100) : CIRCUMFERENCE};
     stroke-dasharray: ${CIRCUMFERENCE};
-    animation: progressAnimation 1s forwards;
+    transition: 1.4s ease-in-out;
   }
-  /* @keyframes progressAnimation {
-    from {
-      stroke-dashoffset: ${CIRCUMFERENCE};
-    }
-    to {
-      stroke-dashoffset: ${({ value }) => CIRCUMFERENCE * (1 - value / 100)};
-    }
-  } */
+  .animate {
+    stroke-dashoffset: ${({ value }) => CIRCUMFERENCE * (1 - value / 100)};
+  }
 `
