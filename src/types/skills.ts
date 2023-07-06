@@ -23,7 +23,7 @@ export interface ProgressCircleProps {
   };
 }
 
-export interface SubProgressCircleProps {
+export interface CircleAnimationProps {
   translation?: number;
   rotation: number;
   rotate?: number;
