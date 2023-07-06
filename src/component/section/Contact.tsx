@@ -1,14 +1,15 @@
-// import styled, emailjs library
+// styled, emailjs library import 
 import styled from '@emotion/styled';
 import emailjs from '@emailjs/browser'
-// import mui
+// mui import
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
-// import hook, validation 
-import { useInput } from '@/hooks/useInput'
+// react, custom hook, validation import
 import { useState, useRef, useEffect, FormEvent } from 'react'
+import { useInput } from '@/hooks/useInput'
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 import { emailValidation } from '@/util/validation'
-// confetti
+// confetti import
 import JSConfetti from 'js-confetti'
 
 const Contact = () => {
@@ -20,6 +21,7 @@ const Contact = () => {
   const [isMailSent, setIsMailSent] = useState(false);
   const [isMailFailed, setIsMailFailed] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
+  const { handleMove } = useMoveToSection();
 
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -34,6 +36,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    handleMove('Contact');
 
     if (!emailValidation.test(form.email)) {
       return setIsValidEmail(false)
@@ -47,7 +50,7 @@ const Contact = () => {
         process.env.NEXT_PUBLIC_YOUR_PUBLIC_KEY!,
       )
       setIsMailSent(true);
-      reset()
+      reset();
       const jsConfetti = new JSConfetti();
       jsConfetti.addConfetti({
         emojis: ['🤍', '💙'],
