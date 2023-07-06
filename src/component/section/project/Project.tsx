@@ -52,7 +52,7 @@ const Project = () => {
     <ProjectBox id='Project'>
       <h4>Project</h4>
       <div className='view-mode'>
-        {isHorizon && <ViewMode />}
+        {windowWidth > 600 && <ViewMode />}
       </div>
       {isHorizon && <NavButton project={data[0]?.project} />}
       <TextBox>
