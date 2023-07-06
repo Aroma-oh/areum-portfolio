@@ -49,18 +49,6 @@ const Skill = () => {
     }
   }
 
-  // 브라우저 사이즈 관리 코드
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    }
-
-    window.addEventListener('resize', handleResize);
-
-  }, []);
-
   // 데이터 관리
   const skills: SkillSet[] = [
     ["frontend", FRONTEND, 'bg-frontend'],
@@ -68,12 +56,11 @@ const Skill = () => {
     ["etc", ETC, 'bg-experienced'],
   ];
 
-
   return (
     <SkillBox id='Skill' >
       <h4>Skill</h4>
       <div className='skill-container' id='skill-container'>
-        <ProgressCircleBox windowWidth={windowWidth} openStack={openStack} openModal={openModal}>
+        <ProgressCircleBox openStack={openStack} openModal={openModal}>
           {skills.map((stack, index1) => (
             <div key={index1} className={`${stack[0]}`}>
               {stack[1].map((skill, index2) => (
