@@ -6,7 +6,7 @@ import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
 // component import 
 import { ProgressCircle } from '@/component/section/skill/ProgressCircle'
 // type import 
-import { SkillSet, OpenModalDataProps, ProgressCircleProps, SubProgressCircleProps } from '@/types/skills'
+import { SkillSet, OpenModalDataProps, ProgressCircleProps, CircleAnimationProps } from '@/types/skills'
 // custom hook import 
 import { useMoveToSection } from '@/hooks/useMoveToSection'
 
@@ -65,19 +65,19 @@ const Skill = () => {
             <div key={index1} className={`${stack[0]}`}>
               {stack[1].map((skill, index2) => (
                 <div key={skill.name}>
-                  <ProgressCircleAnimation rotation={360 / stack[1].length * index2}
+                  <CircleAnimation rotation={360 / stack[1].length * index2}
                     isRotate={stack[0] === 'frontend' ? openStack.frontend : stack[0] === 'backend' ? openStack.backend : openStack.etc}
                   >
-                    <ProgressCircle value={skill.value} />
+                    <ProgressCircle value={skill.value} open={stack[0] === 'frontend' ? openStack.frontend : stack[0] === 'backend' ? openStack.backend : openStack.etc} />
                     <div
                       className={`${skill.className} skills`}
                       onMouseEnter={() => handleModal(true, skill, stack[0])}
                       onMouseLeave={() => handleModal(false)} />
-                  </ProgressCircleAnimation>
+                  </CircleAnimation>
                 </div>
               ))}
               <div onClick={() => { handleOpenStack(stack[0]); handleMoveScroll(); }} className='stack-circle'>
-                <ProgressCircle name={stack[0]} value={100} />
+                <ProgressCircle name={stack[0]} value={100} open={false} />
               </div>
               {modalData.stack === stack[0] && (
                 <Card className='modal'>
@@ -227,7 +227,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
 `
 
-const ProgressCircleAnimation = styled.div<SubProgressCircleProps>`
+const CircleAnimation = styled.div<CircleAnimationProps>`
   position: absolute;
   top: 50%;
   left: 50%;
