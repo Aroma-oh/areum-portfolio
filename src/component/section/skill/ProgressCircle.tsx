@@ -60,7 +60,7 @@ const StyledProgress = styled.svg<ProgressProps> `
     stroke-linecap: round;
     stroke-dashoffset: ${({ name, value }) => name ? CIRCUMFERENCE * (1 - value / 100) : CIRCUMFERENCE};
     stroke-dasharray: ${CIRCUMFERENCE};
-    transition: 1.2s ease-in;
+    transition: 1.2s ease-in-out;
   }
   .animate {
     stroke-dashoffset: ${({ value }) => CIRCUMFERENCE * (1 - value / 100)};
