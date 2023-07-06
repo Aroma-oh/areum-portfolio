@@ -1,6 +1,6 @@
 // styled import 
 import styled from '@emotion/styled';
-// react, hook, icon import 
+// react, custom hook, icon import 
 import { useEffect, useRef } from 'react'
 import { useScroll } from '@/hooks/useScroll';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
