@@ -6,7 +6,7 @@ export type Skill = {
   content: string;
 };
 
-export type SkillSet = [string, Skill[], () => void, string];
+export type SkillSet = [string, Skill[], string];
 
 export interface OpenModalDataProps {
   stack: string;
@@ -16,10 +16,12 @@ export interface OpenModalDataProps {
 
 export interface ProgressCircleProps {
   windowWidth: number;
-  openFront: boolean;
-  openBack: boolean;
-  openEtc: boolean;
   openModal: boolean;
+  openStack: {
+    frontend: boolean;
+    backend: boolean;
+    etc: boolean;
+  };
 }
 
 export interface SubProgressCircleProps {

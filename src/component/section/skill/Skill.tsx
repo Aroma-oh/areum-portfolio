@@ -13,38 +13,27 @@ import { useMoveToSection } from '@/hooks/useMoveToSection'
 const Skill = () => {
 
   // 상태 관리
-  const { handleMove } = useMoveToSection();
-  const [openFront, setOpenFront] = useState(true);
-  const [openBack, setOpenBack] = useState(false);
-  const [openEtc, setOpenEtc] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const [openStack, setOpenStack] = useState({
+    frontend: true,
+    backend: false,
+    etc: false,
+  });
   const [modalData, setModalData] = useState({
     stack: "",
     name: "",
     content: "",
-  })
+  });
+  const [openModal, setOpenModal] = useState(false);
+
 
   // 핸들러 관리
-  const handleOpenFront = () => {
-    setOpenFront(!openFront)
-    setOpenBack(false)
-    setOpenEtc(false)
-    setOpenModal(false)
-  }
-
-  const handleOpenBack = () => {
-    setOpenFront(false)
-    setOpenBack(!openBack)
-    setOpenEtc(false)
-    setOpenModal(false)
-  }
-
-  const handleOpenEtc = () => {
-    setOpenFront(false)
-    setOpenBack(false)
-    setOpenEtc(!openEtc)
-    setOpenModal(false)
-  }
+  const handleOpenStack = (stackType: string) => {
+    setOpenStack(prevState => ({
+      frontend: stackType === 'frontend' ? !prevState.frontend : false,
+      backend: stackType === 'backend' ? !prevState.backend : false,
+      etc: stackType === 'etc' ? !prevState.etc : false,
+    }));
+  };
 
   const handleOpenModal = (skills: OpenModalDataProps, stack: string) => {
     setModalData({ stack, name: skills.name, content: skills.content });
@@ -55,8 +44,9 @@ const Skill = () => {
     setOpenModal(false);
   }
 
+  const { handleMove } = useMoveToSection();
   const handleMoveScroll = () => {
-    if (openFront || openBack || openEtc) {
+    if (openStack.frontend || openStack.backend || openStack.etc) {
       handleMove('skill-container')
     }
   }
@@ -75,32 +65,33 @@ const Skill = () => {
 
   // 데이터 관리
   const skills: SkillSet[] = [
-    ["frontend", FRONTEND, handleOpenFront, 'bg-frontend'],
-    ["backend", BACKEND, handleOpenBack, 'bg-backend'],
-    ["etc", ETC, handleOpenEtc, 'bg-experienced'],
+    ["frontend", FRONTEND, 'bg-frontend'],
+    ["backend", BACKEND, 'bg-backend'],
+    ["etc", ETC, 'bg-experienced'],
   ];
+
 
   return (
     <SkillBox id='Skill' >
       <h4>Skill</h4>
       <div className='skill-container' id='skill-container'>
-        <ProgressCircleBox windowWidth={windowWidth} openFront={openFront} openBack={openBack} openEtc={openEtc} openModal={openModal}>
+        <ProgressCircleBox windowWidth={windowWidth} openStack={openStack} openModal={openModal}>
           {skills.map((stack, index1) => (
             <div key={index1} className={`${stack[0]}`}>
               {stack[1].map((skill, index2) => (
                 <div key={skill.name}>
-                  <SubProgressCircle rotation={360 / stack[1].length * index2}
-                    isRotate={stack[0] === 'frontend' ? openFront : stack[0] === 'backend' ? openBack : openEtc}
+                  <ProgressCircleAnimation rotation={360 / stack[1].length * index2}
+                    isRotate={stack[0] === 'frontend' ? openStack.frontend : stack[0] === 'backend' ? openStack.backend : openStack.etc}
                   >
                     <ProgressCircle value={skill.value} />
                     <div
                       className={`${skill.className} skills`}
                       onMouseEnter={() => handleOpenModal(skill, stack[0])}
                       onMouseLeave={handleOffModal} />
-                  </SubProgressCircle>
+                  </ProgressCircleAnimation>
                 </div>
               ))}
-              <div onClick={() => { stack[2](); handleMoveScroll(); }} className='stack-circle'>
+              <div onClick={() => { handleOpenStack(stack[0]); handleMoveScroll(); }} className='stack-circle'>
                 <ProgressCircle name={stack[0]} value={100} />
               </div>
               {modalData.stack === stack[0] && (
@@ -117,7 +108,7 @@ const Skill = () => {
             <div key={index} className='box'>
               <h5> 🛠 {skill[0]} 🛠 </h5>
               <StackCard >
-                <div className={skill[3]}></div>
+                <div className={skill[2]}></div>
               </StackCard>
             </div>
           ))}
@@ -163,15 +154,15 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
 
   margin: 0 auto;
   width: 80vw;
-  height: ${(props) =>
-    props.openFront || props.openEtc ? "950px" : props.openBack ? "600px" : "280px"};
+  height: ${({ openStack }) =>
+    openStack.frontend || openStack.etc ? "950px" : openStack.backend ? "600px" : "280px"};
 
   transition: 1.2s;
   
   .frontend {
     position: absolute;
-    left: ${(props) => (props.openFront ? "45%" : "10%")};
-    top: ${(props) => (props.openFront ? "450px" : "60px")};
+    left: ${({ openStack }) => (openStack.frontend ? "45%" : "10%")};
+    top: ${({ openStack }) => (openStack.frontend ? "450px" : "60px")};
 
     display: flex;
     justify-content: center;
@@ -181,8 +172,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .backend {
     position: absolute;
-    right: ${(props) => (props.openBack ? "55%" : "55%")};
-    top: ${(props) => (props.openBack ? "200px" : "60px")};
+    right: ${({ openStack }) => (openStack.backend ? "55%" : "55%")};
+    top: ${({ openStack }) => (openStack.backend ? "200px" : "60px")};
 
     display: flex;
     justify-content: center;
@@ -191,8 +182,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .etc {
     position: absolute;
-    right: ${(props) => (props.openEtc ? "45%" : "20%")};
-    top: ${(props) => (props.openEtc ? "450px" : "60px")};
+    right: ${({ openStack }) => (openStack.etc ? "45%" : "20%")};
+    top: ${({ openStack }) => (openStack.etc ? "450px" : "60px")};
 
     display: flex;
     justify-content: center;
@@ -210,7 +201,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     border-radius: 50%;
   }
   .modal {
-    display: ${(props) => (props.openModal ? "" : "none")};
+    display: ${({ openModal }) => (openModal ? "" : "none")};
     position: absolute;
     width: 200px;
     height: 150px;
@@ -251,7 +242,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
 `
 
-const SubProgressCircle = styled.div<SubProgressCircleProps>`
+const ProgressCircleAnimation = styled.div<SubProgressCircleProps>`
   position: absolute;
   top: 50%;
   left: 50%;
