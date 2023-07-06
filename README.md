@@ -1,4 +1,4 @@
-# [🔗 Aroma-oh-Portfolio](https://aroma-oh-portfolio.com/)
+# <a href="https://aroma-oh-portfolio.com/" target="_blank" >🔗 Aroma-oh-Portfolio</a>
 프론트엔드 취업을 위한 포트폴리오 웹 페이지입니다. 
 
 ## Features
