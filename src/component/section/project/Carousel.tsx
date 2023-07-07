@@ -7,8 +7,8 @@ import MuiCarousel from 'react-material-ui-carousel';
 import { ProjectList } from '@/types/project'
 
 interface Props {
-  project: ProjectList | undefined;
-}[];
+  project: ProjectList;
+};
 
 export const Carousel = ({ project }: Props) => {
 

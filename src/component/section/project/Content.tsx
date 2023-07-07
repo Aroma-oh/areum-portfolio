@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { ProjectList } from '@/types/project'
 
 interface Props {
-  project: ProjectList | undefined;
-}[]
+  project: ProjectList;
+}
 
 export const Content = ({ project }: Props) => {
   return (
@@ -26,7 +26,7 @@ export const Content = ({ project }: Props) => {
           <div key={idx} className='info-box'>
             <h6>{title}</h6>
             {href && <a href={href} target="_blank" className='info-text' aria-label='프로젝트 링크'>{href}</a>}
-            <div className='info-text'>{content}</div>
+            {content && <div className='info-text'>{content}</div>}
           </div>
         ))}
       </div>
@@ -46,22 +46,20 @@ const ContentBox = styled.div`
   p {
     margin-bottom: 0.8rem;
   }
-  a {
-    width: 40vw;
-    word-break: break-all;
-  }
   h6 {
     width: 10vw;
     font-size: 1rem;
     font-weight: 600;
     color: #1876d1;
-    .info-text {
-      width: 40vw;
-    }
   }
   a {
+    width: 40vw;
+    word-break: break-all;
     text-decoration: none;
     color: #676767;
+  }
+  .info-text {
+    width: 40vw;
   }
   .content {
     line-height: 1.3rem;
@@ -84,7 +82,7 @@ const ContentBox = styled.div`
       margin: 0.5rem 0;
       width: 100%;
     }
-    .info-text { 
+    a, .info-text { 
       width: 70vw;
       line-height: 1.3rem;
     }
