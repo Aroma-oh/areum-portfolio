@@ -1,5 +1,4 @@
 // react, hook import
-import { MouseEvent } from 'react'
 import { useMoveToSection } from '@/hooks/useMoveToSection';
 // styled import
 import styled from '@emotion/styled';
@@ -13,7 +12,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { ProjectList } from '@/types/project'
 
 interface Props {
-  project: ProjectList[] | undefined;
+  project: ProjectList[];
 };
 
 export const NavButton = ({ project }: Props) => {
