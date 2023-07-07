@@ -1,10 +1,10 @@
 // styled, hook import
 import styled from '@emotion/styled';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
-// Image import
+// image import
 import Image from "next/legacy/image";
 import bgImage from '/public/intro.jpg';
-// MUI import
+// mui import
 import Button from '@mui/material/Button';
 
 const Intro = () => {
