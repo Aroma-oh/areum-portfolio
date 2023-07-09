@@ -9,7 +9,7 @@ import { useState, useRef, useEffect, FormEvent } from 'react'
 import { useInput } from '@/hooks/useInput'
 import { useMoveToSection } from '@/hooks/useMoveToSection';
 import { emailValidation } from '@/util/validation'
-// confetti import
+// confetti, loading library import
 import JSConfetti from 'js-confetti'
 import ReactLoading from 'react-loading';
 
@@ -58,7 +58,6 @@ const Contact = () => {
         formRef.current!,
         process.env.NEXT_PUBLIC_YOUR_PUBLIC_KEY!,
       )
-      setIsLoading(false);
       setIsMailSent(true);
       reset();
       const jsConfetti = new JSConfetti();
@@ -69,6 +68,9 @@ const Contact = () => {
       });
     } catch (error) {
       setIsMailFailed(true);
+    } finally {
+      setIsLoading(false);
+
     }
   }
 
@@ -133,9 +135,9 @@ const Contact = () => {
 const ContactBox = styled.section`
   padding: 0 2.5%;
   height: 91vh ;
-  background:linear-gradient(-15deg, transparent 55%, #d5d5d52b 0) right,
+  background:linear-gradient(-15deg, transparent 55%, #d5d5d52b 0) right, // 여기 대비하기
         linear-gradient(15deg, transparent 55%, #d5d5d52b 0) left;
-  background-size:50% 100%;
+  background-size: 50% 100%;
   background-repeat:no-repeat;
 
   display: flex;
