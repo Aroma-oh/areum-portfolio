@@ -15,6 +15,12 @@ export const ProgressCircle = ({ value, name, open }: ProgressProps) => {
     <ProgressBox>
       <div className='progress-wrap' >
         <StyledProgress value={value} name={name} open={open}>
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#d9ebff" />
+              <stop offset="65%" stop-color="#1876d1" />
+            </linearGradient>
+          </defs>
           <circle className='frame' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
           <circle className={`bar ${open ? 'animate' : ''}`} cx={60} cy={60} r={RADIUS} strokeWidth="12" />
         </StyledProgress>
@@ -56,7 +62,7 @@ const StyledProgress = styled.svg<ProgressProps> `
   }
   .bar {
     fill: transparent;
-    stroke: #1876d1;
+    stroke: url(#gradient);
     stroke-linecap: round;
     stroke-dashoffset: ${({ name, value }) => name ? CIRCUMFERENCE * (1 - value / 100) : CIRCUMFERENCE};
     stroke-dasharray: ${CIRCUMFERENCE};
