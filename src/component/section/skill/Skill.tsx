@@ -19,9 +19,9 @@ const Skill = () => {
     etc: false,
   });
   const [modalData, setModalData] = useState({
-    stack: "",
-    name: "",
-    content: "",
+    stack: '',
+    name: '',
+    content: '',
   });
   const [openModal, setOpenModal] = useState(false);
 
