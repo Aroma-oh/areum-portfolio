@@ -59,6 +59,7 @@ const Contact = () => {
         formRef.current!,
         process.env.NEXT_PUBLIC_YOUR_PUBLIC_KEY!,
       )
+      setIsMailSent(true);
       reset();
       const jsConfetti = new JSConfetti();
       jsConfetti.addConfetti({
