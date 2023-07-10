@@ -19,9 +19,9 @@ const Skill = () => {
     etc: false,
   });
   const [modalData, setModalData] = useState({
-    stack: "",
-    name: "",
-    content: "",
+    stack: '',
+    name: '',
+    content: '',
   });
   const [openModal, setOpenModal] = useState(false);
 
@@ -235,7 +235,7 @@ const CircleAnimation = styled.div<CircleAnimationProps>`
   transform: 
   ${({ isRotate, rotation }) => isRotate
     ? ` rotate(${rotation}deg) translate(200px) rotate(-${rotation}deg)`
-    : `rotate(0deg) translate(0px) rotate(0deg)`};
+    : `rotate(0deg) translate(0px) `};
 `
 
 const StackCardBox = styled.div`

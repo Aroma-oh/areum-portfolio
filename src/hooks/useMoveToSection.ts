@@ -16,5 +16,5 @@ export const useMoveToSection = () => {
 
   };
 
-  return { handleMove }
+  return { handleMove };
 }

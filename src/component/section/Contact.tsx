@@ -50,8 +50,9 @@ const Contact = () => {
       return setIsValidEmail(false);
     }
 
+    setIsLoading(true);
+
     try {
-      setIsLoading(true);
       await emailjs.sendForm(
         process.env.NEXT_PUBLIC_YOUR_SERVICE_ID!,
         process.env.NEXT_PUBLIC_YOUR_TEMPLATE_ID!,
@@ -70,7 +71,6 @@ const Contact = () => {
       setIsMailFailed(true);
     } finally {
       setIsLoading(false);
-
     }
   }
 
