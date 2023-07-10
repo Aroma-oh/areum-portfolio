@@ -5,6 +5,7 @@ interface Form {
 }
 
 export const useInput = (initialForm: Form) => {
+
   const [form, setForm] = useState<Form>(initialForm)
 
   const onChange = useCallback((
