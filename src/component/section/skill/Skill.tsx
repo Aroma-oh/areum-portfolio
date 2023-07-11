@@ -1,6 +1,6 @@
 // styled, react import 
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // data import 
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills';
 // component import 
@@ -9,6 +9,8 @@ import { ProgressCircle } from '@/component/section/skill/ProgressCircle';
 import { SkillSet, OpenModalDataProps, ProgressCircleProps, CircleAnimationProps } from '@/types/skills';
 // custom hook import 
 import { useMoveToSection } from '@/hooks/useMoveToSection';
+// observer library import 
+import { useInView } from 'react-intersection-observer';
 
 const Skill = () => {
 
@@ -24,6 +26,7 @@ const Skill = () => {
     content: '',
   });
   const [openModal, setOpenModal] = useState(false);
+  const [lastOpenStack, setLastOpenStack] = useState('frontend'); // 테스트 중 
 
 
   // 핸들러 관리
@@ -49,6 +52,22 @@ const Skill = () => {
     }
   }
 
+  // 스택 오픈 추가(테스트 중)
+  const { ref, inView } = useInView({ threshold: 0.35 });
+
+  useEffect(() => {
+    if (inView) {
+      handleOpenStack(lastOpenStack);
+    }
+    return () => {
+      setOpenStack({
+        frontend: false,
+        backend: false,
+        etc: false,
+      });
+    };
+  }, [inView]);
+
   // 데이터 관리
   const skills: SkillSet[] = [
     ["frontend", FRONTEND, 'bg-frontend'],
@@ -57,7 +76,7 @@ const Skill = () => {
   ];
 
   return (
-    <SkillBox id='Skill' >
+    <SkillBox id='Skill' ref={ref} >
       <h4>Skill</h4>
       <div className='skill-container' id='skill-container'>
         <ProgressCircleBox openStack={openStack} openModal={openModal}>
