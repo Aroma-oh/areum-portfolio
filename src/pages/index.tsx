@@ -29,6 +29,7 @@ export default function Home() {
       <Skill />
       <Project />
       <Contact />
+      <Banner />
       <Footer />
     </>
   )
