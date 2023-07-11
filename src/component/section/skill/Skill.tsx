@@ -36,6 +36,7 @@ const Skill = () => {
       backend: stackType === 'backend' ? !prevState.backend : false,
       etc: stackType === 'etc' ? !prevState.etc : false,
     }));
+    setLastOpenStack(stackType);
   };
 
   const handleModal = (isOpen: boolean, skills?: OpenModalDataProps, stack?: string) => {
