@@ -135,7 +135,7 @@ const Contact = () => {
 const ContactBox = styled.section`
   padding: 0 2.5%;
   height: 91vh ;
-  background:linear-gradient(-15deg, transparent 55%, #d5d5d52b 0) right, // 여기 대비하기
+  background:linear-gradient(-15deg, transparent 55%, #d5d5d52b 0) right, 
         linear-gradient(15deg, transparent 55%, #d5d5d52b 0) left;
   background-size: 50% 100%;
   background-repeat:no-repeat;
