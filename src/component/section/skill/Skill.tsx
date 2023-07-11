@@ -1,14 +1,16 @@
 // styled, react import 
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // data import 
-import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
+import { FRONTEND, BACKEND, ETC } from '@/constants/skills';
 // component import 
-import { ProgressCircle } from '@/component/section/skill/ProgressCircle'
+import { ProgressCircle } from '@/component/section/skill/ProgressCircle';
 // type import 
-import { SkillSet, OpenModalDataProps, ProgressCircleProps, CircleAnimationProps } from '@/types/skills'
+import { SkillSet, OpenModalDataProps, ProgressCircleProps, CircleAnimationProps } from '@/types/skills';
 // custom hook import 
-import { useMoveToSection } from '@/hooks/useMoveToSection'
+import { useMoveToSection } from '@/hooks/useMoveToSection';
+// observer library import 
+import { useInView } from 'react-intersection-observer';
 
 const Skill = () => {
 
@@ -24,6 +26,7 @@ const Skill = () => {
     content: '',
   });
   const [openModal, setOpenModal] = useState(false);
+  const [lastOpenStack, setLastOpenStack] = useState('frontend'); // 테스트 중 
 
 
   // 핸들러 관리
@@ -49,6 +52,22 @@ const Skill = () => {
     }
   }
 
+  // 스택 오픈 추가(테스트 중)
+  const { ref, inView } = useInView({ threshold: 0.35 });
+
+  useEffect(() => {
+    if (inView) {
+      handleOpenStack(lastOpenStack);
+    }
+    return () => {
+      setOpenStack({
+        frontend: false,
+        backend: false,
+        etc: false,
+      });
+    };
+  }, [inView]);
+
   // 데이터 관리
   const skills: SkillSet[] = [
     ["frontend", FRONTEND, 'bg-frontend'],
@@ -57,7 +76,7 @@ const Skill = () => {
   ];
 
   return (
-    <SkillBox id='Skill' >
+    <SkillBox id='Skill' ref={ref} >
       <h4>Skill</h4>
       <div className='skill-container' id='skill-container'>
         <ProgressCircleBox openStack={openStack} openModal={openModal}>
@@ -140,14 +159,14 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   margin: 0 auto;
   width: 80vw;
   height: ${({ openStack }) =>
-    openStack.frontend || openStack.etc ? "950px" : openStack.backend ? "600px" : "280px"};
+    openStack.frontend || openStack.etc ? '950px' : openStack.backend ? '600px' : '280px'};
 
   transition: 1.2s;
   
   .frontend {
     position: absolute;
-    left: ${({ openStack }) => (openStack.frontend ? "45%" : "10%")};
-    top: ${({ openStack }) => (openStack.frontend ? "450px" : "60px")};
+    left: ${({ openStack }) => (openStack.frontend ? '45%' : '10%')};
+    top: ${({ openStack }) => (openStack.frontend ? '450px' : '60px')};
 
     display: flex;
     justify-content: center;
@@ -167,8 +186,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .etc {
     position: absolute;
-    right: ${({ openStack }) => (openStack.etc ? "45%" : "20%")};
-    top: ${({ openStack }) => (openStack.etc ? "450px" : "60px")};
+    right: ${({ openStack }) => (openStack.etc ? '45%' : '20%')};
+    top: ${({ openStack }) => (openStack.etc ? '450px' : '60px')};
 
     display: flex;
     justify-content: center;
@@ -186,7 +205,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     border-radius: 50%;
   }
   .modal {
-    display: ${({ openModal }) => (openModal ? "" : "none")};
+    display: ${({ openModal }) => (openModal ? '' : 'none')};
     position: absolute;
     width: 200px;
     height: 150px;

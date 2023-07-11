@@ -6,6 +6,7 @@ import Project from '@/component/section/project/Project'
 import Skill from '@/component/section/skill/Skill'
 import Contact from '@/component/section/Contact'
 import Footer from '@/component/layout/Footer'
+import { Banner } from '@/component/section/Banner'
 // firebase import
 import { getDbAllData } from '@/util/firebase';
 // next import 
@@ -28,6 +29,7 @@ export default function Home() {
       <Skill />
       <Project />
       <Contact />
+      {/* <Banner /> */}
       <Footer />
     </>
   )
