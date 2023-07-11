@@ -2,13 +2,13 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 // data import 
-import { FRONTEND, BACKEND, ETC } from '@/constants/skills'
+import { FRONTEND, BACKEND, ETC } from '@/constants/skills';
 // component import 
-import { ProgressCircle } from '@/component/section/skill/ProgressCircle'
+import { ProgressCircle } from '@/component/section/skill/ProgressCircle';
 // type import 
-import { SkillSet, OpenModalDataProps, ProgressCircleProps, CircleAnimationProps } from '@/types/skills'
+import { SkillSet, OpenModalDataProps, ProgressCircleProps, CircleAnimationProps } from '@/types/skills';
 // custom hook import 
-import { useMoveToSection } from '@/hooks/useMoveToSection'
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 
 const Skill = () => {
 
@@ -140,14 +140,14 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   margin: 0 auto;
   width: 80vw;
   height: ${({ openStack }) =>
-    openStack.frontend || openStack.etc ? "950px" : openStack.backend ? "600px" : "280px"};
+    openStack.frontend || openStack.etc ? '950px' : openStack.backend ? '600px' : '280px'};
 
   transition: 1.2s;
   
   .frontend {
     position: absolute;
-    left: ${({ openStack }) => (openStack.frontend ? "45%" : "10%")};
-    top: ${({ openStack }) => (openStack.frontend ? "450px" : "60px")};
+    left: ${({ openStack }) => (openStack.frontend ? '45%' : '10%')};
+    top: ${({ openStack }) => (openStack.frontend ? '450px' : '60px')};
 
     display: flex;
     justify-content: center;
@@ -167,8 +167,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .etc {
     position: absolute;
-    right: ${({ openStack }) => (openStack.etc ? "45%" : "20%")};
-    top: ${({ openStack }) => (openStack.etc ? "450px" : "60px")};
+    right: ${({ openStack }) => (openStack.etc ? '45%' : '20%')};
+    top: ${({ openStack }) => (openStack.etc ? '450px' : '60px')};
 
     display: flex;
     justify-content: center;
@@ -186,7 +186,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     border-radius: 50%;
   }
   .modal {
-    display: ${({ openModal }) => (openModal ? "" : "none")};
+    display: ${({ openModal }) => (openModal ? '' : 'none')};
     position: absolute;
     width: 200px;
     height: 150px;
