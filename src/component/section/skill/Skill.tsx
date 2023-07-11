@@ -16,7 +16,7 @@ const Skill = () => {
 
   // 상태 관리
   const [openStack, setOpenStack] = useState({
-    frontend: true,
+    frontend: false,
     backend: false,
     etc: false,
   });
@@ -36,6 +36,7 @@ const Skill = () => {
       backend: stackType === 'backend' ? !prevState.backend : false,
       etc: stackType === 'etc' ? !prevState.etc : false,
     }));
+    setLastOpenStack(stackType);
   };
 
   const handleModal = (isOpen: boolean, skills?: OpenModalDataProps, stack?: string) => {
