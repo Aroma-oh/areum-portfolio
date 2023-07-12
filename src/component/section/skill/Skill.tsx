@@ -55,7 +55,6 @@ const Skill = () => {
 
   // 스택 오픈 추가(테스트 중)
   const { ref, inView } = useInView({ threshold: 0.35, delay: 500, trackVisibility: true });
-
   useEffect(() => {
     if (inView) {
       handleOpenStack(lastOpenStack);
@@ -69,6 +68,7 @@ const Skill = () => {
     };
   }, [inView]);
 
+
   // 데이터 관리
   const skills: SkillSet[] = [
     ["frontend", FRONTEND, 'bg-frontend'],
@@ -77,8 +77,8 @@ const Skill = () => {
   ];
 
   return (
-    <SkillBox id='Skill' ref={ref} >
-      <h4>Skill</h4>
+    <SkillBox id='Skill' >
+      <h4 ref={ref} >Skill</h4>
       <div className='skill-container' id='skill-container'>
         <ProgressCircleBox openStack={openStack} openModal={openModal}>
           {skills.map((stack, index1) => (
