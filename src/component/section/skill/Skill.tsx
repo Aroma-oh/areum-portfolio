@@ -56,7 +56,7 @@ const Skill = () => {
   // 스택 오픈 추가(테스트 중)
   const { ref, inView } = useInView({ threshold: 0.35, delay: 500, trackVisibility: true });
   useEffect(() => {
-    if (inView && scrollDirection === 'down') {
+    if (inView) {
       handleOpenStack(lastOpenStack);
     }
     return () => {
@@ -67,30 +67,6 @@ const Skill = () => {
       });
     };
   }, [inView]);
-
-  // 스크롤 이벤트
-  const [scrollDirection, setScrollDirection] = useState<string | null>(null);
-  const prevScrollYRef = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      // console.log(window)
-      console.log(`currentScrollY: ${currentScrollY}`)
-      console.log(`prevScrollYRef.current: ${prevScrollYRef.current}`)
-      console.log(scrollDirection)
-
-      setScrollDirection(
-        currentScrollY > prevScrollYRef.current ? 'down' : 'up'
-      );
-      prevScrollYRef.current = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
 
   // 데이터 관리
