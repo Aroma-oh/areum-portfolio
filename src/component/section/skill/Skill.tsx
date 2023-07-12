@@ -54,7 +54,7 @@ const Skill = () => {
   }
 
   // 스택 오픈 추가(테스트 중)
-  const { ref, inView } = useInView({ threshold: 0.35 });
+  const { ref, inView } = useInView({ threshold: 0.35, delay: 500, trackVisibility: true });
 
   useEffect(() => {
     if (inView) {
