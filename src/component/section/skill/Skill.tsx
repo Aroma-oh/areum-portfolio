@@ -1,6 +1,6 @@
 // styled, react import 
 import styled from '@emotion/styled';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 // data import 
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills';
 // component import 
@@ -56,7 +56,7 @@ const Skill = () => {
   // 스택 오픈 추가(테스트 중)
   const { ref, inView } = useInView({ threshold: 0.35, delay: 500, trackVisibility: true });
   useEffect(() => {
-    if (inView) {
+    if (inView && scrollDirection === 'down') {
       handleOpenStack(lastOpenStack);
     }
     return () => {
@@ -67,6 +67,30 @@ const Skill = () => {
       });
     };
   }, [inView]);
+
+  // 스크롤 이벤트
+  const [scrollDirection, setScrollDirection] = useState<string | null>(null);
+  const prevScrollYRef = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      // console.log(window)
+      console.log(`currentScrollY: ${currentScrollY}`)
+      console.log(`prevScrollYRef.current: ${prevScrollYRef.current}`)
+      console.log(scrollDirection)
+
+      setScrollDirection(
+        currentScrollY > prevScrollYRef.current ? 'down' : 'up'
+      );
+      prevScrollYRef.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
 
   // 데이터 관리
@@ -160,7 +184,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   margin: 0 auto;
   width: 80vw;
   height: ${({ openStack }) =>
-    openStack.frontend || openStack.etc ? '950px' : openStack.backend ? '600px' : '280px'};
+    openStack.frontend || openStack.etc ? '950px' : openStack.backend ? '600px' : '320px'};
 
   transition: 1.2s;
   
