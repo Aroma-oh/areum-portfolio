@@ -1,6 +1,6 @@
 // styled, react import 
 import styled from '@emotion/styled';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 // data import 
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills';
 // component import 
@@ -16,7 +16,7 @@ const Skill = () => {
 
   // 상태 관리
   const [openStack, setOpenStack] = useState({
-    frontend: false,
+    frontend: true,
     backend: false,
     etc: false,
   });
@@ -26,8 +26,6 @@ const Skill = () => {
     content: '',
   });
   const [openModal, setOpenModal] = useState(false);
-  const [lastOpenStack, setLastOpenStack] = useState('frontend'); // 테스트 중 
-
 
   // 핸들러 관리
   const handleOpenStack = (stackType: string) => {
@@ -36,7 +34,6 @@ const Skill = () => {
       backend: stackType === 'backend' ? !prevState.backend : false,
       etc: stackType === 'etc' ? !prevState.etc : false,
     }));
-    setLastOpenStack(stackType);
   };
 
   const handleModal = (isOpen: boolean, skills?: OpenModalDataProps, stack?: string) => {
@@ -53,21 +50,6 @@ const Skill = () => {
     }
   }
 
-  // 스택 오픈 추가(테스트 중)
-  const { ref, inView } = useInView({ threshold: 0.35 });
-
-  useEffect(() => {
-    if (inView) {
-      handleOpenStack(lastOpenStack);
-    }
-    return () => {
-      setOpenStack({
-        frontend: false,
-        backend: false,
-        etc: false,
-      });
-    };
-  }, [inView]);
 
   // 데이터 관리
   const skills: SkillSet[] = [
@@ -77,8 +59,8 @@ const Skill = () => {
   ];
 
   return (
-    <SkillBox id='Skill' ref={ref} >
-      <h4>Skill</h4>
+    <SkillBox id='Skill' >
+      <h4 >Skill</h4>
       <div className='skill-container' id='skill-container'>
         <ProgressCircleBox openStack={openStack} openModal={openModal}>
           {skills.map((stack, index1) => (
@@ -160,7 +142,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   margin: 0 auto;
   width: 80vw;
   height: ${({ openStack }) =>
-    openStack.frontend || openStack.etc ? '950px' : openStack.backend ? '600px' : '280px'};
+    openStack.frontend || openStack.etc ? '950px' : openStack.backend ? '600px' : '320px'};
 
   transition: 1.2s;
   
