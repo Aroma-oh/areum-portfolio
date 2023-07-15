@@ -26,8 +26,6 @@ const Skill = () => {
     content: '',
   });
   const [openModal, setOpenModal] = useState(false);
-  const [lastOpenStack, setLastOpenStack] = useState('frontend'); // 테스트 중 
-
 
   // 핸들러 관리
   const handleOpenStack = (stackType: string) => {
@@ -36,7 +34,6 @@ const Skill = () => {
       backend: stackType === 'backend' ? !prevState.backend : false,
       etc: stackType === 'etc' ? !prevState.etc : false,
     }));
-    setLastOpenStack(stackType);
   };
 
   const handleModal = (isOpen: boolean, skills?: OpenModalDataProps, stack?: string) => {
@@ -53,21 +50,6 @@ const Skill = () => {
     }
   }
 
-  // 스택 오픈 추가(테스트 중)
-  const { ref, inView } = useInView({ threshold: 0.35, delay: 500, trackVisibility: true });
-  useEffect(() => {
-    if (inView) {
-      handleOpenStack(lastOpenStack);
-    }
-    return () => {
-      setOpenStack({
-        frontend: false,
-        backend: false,
-        etc: false,
-      });
-    };
-  }, [inView]);
-
 
   // 데이터 관리
   const skills: SkillSet[] = [
@@ -78,7 +60,7 @@ const Skill = () => {
 
   return (
     <SkillBox id='Skill' >
-      <h4 ref={ref} >Skill</h4>
+      <h4 >Skill</h4>
       <div className='skill-container' id='skill-container'>
         <ProgressCircleBox openStack={openStack} openModal={openModal}>
           {skills.map((stack, index1) => (
