@@ -16,7 +16,7 @@ const Skill = () => {
 
   // 상태 관리
   const [openStack, setOpenStack] = useState({
-    frontend: false,
+    frontend: true,
     backend: false,
     etc: false,
   });
