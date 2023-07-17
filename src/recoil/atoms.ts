@@ -18,14 +18,14 @@ export const toggleState = atom({
 export const headerHeightState = atom({
   key: 'headerHeightState',
   default: 0,
-})
+});
 
 export const isHorizontalState = atom({
   key: 'isHorizontalState',
   default: true,
-})
+});
 
 export const selectProject = atom({
   key: 'selectProject',
   default: 0,
-})
+});
