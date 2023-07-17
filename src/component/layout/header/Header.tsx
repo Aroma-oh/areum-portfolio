@@ -49,6 +49,8 @@ function Header() {
       id='Header'
       ref={headerRef}
       sx={{
+        height: '80px',
+        justifyContent: 'center',
         backgroundColor: isColorNav || toggle ? 'white' : 'rgb(0, 0, 0, 0.08)',
         color: 'black',
         backdropFilter: 'blur(6px)',
