@@ -6,12 +6,15 @@ import Image from "next/legacy/image";
 import bgImage from '/public/intro.jpg';
 // mui import
 import Button from '@mui/material/Button';
+// 인터렉션 페이지 테스트중
+import { WaveCanvas } from '@/component/section/Wave';
 
 const Intro = () => {
   const { handleMove } = useMoveToSection();
 
   return (
     <IntroBox id='Intro' >
+      {/* <WaveCanvas /> */}
       <Image
         src={bgImage}
         alt='배경 이미지 - 노트북이 있는 책상'
@@ -43,7 +46,7 @@ const Intro = () => {
 const IntroBox = styled.section`
   position: relative;
   width: 100%;
-  height: 550px;
+  height: 80vh;
 `
 
 const ContentBox = styled.div`
