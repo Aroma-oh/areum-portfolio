@@ -43,7 +43,7 @@ const Intro = () => {
 const IntroBox = styled.section`
   position: relative;
   width: 100%;
-  height: 550px;
+  height: 80vh;
 `
 
 const ContentBox = styled.div`

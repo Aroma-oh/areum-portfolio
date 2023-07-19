@@ -11,11 +11,10 @@ export const useScroll = () => {
   useEffect(() => {
 
     const onScroll = () => {
-
       const scrollY = window.scrollY;
       setToggle(false);
 
-      if (scrollY > 486) {
+      if (scrollY > (window.innerHeight * 0.8 - 80)) {
         return setIsColorNav(true);
       }
 
