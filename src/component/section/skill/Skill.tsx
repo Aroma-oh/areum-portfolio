@@ -9,8 +9,6 @@ import { ProgressCircle } from '@/component/section/skill/ProgressCircle';
 import { SkillSet, OpenModalDataProps, ProgressCircleProps, CircleAnimationProps } from '@/types/skills';
 // custom hook import 
 import { useMoveToSection } from '@/hooks/useMoveToSection';
-// observer library import 
-import { useInView } from 'react-intersection-observer';
 
 const Skill = () => {
 
