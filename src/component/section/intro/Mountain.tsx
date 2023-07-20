@@ -16,16 +16,15 @@ export const Mountain = () => {
       new Hill('#95DAC1', 2, 6),
     ];
 
-    const devicePixel = window.devicePixelRatio;
-    const stageWidth = window.innerWidth;
-    const stageHeight = window.innerHeight;
-
     const handleResize = () => {
-      canvas.width = stageWidth * devicePixel;
-      canvas.height = stageHeight * devicePixel;
+      const stageWidth = document.body.clientWidth;
+      const stageHeight = window.innerHeight;
 
-      for (let i = 0; i < hills.length; i++) {
-        hills[i].resize(stageWidth, stageHeight);
+      canvas.width = stageWidth;
+      canvas.height = stageHeight;
+
+      for (const hill of hills) {
+        hill.resize(stageWidth, stageHeight);
       }
     };
 
@@ -33,7 +32,7 @@ export const Mountain = () => {
     handleResize();
 
     const animate = () => {
-      ctx.clearRect(0, 0, stageWidth, stageHeight);
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       for (let i = 0; i < hills.length; i++) {
         hills[i].draw(ctx);
       }
