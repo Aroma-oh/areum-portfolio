@@ -75,8 +75,8 @@ export class Hill {
   }
 
   private getY(): number {
-    const min = this.stageHeight / 8;
-    const max = this.stageHeight - min;
+    const min = this.stageHeight / 6;
+    const max = this.stageHeight - min * 2;
     return min + Math.random() * max;
   }
 }
