@@ -2,9 +2,11 @@
 import styled from '@emotion/styled';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
 // mui import
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 // component import
 import { Mountain } from '@/component/section/intro/Mountain';
+import { Button } from '@/component/common/Button';
+
 
 const Intro = () => {
   const { handleMove } = useMoveToSection();
@@ -13,12 +15,7 @@ const Intro = () => {
     <IntroBox id='Intro' >
       <ContentBox>
         <h1>문제 해결을 통해 성장하는 <br /> 프론트엔드 개발자 오아름입니다</h1>
-        <Button
-          variant="contained"
-          size='large'
-          sx={{ borderRadius: '21px' }}
-          onClick={() => handleMove('Profile')}
-        > 더 알아보기 👇🏻 </Button>
+        <Button onClick={() => handleMove('Profile')} />
       </ContentBox>
       <Mountain />
     </IntroBox>
@@ -34,44 +31,47 @@ const IntroBox = styled.section`
 const ContentBox = styled.div`
   z-index: 1;
   width: 100vw;
-  height: 100vh;
+  height: 50vh;
+  margin: 30vh 0 25vh 0;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: absolute;
 
   word-break: keep-all;
-
   
   h1 {
-    padding-top: 5%;
     font-size: 3rem;
     font-weight: 700;
     letter-spacing: 0.8rem;
-    line-height: 5rem;
+    line-height: 6rem;
+
     text-align: center;
-    margin-bottom: 10rem;
-    color: inherit;
+    color: black;
+
+    /* &::before {
+    content: '문제 해결을 통해 성장하는';
+    position: absolute;
+
+    overflow: hidden;
+    border-right: 1px solid black;
+    animation: typing 5s steps(31) infinite;
+    color: black;
+  } */
   }
-  h2 {
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  hr {
-    width: 3rem;
-    border: solid 3px #636363;
-    margin-bottom: 2.5rem;
-  }
-  p {
-    font-size: 1.2rem;
-    text-align: center;
-    line-height: 1.7rem;
-    margin: 0 1rem 3rem 1rem;
-    word-break: keep-all;
+
+  @keyframes typing{
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 0%;
+    }
   }
 `
 
