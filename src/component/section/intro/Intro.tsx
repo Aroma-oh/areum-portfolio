@@ -12,14 +12,7 @@ const Intro = () => {
   return (
     <IntroBox id='Intro' >
       <ContentBox>
-        <h1>오아름</h1>
-        <h2>프론트엔드 포트폴리오</h2>
-        <hr />
-        <p>
-          안녕하세요, <br />
-          문제를 즐기는 프론트엔드 개발자입니다. <br />
-          일상에서 마주한 불편함으로 더 나은 사용자 경험을 고민합니다. <br />
-        </p>
+        <h1>문제 해결을 통해 성장하는 <br /> 프론트엔드 개발자 오아름입니다</h1>
         <Button
           variant="contained"
           size='large'
@@ -53,10 +46,13 @@ const ContentBox = styled.div`
 
   
   h1 {
+    padding-top: 5%;
     font-size: 3rem;
     font-weight: 700;
     letter-spacing: 0.8rem;
-    margin-bottom: 0.9rem;
+    line-height: 5rem;
+    text-align: center;
+    margin-bottom: 10rem;
     color: inherit;
   }
   h2 {
