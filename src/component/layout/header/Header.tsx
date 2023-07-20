@@ -49,11 +49,13 @@ function Header() {
       id='Header'
       ref={headerRef}
       sx={{
-        height: '80px',
+        height: 'fit-content',
+        py: '10px',
         justifyContent: 'center',
-        backgroundColor: isColorNav || toggle ? 'white' : 'rgb(0, 0, 0, 0.08)',
+        backgroundColor: isColorNav || toggle ? 'white' : 'rgb(255, 255, 255, 0.08)',
         color: 'black',
         backdropFilter: 'blur(6px)',
+        boxShadow: 'none',
       }}>
       <Toolbar
         sx={{
@@ -80,7 +82,7 @@ function Header() {
         sx={{
           display: { xs: toggle ? 'flex' : 'none', md: 'none' },
           flexDirection: { xs: 'column', md: 'row' },
-          pb: '18px',
+          pb: '16px',
         }} />
     </AppBarBox>
   );
