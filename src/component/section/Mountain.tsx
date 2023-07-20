@@ -1,7 +1,12 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 const Mountain = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext('2d');
+  }, []);
 
   return <canvas ref={canvasRef} />
 }
