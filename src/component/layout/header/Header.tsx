@@ -51,7 +51,7 @@ function Header() {
       sx={{
         height: '80px',
         justifyContent: 'center',
-        backgroundColor: isColorNav || toggle ? 'white' : 'rgb(0, 0, 0, 0.08)',
+        backgroundColor: isColorNav || toggle ? 'white' : 'rgb(255, 255, 255, 0.08)',
         color: 'black',
         backdropFilter: 'blur(6px)',
       }}>
