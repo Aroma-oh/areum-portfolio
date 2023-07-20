@@ -14,7 +14,7 @@ export const useScroll = () => {
       const scrollY = window.scrollY;
       setToggle(false);
 
-      if (scrollY > (window.innerHeight - 80)) {
+      if (scrollY > (window.innerHeight - 85)) {
         return setIsColorNav(true);
       }
 
