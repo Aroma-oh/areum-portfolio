@@ -1,8 +1,6 @@
 // styled, hook import
 import styled from '@emotion/styled';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
-// mui import
-// import Button from '@mui/material/Button';
 // component import
 import { Mountain } from '@/component/section/intro/Mountain';
 import { Button } from '@/component/common/Button';
