@@ -1,6 +1,6 @@
 // component import 
 import Header from "@/component/layout/header/Header"
-import Intro from "@/component/section/Intro"
+import Intro from "@/component/section/intro/Intro"
 import Profile from "@/component/section/Profile"
 import Project from '@/component/section/project/Project'
 import Skill from '@/component/section/skill/Skill'
