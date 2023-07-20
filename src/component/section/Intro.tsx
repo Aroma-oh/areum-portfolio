@@ -1,25 +1,16 @@
 // styled, hook import
 import styled from '@emotion/styled';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
-// image import
-import Image from "next/legacy/image";
-import bgImage from '/public/intro.jpg';
 // mui import
 import Button from '@mui/material/Button';
+// component import
+import { Mountain } from '@/component/section/Mountain';
 
 const Intro = () => {
   const { handleMove } = useMoveToSection();
 
   return (
     <IntroBox id='Intro' >
-      <Image
-        src={bgImage}
-        alt='배경 이미지 - 노트북이 있는 책상'
-        layout='fill'
-        placeholder='blur'
-        objectFit='cover'
-        objectPosition='center'
-      />
       <ContentBox>
         <h1>오아름</h1>
         <h2>프론트엔드 포트폴리오</h2>
@@ -36,6 +27,7 @@ const Intro = () => {
           onClick={() => handleMove('Profile')}
         > 더 알아보기 👇🏻 </Button>
       </ContentBox>
+      <Mountain />
     </IntroBox>
   )
 }
@@ -43,19 +35,18 @@ const Intro = () => {
 const IntroBox = styled.section`
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 100vh;
 `
 
 const ContentBox = styled.div`
   z-index: 1;
-  width: 100%;
-  height: 100%;
-  padding-top: 30px;
+  width: 100vw;
+  height: 100vh;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   position: absolute;
 
   word-break: keep-all;
