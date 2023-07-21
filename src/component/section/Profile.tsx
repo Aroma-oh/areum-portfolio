@@ -1,8 +1,11 @@
+// styled, motion library import
 import styled from '@emotion/styled';
-import { PROFILE } from '@/constants/profile';
 import { motion } from 'framer-motion';
-import { Button } from '@/component/common/Button';
+// hook, component import
 import { useMoveToSection } from '@/hooks/useMoveToSection';
+import { Button } from '@/component/common/Button';
+// constant data import
+import { PROFILE } from '@/constants/profile';
 
 const Profile = () => {
   const { handleMove } = useMoveToSection();
