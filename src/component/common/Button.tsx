@@ -14,6 +14,9 @@ export const Button = ({ onClick }: Props) => {
 }
 
 const ButtonBox = styled.div`
+  position: absolute;
+  top: 78vh;
+  
   width: 100px;
   height: 100px;
   cursor: pointer;
@@ -26,7 +29,7 @@ const ButtonBox = styled.div`
 const Arrow = styled(TbArrowBigDownLinesFilled)`
   z-index: 100;
   font-size: 20px;
-  color: #DFFFD8;
+  color: #ffffff;
 `
 
 const Circle = styled.div`
