@@ -5,14 +5,48 @@ import { useMoveToSection } from '@/hooks/useMoveToSection';
 import { Mountain } from '@/component/section/intro/Mountain';
 import { Button } from '@/component/common/Button';
 
+import { motion, useMotionValue } from 'framer-motion';
+import { useEffect } from 'react';
 
 const Intro = () => {
   const { handleMove } = useMoveToSection();
 
+  const containerY = useMotionValue(0);
+  const menuMaskY = useMotionValue(0);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const yValue = e.clientY - (window.innerHeight * 0.35);
+      containerY.set(yValue);
+      menuMaskY.set(-yValue);
+    };
+
+    document.body.addEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
     <IntroBox id='Intro' >
       <ContentBox>
-        <h1>문제 해결을 통해 성장하는 <br /> 프론트엔드 개발자 오아름입니다</h1>
+        <div className='header-box'>
+          <ul className='header'>
+            <li>Frontend </li>
+            <li>portfolio</li>
+          </ul>
+          <motion.div
+            className='container'
+            style={{ y: containerY }}
+          >
+            <motion.ul
+              className='menu-mask'
+              style={{ y: menuMaskY }}
+            >
+              <li>Frontend</li>
+              <li>portfolio</li>
+            </motion.ul>
+          </motion.div>
+        </div>
+
+
         <Button onClick={() => handleMove('Profile')} />
       </ContentBox>
       <Mountain />
@@ -21,55 +55,60 @@ const Intro = () => {
 }
 
 const IntroBox = styled.section`
-  position: relative;
-  width: 100%;
-  height: 100vh;
+
+  @font-face {
+    font-family: 'PyeongChangPeace-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  font-family: 'PyeongChangPeace-Bold';
+  font-size: 150px;
+  font-weight: 900;
+  letter-spacing: 0.8rem;
+
+  @media ((min-width: 600px) and (max-width: 900px)) {
+    font-size: 100px;
+  }
+  @media (max-width: 600px) {
+    font-size: 60px;
+  }
 `
 
 const ContentBox = styled.div`
   z-index: 1;
   width: 100vw;
-  height: 50vh;
-  margin: 30vh 0 25vh 0;
+  height: 90vh;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   position: absolute;
 
-  word-break: keep-all;
-  
-  h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: 0.8rem;
-    line-height: 6rem;
+  .header {
+    color: transparent;
+    -webkit-text-stroke: 2px black;
+  } 
 
-    text-align: center;
-    color: black;
-
-    /* &::before {
-    content: '문제 해결을 통해 성장하는';
-    position: absolute;
-
+  .container {
+    height: 100px;
     overflow: hidden;
-    border-right: 1px solid black;
-    animation: typing 5s steps(31) infinite;
-    color: black;
-  } */
+    position: absolute;
+    top: 0;
+    color: #FFFEC4;
+    -webkit-text-stroke: 2px black;
   }
 
-  @keyframes typing{
-    0% {
-      width: 0%;
-    }
-    50% {
-      width: 100%;
-    }
-    100% {
-      width: 0%;
-    }
+  .header-box {
+    position: absolute;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  li {
+    margin-top: 1.2rem;
   }
 `
 
