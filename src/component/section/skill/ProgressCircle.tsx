@@ -17,12 +17,13 @@ export const ProgressCircle = ({ value, name, open }: ProgressProps) => {
         <StyledProgress value={value} name={name} open={open}>
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#d9ebff" />
-              <stop offset="65%" stop-color="#1876d1" />
+              <stop offset="0%" stop-color="#FFFEC4" />
+              <stop offset="50%" stop-color="#DFFFD8" />
+              <stop offset="90%" stop-color="#95DAC1" />
             </linearGradient>
           </defs>
-          <circle className='frame' cx={60} cy={60} r={RADIUS} strokeWidth="12" />
-          <circle className={`bar ${open ? 'animate' : ''}`} cx={60} cy={60} r={RADIUS} strokeWidth="12" />
+          <circle className='frame' cx={60} cy={60} r={RADIUS} strokeWidth="6" />
+          <circle className={`bar ${open ? 'animate' : ''}`} cx={60} cy={60} r={RADIUS} strokeWidth="6" />
         </StyledProgress>
         <strong className='text'>{name}</strong>
       </div>
@@ -58,7 +59,7 @@ const StyledProgress = styled.svg<ProgressProps> `
   height: 120px;
   .frame {
     fill: white;
-    stroke: #daecff;
+    stroke: #f5f5f5b2;
   }
   .bar {
     fill: transparent;
