@@ -29,7 +29,7 @@ const Intro = () => {
       <ContentBox>
         <div className='header-box'>
           <ul className='header'>
-            <li>Frontend </li>
+            <li>Frontend</li>
             <li>portfolio</li>
           </ul>
           <motion.div
@@ -45,9 +45,7 @@ const Intro = () => {
             </motion.ul>
           </motion.div>
         </div>
-
-
-        <Button onClick={() => handleMove('Profile')} />
+        <Button onClick={() => handleMove('about')} />
       </ContentBox>
       <Mountain />
     </IntroBox>
@@ -78,8 +76,8 @@ const IntroBox = styled.section`
 
 const ContentBox = styled.div`
   z-index: 1;
-  width: 100vw;
-  height: 90vh;
+  width: 100%;
+  height: 83vh;
 
   display: flex;
   flex-direction: column;

@@ -1,73 +1,110 @@
 import styled from '@emotion/styled';
-import { PROFILE } from '@/constants/profile'
+import { PROFILE } from '@/constants/profile';
+import { motion } from 'framer-motion';
+import { Button } from '@/component/common/Button';
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 
 const Profile = () => {
+  const { handleMove } = useMoveToSection();
+
   return (
-    <>
-      <ProfileBox id='Profile' >
-        <h4>Profile</h4>
-        <div className='card-container'>
-          {PROFILE.map(({ icon, type, content }) => (
-            <CardBox key={type}>
-              <div className='content-box'>
-                <div className='icon'>{icon}</div>
-                <div className='text-box'>
-                  <p className='type'>{type}</p>
-                  <p className='text'>{content}</p>
-                </div>
+
+    <ProfileBox id='about'>
+      <ul>
+        <li>
+          <span className='underline'><span className='strong'>문제</span>에서 기회를 포착</span>하고, <br /><span className='strong'>해결</span>을 통한 <span className='strong'>성취감</span>을 좋아합니다.</li>
+        <li>
+          일상에서 마주한 불편함으로, <br /> 더 나은 <span className='underline'><span className='strong'>사용자 경험</span>에 대해 고민</span>합니다. </li>
+      </ul>
+      <div className='card-container'>
+        {PROFILE.map(({ icon, type, content }, index) => (
+          <CardBox
+            key={type}
+            animate={{
+              opacity: 1,
+              scale: 1.2,
+            }}
+            transition={{
+              repeat: Infinity,
+              type: 'spring',
+              mass: 3,
+              delay: index * 0.2,
+            }}
+          >
+            <motion.div className='content-box'>
+              <div className='icon'>{icon}</div>
+              <div className='text-box'>
+                <p className='type'>{type}</p>
+                <p className='text'>{content}</p>
               </div>
-            </CardBox>
-          ))}
-        </div>
-      </ProfileBox>
-    </>
+            </motion.div>
+          </CardBox>
+        ))}
+      </div>
+      <Button onClick={() => handleMove('Profile')} />
+    </ProfileBox>
   )
 }
 
 const ProfileBox = styled.section`
-  padding: 7% 0 2.5% 0;
+  min-height: calc(100vh - 84px);
+  width: fit-content;
+  margin: auto;
+
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
-  h4 {
-    margin-bottom: 3rem;
-
-    align-self: center;
-    font-size: 2rem;
-    font-weight: 500;
+  @font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
   }
-  .card-container {
-    margin-bottom: 5.5rem;
+
+  ul {
+    font-family: 'HakgyoansimWoojuR';
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  li {
+    width: 30vw;
+    font-size: 2rem;
+    line-height: 3rem;
+    margin: 2rem 8rem 4rem 8rem;
+  }
+  .strong {
+    font-size: 2.5rem;
+    font-weight: 800;
+  }
+  .underline {
+    background-image: linear-gradient(90deg, #95DAC1, #fffd7f);
+    background-position: bottom;
+    background-size: 100% 30%;
+    background-repeat: no-repeat;
+  }
+  .card-container { 
+    margin-bottom: 3rem;
 
     display: flex;
     justify-content: center;
-    flex-direction: row;
-
-    @media (max-width: 600px) {
-      display: grid;
-      grid-template-columns: 1;
-      grid-template-rows: 1;
-      grid-gap: 2vw;
-    }
-    
-    @media (min-width: 600px) and (max-width: 900px) {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      grid-gap: 2vw;
-
-      justify-items: center;
+    flex-direction: column;
+  }
+  @media (max-width: 900px) {
+      flex-direction: column;
       align-items: center;
     }
-
-  }
 `
 
-const CardBox = styled.div`
+const CardBox = styled(motion.div)`
   width: 270px;
   min-width: 200px;
   height: 100px;
-  margin: 8px;
+  margin: 1.2rem;
   
   display: flex;
   flex-direction: column;

@@ -50,7 +50,7 @@ const Project = () => {
   )
 
   return (
-    <ProjectBox id='Project'>
+    <ProjectBox id='project'>
       <h4>Project</h4>
       <div className='view-mode'>
         {isViewMode && <ViewMode />}
