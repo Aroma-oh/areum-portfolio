@@ -57,7 +57,7 @@ const Skill = () => {
   ];
 
   return (
-    <SkillBox id='Skill' >
+    <SkillBox id='skill' >
       <h4 >Skill</h4>
       <div className='skill-container' id='skill-container'>
         <ProgressCircleBox openStack={openStack} openModal={openModal}>
