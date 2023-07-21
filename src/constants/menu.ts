@@ -1,1 +1,1 @@
-export const MENU = ['Profile', 'Skill', 'Project', 'Contact'];
+export const MENU = ['about', 'skill', 'project', 'contact'];
