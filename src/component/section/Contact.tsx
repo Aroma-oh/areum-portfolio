@@ -75,7 +75,7 @@ const Contact = () => {
   }
 
   return (
-    <ContactBox id='Contact' >
+    <ContactBox id='contact' >
       {isMailSent && <Alert severity="success" className='alert'>메일이 전송되었습니다.</Alert>}
       {isMailFailed && <Alert severity="warning" className='alert'>잠시 후에 다시 시도해주세요.</Alert>}
       {!isValidEmail && <Alert severity="error" className='alert'>이메일을 확인해주세요.</Alert>}
