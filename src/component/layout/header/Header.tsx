@@ -66,7 +66,7 @@ function Header() {
         <TypoBox
           variant="h6"
           onClick={() => { handleMove('Intro') }}>
-          ☁️ Portfolio
+          AREUM
         </TypoBox>
         <FiMenu
           className='menu-icon'
@@ -107,8 +107,7 @@ const AppBarBox = styled(AppBar)`
 `
 
 const TypoBox = styled(Typography)`
-  font-weight: 700;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.1rem;
   cursor: pointer;
 
   @media (max-width: 900px) {

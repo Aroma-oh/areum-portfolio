@@ -12,8 +12,8 @@ export const Mountain = () => {
 
     const hills = [
       new Hill('#DFFFD8', 0.5, 12),
-      new Hill('#B5F1CC', 1, 8),
-      new Hill('#95DAC1', 2, 6),
+      new Hill('#B5F1CC', 1.5, 8),
+      new Hill('#95DAC1', 2.5, 6),
     ];
 
     const handleResize = () => {
