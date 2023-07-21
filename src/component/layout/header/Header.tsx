@@ -107,6 +107,7 @@ const AppBarBox = styled(AppBar)`
 `
 
 const TypoBox = styled(Typography)`
+  padding-left: 36px;
   letter-spacing: 0.1rem;
   cursor: pointer;
 
