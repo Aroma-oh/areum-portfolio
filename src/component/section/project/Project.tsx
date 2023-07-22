@@ -52,8 +52,9 @@ const Project = () => {
 
   return (
     <ProjectBox id='project'>
+
       <EffectBox />
-      <div className='view-mode'>
+      {/* <div className='view-mode'>
         {isViewMode && <ViewMode />}
       </div>
       {isHorizon && <NavButton project={data[0]?.project} />}
@@ -72,7 +73,7 @@ const Project = () => {
             </div>
           ))
         }
-      </TextBox>
+      </TextBox> */}
     </ProjectBox>
   )
 }
@@ -94,19 +95,16 @@ const LoadingBox = styled.div`
 
 const ProjectBox = styled.section`
   position: relative;
-  height: fit-content; 
+  height: fit-content;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 
-  h4 {
-    margin: 3rem;
-    align-self: center;
-    font-size: 2rem;
-    font-weight: 500;
-  }
+  background: linear-gradient(0deg, #ffffff 0%, #dfffd847 60%, #b5f1ccde 100%);
+
+
   .view-mode {
     margin-bottom: 1rem;
   }
