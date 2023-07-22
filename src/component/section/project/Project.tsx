@@ -10,10 +10,8 @@ import Image from 'next/legacy/image';
 import { getDbAllData } from '@/util/firebase';
 import { ProjectType } from '@/types/project'
 
-
 const Project = () => {
   // 상태 관리
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMouseEnter, setIseMouseEnter] = useState(false);
   const [boxData, setBoxData] = useState({
     left: 0,
@@ -31,7 +29,6 @@ const Project = () => {
   const frame = rectRef.current;
 
   const onMouseMove = (e: MouseEvent) => {
-
     if (!frame || !isMouseEnter) return;
 
     let { x, y, width, height } = frame.getBoundingClientRect();
@@ -60,13 +57,6 @@ const Project = () => {
     });
   };
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  }
-
   if (isError || !data) return (
     <LoadingBox >
       <ReactLoading type='bubbles' color='#1876d1' height='10vh' width='10vw' />
@@ -76,31 +66,32 @@ const Project = () => {
 
   return (
     <ProjectBox id='project'>
-      <Frame ref={rectRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={onMouseMove}>
+      <Frame ref={rectRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={onMouseMove} >
         {data[0].project.map((el, index) => (
-          <Box key={index} boxData={boxData} onClick={handleModalOpen}>
-            <Light boxData={boxData} />
-            <Image
-              src={el.mainImage}
-              alt='프로젝트 이미지'
-              className='image'
-              width={300}
-              height={180}
-            />
-            <div className='header'>
-              <h6>{el.nav.name}</h6>
-              <p>{el.nav.type} project</p>
-            </div>
-            <div className='content'>
-              <p>{el.nav.content}</p>
-              <div>Stack</div>
-              <p>{el.nav.stack}</p>
-            </div>
-          </Box>
+          <CardBox>
+            {index === 1 ? <p className='text'>클릭하면 프로젝트를 자세히 볼 수 있어요!</p> : <p className='text'>&nbsp;</p>}
+
+            <Card key={index} boxData={boxData}>
+              <Light boxData={boxData} />
+              <Image
+                src={el.mainImage}
+                alt='프로젝트 이미지'
+                className='image'
+                width={310}
+                height={200}
+              />
+              <div className='header'>
+                <h6>{el.nav.name}</h6>
+                <p>{el.nav.type} project</p>
+              </div>
+              <div className='content'>
+                <p>{el.nav.content}</p>
+                <div>Stack</div>
+                <p>{el.nav.stack}</p>
+              </div>
+            </Card>
+          </CardBox>
         ))}
-        <ModalBox>
-          왜 안나오지
-        </ModalBox>
       </Frame>
     </ProjectBox>
   )
@@ -130,13 +121,11 @@ const ProjectBox = styled.section`
   align-items: center;
 
   background: linear-gradient(0deg, #ffffff 0%, #dfffd847 60%, #b5f1ccde 100%);
-
 `
 
-
 const Frame = styled.div`
-  width: 100vw;
-  height: 90vh;
+  width: 99vw;
+  height: 100vh;
   position: relative;
 
   transition: transform 200ms;
@@ -144,11 +133,23 @@ const Frame = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-
+  flex-wrap: wrap-reverse;
 `;
 
-interface BoxProps {
+const CardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  .text {
+    font-size: 0.9rem;
+    margin: -1rem 0 36px 0;
+    color: #747474;
+  }
+`
+
+interface CardProps {
   boxData: {
     left: number;
     top: number;
@@ -157,14 +158,15 @@ interface BoxProps {
     d: number;
   };
 }
-const Box = styled.div<BoxProps>`
-  width: 300px;
-  height: 450px;
+const Card = styled.div<CardProps>`
+  width: 310px;
+  height: 460px;
   margin: 0 3vw;
   position: relative;
 
   font-family: 'SUIT-Regular';
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>👀</text></svg>") 16 0, auto;
+
 
   border-radius: 3%;
   background-color: white;
@@ -216,7 +218,7 @@ const Box = styled.div<BoxProps>`
   }
   `;
 
-const Light = styled.div<BoxProps>`
+const Light = styled.div<CardProps>`
   position: absolute;
   z-index: -1;
   
@@ -228,16 +230,6 @@ const Light = styled.div<BoxProps>`
     `radial-gradient(circle at ${boxData.left}px ${boxData.top}px, #00000010, #ffffff, #ffffff60)`};
 
 `;
-
-const ModalBox = styled.div`
-  position: absolute;
-  display: none;
-
-  width: 75vw;
-  height: 60vh;
-  background-color: white;
-  border-radius: 16px;
-`
 
 export default Project;
 
