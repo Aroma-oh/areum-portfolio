@@ -3,6 +3,8 @@ export interface ProjectNav {
   name: string;
   create: string;
   period: number;
+  content: string;
+  stack: string;
 }
 
 export interface ProjectIntro {
