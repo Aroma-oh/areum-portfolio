@@ -45,7 +45,9 @@ const Intro = () => {
             </motion.ul>
           </motion.div>
         </div>
-        <Button onClick={() => handleMove('about')} />
+        <div className='button-box'>
+          <Button onClick={() => handleMove('about')} />
+        </div>
       </ContentBox>
       <Mountain />
     </IntroBox>
@@ -77,13 +79,14 @@ const IntroBox = styled.section`
 const ContentBox = styled.div`
   z-index: 1;
   width: 100%;
-  height: 83vh;
+  height: calc(100vh - 84px);
+  position: absolute;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   align-items: center;
-  position: absolute;
 
   .header {
     color: transparent;
@@ -107,6 +110,10 @@ const ContentBox = styled.div`
 
   li {
     margin-top: 1.2rem;
+  }
+  .button-box {
+    position: absolute;
+    top: 78vh;
   }
 `
 

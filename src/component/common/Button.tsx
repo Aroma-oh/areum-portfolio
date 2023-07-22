@@ -3,20 +3,19 @@ import { TbArrowBigDownLinesFilled } from 'react-icons/tb';
 
 interface Props {
   onClick: () => void;
+
 }
 export const Button = ({ onClick }: Props) => {
   return (
-    <ButtonBox onClick={onClick}>
+    <ButtonBox onClick={onClick} >
       <Circle />
       <Arrow />
     </ButtonBox>
   )
 }
 
+
 const ButtonBox = styled.div`
-  position: absolute;
-  top: 78vh;
-  
   width: 100px;
   height: 100px;
   cursor: pointer;
@@ -34,6 +33,7 @@ const Arrow = styled(TbArrowBigDownLinesFilled)`
 
 const Circle = styled.div`
   position: absolute;
+  
   width: 50px;
   height: 50px;
 
