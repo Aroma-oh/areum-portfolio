@@ -10,13 +10,12 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 // recoil import
-import { useRecoilValue, useRecoilState } from 'recoil'
-import { isColorNavState, toggleState, headerHeightState } from '@/recoil/atoms'
+import { useRecoilState } from 'recoil'
+import { toggleState, headerHeightState } from '@/recoil/atoms'
 // component import
 import { Menu } from '@/component/layout/header/Menu'
 
 function Header() {
-  const isColorNav = useRecoilValue(isColorNavState);
   const [, setHeaderHeight] = useRecoilState(headerHeightState);
   const [toggle, setToggle] = useRecoilState(toggleState);
 
@@ -52,7 +51,7 @@ function Header() {
         height: 'fit-content',
         py: '10px',
         justifyContent: 'center',
-        backgroundColor: isColorNav || toggle ? 'white' : 'rgb(255, 255, 255, 0.08)',
+        backgroundColor: 'transparent',
         color: 'black',
         backdropFilter: 'blur(6px)',
         boxShadow: 'none',
