@@ -10,7 +10,7 @@ export const useMoveToSection = () => {
     const sectionTop = sectionElement?.getBoundingClientRect().top as number;
 
     window.scrollTo({
-      top: window.scrollY + sectionTop - headerHeight,
+      top: window.scrollY + sectionTop,
       behavior: 'smooth'
     });
 
