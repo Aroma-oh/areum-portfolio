@@ -21,6 +21,7 @@ export interface ProjectList {
   intro: ProjectIntro[],
   info: ProjectInfo[],
   image: string[],
+  mainImage: string,
 }
 
 export interface ProjectType {
