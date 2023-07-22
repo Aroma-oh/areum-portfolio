@@ -198,7 +198,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .modal-name {
     width: fit-content;
-    background-color: #f5f5f5b2;
+    background-color: #eaeaeaaf;
     border-radius: 12px;
     margin: 0 1rem;
     padding: 0.2rem 0.5rem;
