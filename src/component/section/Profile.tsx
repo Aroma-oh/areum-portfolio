@@ -1,11 +1,8 @@
 import styled from '@emotion/styled';
 import { PROFILE } from '@/constants/profile';
 import { motion } from 'framer-motion';
-// import { Button } from '@/component/common/Button';
-// import { useMoveToSection } from '@/hooks/useMoveToSection';
 
 const Profile = () => {
-  // const { handleMove } = useMoveToSection();
 
   return (
 
@@ -41,7 +38,6 @@ const Profile = () => {
           </CardBox>
         ))}
       </div>
-      {/* <Button onClick={() => handleMove('Profile')} /> */}
     </ProfileBox>
   )
 }
