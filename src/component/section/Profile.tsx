@@ -104,6 +104,8 @@ const CardBox = styled(motion.div)`
   border-radius: 8px;
   box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
 
+  font-family: 'SUIT-Regular';
+
   .content-box {
     padding: 26px;
     display: flex;
@@ -118,8 +120,8 @@ const CardBox = styled(motion.div)`
     word-break: break-word;
   }
   .type { 
+    font-weight: 900;
     font-size: 0.9rem;
-    font-weight: 700;
   }
 `
 
