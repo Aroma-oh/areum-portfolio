@@ -138,6 +138,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   width: 70vw;
   height: 550px;
   transition: 1.2s;
+
+  font-family: 'SUIT-Regular';
   
   .frontend {
     position: absolute;
@@ -203,10 +205,13 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
     margin: 0 1rem;
     padding: 0.2rem 0.5rem;
     font-weight: 600;
+    font-size: 0.95rem;
   }
   .modal-content {
     margin: 1rem 1.5rem;
     word-break: keep-all;
+    line-height: 1.3rem;
+    font-size: 0.9rem;
   }
   .skills {
     position: absolute;
