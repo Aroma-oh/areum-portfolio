@@ -70,8 +70,8 @@ export const EffectBox = () => {
 
   return (
     <Frame ref={rectRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={onMouseMove}>
-      {data[0].project.map((el) => (
-        <Box boxData={boxData} onClick={handleModalOpen}>
+      {data[0].project.map((el, index) => (
+        <Box key={index} boxData={boxData} onClick={handleModalOpen}>
           <Light boxData={boxData} />
           <Image
             src={el.mainImage}
