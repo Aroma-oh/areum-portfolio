@@ -108,6 +108,7 @@ const Skill = () => {
           ))}
         </StackCardBox>
       </div>
+      <div className='project' />
     </SkillBox>
   )
 }
@@ -118,6 +119,16 @@ const SkillBox = styled.section`
 
   width: 100%;
   min-height: calc(100vh - 84px);
+
+  .project {
+    height: 84px;
+    background-color: #b5f1ccde;
+  }
+  @media (max-width: 900px) {
+    .project {
+      display: none;
+    }
+  }
 `
 
 const Card = styled.div`
@@ -136,7 +147,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   margin: auto;
 
   width: 70vw;
-  height: 550px;
+  height: 100vh;
   transition: 1.2s;
 
   font-family: 'SUIT-Regular';
