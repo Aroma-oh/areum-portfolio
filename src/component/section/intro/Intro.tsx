@@ -50,7 +50,6 @@ const Intro = () => {
         </div>
       </ContentBox>
       <Mountain />
-      <div className='about' />
     </IntroBox>
   )
 }
@@ -60,11 +59,6 @@ const IntroBox = styled.section`
   font-size: 150px;
   font-weight: 900;
   letter-spacing: 0.8rem;
-
-  .about {
-    background-color: white;
-    height: 84px;
-  }
 
   @media ((min-width: 600px) and (max-width: 900px)) {
     font-size: 100px;
