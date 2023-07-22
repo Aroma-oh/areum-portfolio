@@ -7,14 +7,14 @@ import { FRONTEND, BACKEND, ETC } from '@/constants/skills';
 import { ProgressCircle } from '@/component/section/skill/ProgressCircle';
 // type import 
 import { SkillSet, OpenModalDataProps, ProgressCircleProps, CircleAnimationProps } from '@/types/skills';
-// custom hook import 
-import { useMoveToSection } from '@/hooks/useMoveToSection';
+// observer library import 
+import { useInView } from 'react-intersection-observer';
 
 const Skill = () => {
 
   // 상태 관리
   const [openStack, setOpenStack] = useState({
-    frontend: true,
+    frontend: false,
     backend: false,
     etc: false,
   });
@@ -24,6 +24,7 @@ const Skill = () => {
     content: '',
   });
   const [openModal, setOpenModal] = useState(false);
+  const [lastOpenStack, setLastOpenStack] = useState('frontend');
 
   // 핸들러 관리
   const handleOpenStack = (stackType: string) => {
@@ -32,6 +33,7 @@ const Skill = () => {
       backend: stackType === 'backend' ? !prevState.backend : false,
       etc: stackType === 'etc' ? !prevState.etc : false,
     }));
+    setLastOpenStack(stackType); // 이전에 선택한 스택을 기억하여 요소 관측시 오픈하기 위한 sate
   };
 
   const handleModal = (isOpen: boolean, skills?: OpenModalDataProps, stack?: string) => {
@@ -40,14 +42,21 @@ const Skill = () => {
     }
     setOpenModal(isOpen);
   }
+  // 스택 오픈 옵저버 이벤트
+  const { ref, inView } = useInView({ threshold: 0.35, delay: 500, trackVisibility: true });
 
-  const { handleMove } = useMoveToSection();
-  const handleMoveScroll = () => {
-    if (openStack.frontend || openStack.backend || openStack.etc) {
-      handleMove('skill-container')
+  useEffect(() => {
+    if (inView) {
+      handleOpenStack(lastOpenStack);
     }
-  }
-
+    return () => {
+      setOpenStack({
+        frontend: false,
+        backend: false,
+        etc: false,
+      });
+    };
+  }, [inView]);
 
   // 데이터 관리
   const skills: SkillSet[] = [
@@ -58,9 +67,8 @@ const Skill = () => {
 
   return (
     <SkillBox id='skill' >
-      <h4 >Skill</h4>
       <div className='skill-container' id='skill-container'>
-        <ProgressCircleBox openStack={openStack} openModal={openModal}>
+        <ProgressCircleBox openStack={openStack} openModal={openModal} ref={ref}>
           {skills.map((stack, index1) => (
             <div key={index1} className={`${stack[0]}`}>
               {stack[1].map((skill, index2) => (
@@ -76,7 +84,7 @@ const Skill = () => {
                   </CircleAnimation>
                 </div>
               ))}
-              <div onClick={() => { handleOpenStack(stack[0]); handleMoveScroll(); }} className='stack-circle'>
+              <div onClick={() => handleOpenStack(stack[0])} className='stack-circle'>
                 <ProgressCircle name={stack[0]} value={100} open={false} />
               </div>
               {modalData.stack === stack[0] && (
@@ -88,6 +96,7 @@ const Skill = () => {
             </div>
           ))}
         </ProgressCircleBox>
+        {/* 반응형을 위한 Card: 900px 미만 */}
         <StackCardBox>
           {skills.map((skill, index) => (
             <div key={index} className='box'>
@@ -106,19 +115,9 @@ const Skill = () => {
 
 const SkillBox = styled.section`
   position: relative;
+
   width: 100%;
-  height: fit-content;
-  padding: 7% 0 0 0 ;
-  display: flex;
-  flex-direction: column;
-
-  background-color: #d5d5d52b;
-
-  h4 {
-    align-self: center;
-    font-size: 2rem;
-    font-weight: 500;
-  }  
+  min-height: calc(100vh - 84px);
 `
 
 const Card = styled.div`
@@ -132,22 +131,18 @@ const Card = styled.div`
 `
 
 const ProgressCircleBox = styled.div<ProgressCircleProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
 
-  margin: 0 auto;
-  width: 80vw;
-  height: ${({ openStack }) =>
-    openStack.frontend || openStack.etc ? '950px' : openStack.backend ? '600px' : '320px'};
+  margin: auto;
 
+  width: 70vw;
+  height: 550px;
   transition: 1.2s;
   
   .frontend {
     position: absolute;
-    left: ${({ openStack }) => (openStack.frontend ? '45%' : '10%')};
-    top: ${({ openStack }) => (openStack.frontend ? '450px' : '60px')};
+    left: ${({ openStack }) => (openStack.frontend ? '40vw' : '0vw')};
+    top: ${({ openStack }) => (openStack.frontend ? '37vh' : '16vh')};
 
     display: flex;
     justify-content: center;
@@ -157,8 +152,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .backend {
     position: absolute;
-    right: ${({ openStack }) => (openStack.backend ? "55%" : "55%")};
-    top: ${({ openStack }) => (openStack.backend ? "200px" : "60px")};
+    left: ${({ openStack }) => (openStack.backend ? '40vw' : '0vw')};
+    top: ${({ openStack }) => (openStack.backend ? '37vh' : '37vh')};
 
     display: flex;
     justify-content: center;
@@ -167,8 +162,8 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .etc {
     position: absolute;
-    right: ${({ openStack }) => (openStack.etc ? '45%' : '20%')};
-    top: ${({ openStack }) => (openStack.etc ? '450px' : '60px')};
+    left: ${({ openStack }) => (openStack.etc ? '40vw' : '0vw')};
+    top: ${({ openStack }) => (openStack.etc ? '37vh' : '58vh')};
 
     display: flex;
     justify-content: center;
@@ -203,7 +198,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   }
   .modal-name {
     width: fit-content;
-    background-color: #c6e3ff;
+    background-color: #eaeaeaaf;
     border-radius: 12px;
     margin: 0 1rem;
     padding: 0.2rem 0.5rem;

@@ -3,6 +3,8 @@ export interface ProjectNav {
   name: string;
   create: string;
   period: number;
+  content: string;
+  stack: string;
 }
 
 export interface ProjectIntro {
@@ -21,6 +23,7 @@ export interface ProjectList {
   intro: ProjectIntro[],
   info: ProjectInfo[],
   image: string[],
+  mainImage: string,
 }
 
 export interface ProjectType {
