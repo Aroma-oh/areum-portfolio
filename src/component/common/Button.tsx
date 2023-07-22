@@ -3,8 +3,8 @@ import { TbArrowBigDownLinesFilled } from 'react-icons/tb';
 
 interface Props {
   onClick: () => void;
+};
 
-}
 export const Button = ({ onClick }: Props) => {
   return (
     <ButtonBox onClick={onClick} >
@@ -13,7 +13,6 @@ export const Button = ({ onClick }: Props) => {
     </ButtonBox>
   )
 }
-
 
 const ButtonBox = styled.div`
   width: 100px;
