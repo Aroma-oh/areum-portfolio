@@ -11,6 +11,7 @@ import { getDbAllData } from '@/util/firebase';
 import { ProjectType } from '@/types/project'
 
 export const EffectBox = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMouseEnter, setIseMouseEnter] = useState(false);
   const [boxData, setBoxData] = useState({
     left: 0,
@@ -56,6 +57,13 @@ export const EffectBox = () => {
     });
   };
 
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  }
+
   if (isError || !data) return (
     <></>
   )
@@ -63,7 +71,7 @@ export const EffectBox = () => {
   return (
     <Frame ref={rectRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={onMouseMove}>
       {data[0].project.map((el) => (
-        <Box boxData={boxData}>
+        <Box boxData={boxData} onClick={handleModalOpen}>
           <Light boxData={boxData} />
           <Image
             src={el.mainImage}
@@ -83,6 +91,9 @@ export const EffectBox = () => {
           </div>
         </Box>
       ))}
+      <ModalBox>
+        왜 안나오지
+      </ModalBox>
 
     </Frame>
   )
@@ -118,6 +129,7 @@ const Box = styled.div<BoxProps>`
   position: relative;
 
   font-family: 'SUIT-Regular';
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>👀</text></svg>") 16 0, auto;
 
   border-radius: 3%;
   background-color: white;
@@ -181,3 +193,14 @@ const Light = styled.div<BoxProps>`
     `radial-gradient(circle at ${boxData.left}px ${boxData.top}px, #00000010, #ffffff, #ffffff60)`};
 
 `;
+
+const ModalBox = styled.div`
+  position: absolute;
+  display: none;
+
+  width: 75vw;
+  height: 60vh;
+  background-color: white;
+  /* border: 1px solid #e0e0e0; */
+  border-radius: 16px;
+`
