@@ -62,7 +62,7 @@ export const EffectBox = () => {
 
   return (
     <Frame ref={rectRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={onMouseMove}>
-      {data[0].project.map((el, index) => (
+      {data[0].project.map((el) => (
         <Box boxData={boxData}>
           <Light boxData={boxData} />
           <Image
@@ -77,13 +77,9 @@ export const EffectBox = () => {
             <p>{el.nav.type} project</p>
           </div>
           <div className='content'>
-            <p>
-              프론트엔드 취업을 위한 포트폴리오 프로젝트입니다. 스크롤 이벤트, 옵저버, 마우스 이벤트를 사용하여 인터렉션 페이지를 개발하였습니다.
-            </p>
+            <p>{el.nav.content}</p>
             <div>Stack</div>
-            <p>
-              Next.js, Recoil, React-query, Firebase, Styled-component
-            </p>
+            <p>{el.nav.stack}</p>
           </div>
         </Box>
       ))}
