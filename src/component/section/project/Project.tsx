@@ -13,6 +13,7 @@ import { ViewMode } from '@/component/section/project/ViewMode';
 import { NavButton } from '@/component/section/project/NavButton';
 import { Carousel } from '@/component/section/project/Carousel';
 import { Content } from '@/component/section/project/Content';
+import { EffectBox } from '@/component/section/project/EffectBox';
 // firebase, type import 
 import { getDbAllData } from '@/util/firebase';
 import { ProjectType } from '@/types/project'
@@ -51,7 +52,7 @@ const Project = () => {
 
   return (
     <ProjectBox id='project'>
-      <h4>Project</h4>
+      <EffectBox />
       <div className='view-mode'>
         {isViewMode && <ViewMode />}
       </div>
