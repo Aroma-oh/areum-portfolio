@@ -47,7 +47,7 @@ export const FRONTEND = [
     name: 'Styled-component',
     value: 60,
     className: 'bg-styled-component',
-    content: 'Styled-component를 사용하여 프로젝트를 만들어 봤어요.'
+    content: 'Styled-component를 사용해봤어요.'
   },
   {
     stack: 'frontend',
