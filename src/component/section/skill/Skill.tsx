@@ -96,6 +96,7 @@ const Skill = () => {
             </div>
           ))}
         </ProgressCircleBox>
+        {/* 반응형을 위한 Card: 900px 미만 */}
         <StackCardBox>
           {skills.map((skill, index) => (
             <div key={index} className='box'>
@@ -114,17 +115,9 @@ const Skill = () => {
 
 const SkillBox = styled.section`
   position: relative;
+
   width: 100%;
   min-height: calc(100vh - 84px);
-  padding: 7% 0 0 0 ;
-  display: flex;
-  flex-direction: column;
-
-  h4 {
-    align-self: center;
-    font-size: 2rem;
-    font-weight: 500;
-  }  
 `
 
 const Card = styled.div`
@@ -138,12 +131,10 @@ const Card = styled.div`
 `
 
 const ProgressCircleBox = styled.div<ProgressCircleProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
 
-  margin: 0 auto;
+  margin: auto;
+
   width: 70vw;
   height: 550px;
   transition: 1.2s;
@@ -151,7 +142,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   .frontend {
     position: absolute;
     left: ${({ openStack }) => (openStack.frontend ? '40vw' : '0vw')};
-    top: ${({ openStack }) => (openStack.frontend ? '25vh' : '0vh')};
+    top: ${({ openStack }) => (openStack.frontend ? '37vh' : '16vh')};
 
     display: flex;
     justify-content: center;
@@ -162,7 +153,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   .backend {
     position: absolute;
     left: ${({ openStack }) => (openStack.backend ? '40vw' : '0vw')};
-    top: ${({ openStack }) => (openStack.backend ? '25vh' : '22vh')};
+    top: ${({ openStack }) => (openStack.backend ? '37vh' : '37vh')};
 
     display: flex;
     justify-content: center;
@@ -172,7 +163,7 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
   .etc {
     position: absolute;
     left: ${({ openStack }) => (openStack.etc ? '40vw' : '0vw')};
-    top: ${({ openStack }) => (openStack.etc ? '25vh' : '44vh')};
+    top: ${({ openStack }) => (openStack.etc ? '37vh' : '58vh')};
 
     display: flex;
     justify-content: center;
