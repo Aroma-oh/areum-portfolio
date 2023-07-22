@@ -63,7 +63,7 @@ const IntroBox = styled.section`
 
   .about {
     background-color: white;
-    height: 55px;
+    height: 84px;
   }
 
   @media ((min-width: 600px) and (max-width: 900px)) {
