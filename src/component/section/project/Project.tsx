@@ -13,10 +13,11 @@ import { getDbAllData } from '@/util/firebase';
 import { ProjectType } from '@/types/project';
 // component import 
 import { Detail } from '@/component/section/project/Detail';
+import { SubButton } from '@/component/common/SubButton';
 
 const Project = () => {
   // 상태 관리
-  const [openDetailIndex, setOpenDetailIndex] = useState(0);
+  const [openDetail, setOpenDetail] = useState({ isOpen: false, index: 0 });
   const [isMouseEnter, setIseMouseEnter] = useState(false);
   const [boxData, setBoxData] = useState({
     left: 0,
@@ -65,15 +66,20 @@ const Project = () => {
   };
 
   const handleDetailOpen = (index: number) => {
-    setOpenDetailIndex(index);
+    setOpenDetail({ isOpen: true, index });
   };
+  const handleDetailClose = () => {
+    setOpenDetail({ ...openDetail, isOpen: false });
+  };
+
 
   if (isError || !data) return (
     <LoadingBox >
-      <ReactLoading type='bubbles' color='#1876d1' height='10vh' width='10vw' />
+      <ReactLoading type='bubbles' color='#95DAC1' height='10vh' width='10vw' />
       <p>잠시 후에 다시 시도해주세요.</p>
     </LoadingBox>
-  )
+  );
+
 
   return (
     <ProjectBox id='project'>
@@ -108,7 +114,10 @@ const Project = () => {
           </CardBox>
         ))}
       </Frame>
-      <Detail project={data[0].project[openDetailIndex]} />
+      <Detail
+        className={openDetail.isOpen ? 'open' : ''}
+        project={data[0].project[openDetail.index]}
+        handleDetailClose={handleDetailClose} />
     </ProjectBox >
   )
 }
