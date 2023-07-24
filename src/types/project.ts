@@ -5,6 +5,10 @@ export interface ProjectNav {
   period: number;
   content: string;
   stack: string;
+  link: {
+    title: string;
+    href: string;
+  }[];
 }
 
 export interface ProjectIntro {

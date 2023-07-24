@@ -1,19 +1,24 @@
 // styled, react import 
 import styled from '@emotion/styled';
 import { useState, useRef, MouseEvent } from 'react';
+// library import 
 import ReactLoading from 'react-loading';
+// custom hook import
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 // react-query import
 import { useQuery } from 'react-query';
 // next import
 import Image from 'next/legacy/image';
 // firebase, type import 
 import { getDbAllData } from '@/util/firebase';
-import { ProjectType } from '@/types/project'
-
+import { ProjectType } from '@/types/project';
+// component import 
+import { Detail } from '@/component/section/project/Detail';
+import { SubButton } from '@/component/common/SubButton';
 
 const Project = () => {
   // 상태 관리
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openDetail, setOpenDetail] = useState({ isOpen: false, index: 0 });
   const [isMouseEnter, setIseMouseEnter] = useState(false);
   const [boxData, setBoxData] = useState({
     left: 0,
@@ -23,6 +28,8 @@ const Project = () => {
     d: 0,
   });
 
+  const { handleMove } = useMoveToSection();
+
   // 데이터 관리를 위한 코드
   const { data, isError } = useQuery<ProjectType[]>('project', () => getDbAllData<ProjectType>('project'));
 
@@ -31,7 +38,6 @@ const Project = () => {
   const frame = rectRef.current;
 
   const onMouseMove = (e: MouseEvent) => {
-
     if (!frame || !isMouseEnter) return;
 
     let { x, y, width, height } = frame.getBoundingClientRect();
@@ -60,49 +66,62 @@ const Project = () => {
     });
   };
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
+  const handleDetailOpen = (index: number) => {
+    setOpenDetail({ isOpen: true, index });
   };
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  }
+  const handleDetailClose = () => {
+    setOpenDetail({ ...openDetail, isOpen: false });
+  };
+
 
   if (isError || !data) return (
     <LoadingBox >
-      <ReactLoading type='bubbles' color='#1876d1' height='10vh' width='10vw' />
+      <ReactLoading type='bubbles' color='#95DAC1' height='10vh' width='10vw' />
       <p>잠시 후에 다시 시도해주세요.</p>
     </LoadingBox>
-  )
+  );
+
 
   return (
     <ProjectBox id='project'>
-      <Frame ref={rectRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={onMouseMove}>
+      <Frame ref={rectRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={onMouseMove} >
         {data[0].project.map((el, index) => (
-          <Box key={index} boxData={boxData} onClick={handleModalOpen}>
-            <Light boxData={boxData} />
-            <Image
-              src={el.mainImage}
-              alt='프로젝트 이미지'
-              className='image'
-              width={300}
-              height={180}
-            />
-            <div className='header'>
-              <h6>{el.nav.name}</h6>
-              <p>{el.nav.type} project</p>
-            </div>
-            <div className='content'>
-              <p>{el.nav.content}</p>
-              <div>Stack</div>
-              <p>{el.nav.stack}</p>
-            </div>
-          </Box>
+          <CardBox
+            onClick={() => {
+              handleDetailOpen(index);
+              handleMove('detail');
+            }}>
+            {index === 1 ? <p className='text'><span className='strong'>클릭</span>하면 프로젝트를 자세히 볼 수 있어요!</p> : <p className='text'>&nbsp;</p>}
+            <Card key={index} boxData={boxData}>
+              <Light boxData={boxData} />
+              <Image
+                src={el.mainImage}
+                alt='프로젝트 이미지'
+                className='image'
+                width={310}
+                height={200}
+              />
+              <div className='header'>
+                <h6>{el.nav.name}</h6>
+                <p>{el.nav.type} project</p>
+              </div>
+              <div className='content'>
+                <p>{el.nav.content}</p>
+                <div>Stack</div>
+                <p>{el.nav.stack}</p>
+              </div>
+            </Card>
+          </CardBox>
         ))}
-        <ModalBox>
-          왜 안나오지
-        </ModalBox>
       </Frame>
-    </ProjectBox>
+      <div className='button'>
+        <SubButton onClick={() => handleMove('contact')} />
+      </div>
+      <Detail
+        className={openDetail.isOpen ? 'open' : ''}
+        project={data[0].project[openDetail.index]}
+        handleDetailClose={handleDetailClose} />
+    </ProjectBox >
   )
 }
 
@@ -131,12 +150,14 @@ const ProjectBox = styled.section`
 
   background: linear-gradient(0deg, #ffffff 0%, #dfffd847 60%, #b5f1ccde 100%);
 
+  .button {
+    margin-top: -13vh;
+  }
 `
 
-
 const Frame = styled.div`
-  width: 100vw;
-  height: 90vh;
+  width: 99vw;
+  height: 100vh;
   position: relative;
 
   transition: transform 200ms;
@@ -144,11 +165,41 @@ const Frame = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-
 `;
 
-interface BoxProps {
+const CardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  .text {
+    font-size: 0.9rem;
+    margin: -1rem 0 36px 0;
+    color: #747474;
+    position: relative;
+  }
+  .strong {
+    font-size: 1.2rem;
+    /* 🤔 애니메이션 효과 적용 고민중
+    position: absolute;
+    animation: bounce 0.5s ease-in-out infinite;
+    margin-left: -36px;
+  }
+  @keyframes bounce {
+    0% {
+      transform: translate(0, -6px) ; 
+    }
+    50% {
+      transform: translate(0, -12px) ; 
+    }
+    100% {
+      transform: translate(0, -6px) ; 
+    } */
+  }
+`
+
+interface CardProps {
   boxData: {
     left: number;
     top: number;
@@ -157,9 +208,9 @@ interface BoxProps {
     d: number;
   };
 }
-const Box = styled.div<BoxProps>`
-  width: 300px;
-  height: 450px;
+const Card = styled.div<CardProps>`
+  width: 310px;
+  height: 460px;
   margin: 0 3vw;
   position: relative;
 
@@ -216,7 +267,7 @@ const Box = styled.div<BoxProps>`
   }
   `;
 
-const Light = styled.div<BoxProps>`
+const Light = styled.div<CardProps>`
   position: absolute;
   z-index: -1;
   
@@ -226,18 +277,7 @@ const Light = styled.div<BoxProps>`
 
   background: ${({ boxData }) =>
     `radial-gradient(circle at ${boxData.left}px ${boxData.top}px, #00000010, #ffffff, #ffffff60)`};
-
 `;
-
-const ModalBox = styled.div`
-  position: absolute;
-  display: none;
-
-  width: 75vw;
-  height: 60vh;
-  background-color: white;
-  border-radius: 16px;
-`
 
 export default Project;
 

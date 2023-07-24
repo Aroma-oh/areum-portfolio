@@ -1,12 +1,13 @@
-// styled, hook import
+// styled, react, hook import
 import styled from '@emotion/styled';
+import { useEffect } from 'react';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
+// framer import
+import { motion, useMotionValue } from 'framer-motion';
 // component import
 import { Mountain } from '@/component/section/intro/Mountain';
 import { Button } from '@/component/common/Button';
 
-import { motion, useMotionValue } from 'framer-motion';
-import { useEffect } from 'react';
 
 const Intro = () => {
   const { handleMove } = useMoveToSection();
@@ -55,14 +56,6 @@ const Intro = () => {
 }
 
 const IntroBox = styled.section`
-
-  @font-face {
-    font-family: 'PyeongChangPeace-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-  }
-
   font-family: 'PyeongChangPeace-Bold';
   font-size: 150px;
   font-weight: 900;
@@ -87,6 +80,8 @@ const ContentBox = styled.div`
   justify-content: center;
 
   align-items: center;
+
+  cursor: default;
 
   .header {
     color: transparent;
