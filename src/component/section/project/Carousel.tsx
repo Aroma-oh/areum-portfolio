@@ -1,4 +1,4 @@
-// styled, react, next.js import 
+// styled, next.js import 
 import styled from '@emotion/styled';
 import Image from 'next/legacy/image';
 // mui import
@@ -24,7 +24,7 @@ export const Carousel = ({ project }: Props) => {
           height: 'fit-content',
         }}
       >
-        {project?.image.map((el, idx) => (
+        {project.image.map((el, idx) => (
           <div
             className='slide'
             key={idx}
@@ -39,9 +39,9 @@ export const Carousel = ({ project }: Props) => {
         ))}
       </CarouselImg>
       <div className='title-box'>
-        <h5> {project?.nav.name} </h5>
-        <p>{project?.nav.type} project</p>
-        {project?.nav.link.map(({ title, href }, index) => (
+        <h5> {project.nav.name} </h5>
+        <p>{project.nav.type} project</p>
+        {project.nav.link.map(({ title, href }, index) => (
           <div key={index} >
             <p className='title'> {title} </p>
             <a className='link' href={href} target="_blank" aria-label='프로젝트 링크'>{href}</a>
