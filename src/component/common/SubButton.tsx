@@ -3,8 +3,9 @@ import styled from '@emotion/styled';
 import { MdArrowForwardIos } from 'react-icons/md';
 
 interface Props {
-  rotate?: number;
   onClick: () => void;
+  rotate?: number;
+  className?: string;
 }
 export const SubButton = ({ rotate, onClick }: Props) => {
 
