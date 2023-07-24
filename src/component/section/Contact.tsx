@@ -126,9 +126,9 @@ const Contact = () => {
           </ButtonBox>
         </form>
       </MailBox>
-      <div className='scroll-button'>
+      {/* <div className='scroll-button'>
         <SubButton rotate={270} onClick={() => handleMove('intro')} />
-      </div>
+      </div> */}
     </ContactBox>
   )
 }
