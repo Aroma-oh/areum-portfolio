@@ -37,6 +37,8 @@ export const Content = ({ project }: Props) => {
 const ContentBox = styled.div`
   width: 35vw;
   margin-left: 5rem;  
+  color: #565656;
+  word-break: break-all;
 
   h5 {
     margin: 2rem 0 0.8rem 0;
@@ -50,13 +52,12 @@ const ContentBox = styled.div`
     background-size: 100% 50%;
     background-repeat: no-repeat;
   }
-  p, .info-text {
-    color: #565656;
-    line-height: 1.3rem;
-    word-break: break-all;
-  }
   .info {
     margin-top: 1.8rem;
+  }
+  .content {
+    margin-bottom: 0.6rem;
+    line-height: 1.4rem;
   }
   h6 {
     font-size: 1rem;
