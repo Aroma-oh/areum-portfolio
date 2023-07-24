@@ -26,7 +26,7 @@ export const Detail = memo(({ project, className, handleDetailClose }: Props) =>
         <Carousel project={project} />
         <Content project={project} />
       </div>
-      <SubButton onClick={() => {
+      <SubButton rotate={270} onClick={() => {
         handleMove('project');
         handleDetailClose();
       }} />
@@ -37,9 +37,11 @@ export const Detail = memo(({ project, className, handleDetailClose }: Props) =>
 const DetailBox = styled.section`
   padding-top: 84px;
   width: 99vw;
-  height: ${({ className }) => (className === 'open' ? 'calc(100vh - 84px)' : '0px')};
-  visibility: ${({ className }) => (className === 'open' ? 'visible' : 'hidden')};
-  transition: height 2s ease-in;
+  height: calc(100vh - 84px);
+  /* 🤔 ux 고민중으로 주석처리 합니다 */
+  /* height: ${({ className }) => (className === 'open' ? 'calc(100vh - 84px)' : '0px')}; */
+  /* visibility: ${({ className }) => (className === 'open' ? 'visible' : 'hidden')}; */
+  /* transition: height 0.5s ease-in; */
 
   font-family: 'SUIT-Regular';
 
