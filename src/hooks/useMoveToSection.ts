@@ -1,8 +1,4 @@
-import { useRecoilValue } from "recoil";
-import { headerHeightState } from "@/recoil/atoms";
-
 export const useMoveToSection = () => {
-  const headerHeight = useRecoilValue(headerHeightState);
 
   const handleMove = (sectionId: string) => {
 
