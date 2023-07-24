@@ -1,12 +1,13 @@
-// styled, hook import
+// styled, react, hook import
 import styled from '@emotion/styled';
+import { useEffect } from 'react';
 import { useMoveToSection } from '@/hooks/useMoveToSection';
+// framer import
+import { motion, useMotionValue } from 'framer-motion';
 // component import
 import { Mountain } from '@/component/section/intro/Mountain';
 import { Button } from '@/component/common/Button';
 
-import { motion, useMotionValue } from 'framer-motion';
-import { useEffect } from 'react';
 
 const Intro = () => {
   const { handleMove } = useMoveToSection();
