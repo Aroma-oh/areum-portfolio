@@ -1,43 +1,53 @@
+// styled, framer import 
 import styled from '@emotion/styled';
-import { PROFILE } from '@/constants/profile';
 import { motion } from 'framer-motion';
+// custom hook import
+import { useMoveToSection } from '@/hooks/useMoveToSection';
+// component import
+import { SubButton } from '@/component/common/SubButton';
+// constant data import
+import { PROFILE } from '@/constants/profile';
+
 
 const Profile = () => {
+  const { handleMove } = useMoveToSection();
 
   return (
-
     <ProfileBox id='about'>
-      <ul>
-        <li>
-          <span className='underline'><span className='strong'>문제</span>에서 기회를 포착</span>하고, <br /><span className='strong'>해결</span>을 통한 <span className='strong'>성취감</span>을 좋아합니다.</li>
-        <li>
-          일상에서 마주한 불편함으로, <br /> 더 나은 <span className='underline'><span className='strong'>사용자 경험</span>에 대해 고민</span>합니다. </li>
-      </ul>
-      <div className='card-container'>
-        {PROFILE.map(({ icon, type, content }, index) => (
-          <CardBox
-            key={type}
-            animate={{
-              opacity: 1,
-              scale: 1.2,
-            }}
-            transition={{
-              repeat: Infinity,
-              type: 'spring',
-              mass: 3,
-              delay: index * 0.2,
-            }}
-          >
-            <motion.div className='content-box'>
-              <div className='icon'>{icon}</div>
-              <div className='text-box'>
-                <p className='type'>{type}</p>
-                <p className='text'>{content}</p>
-              </div>
-            </motion.div>
-          </CardBox>
-        ))}
+      <div className='about-box'>
+        <ul>
+          <li>
+            <span className='underline'><span className='strong'>문제</span>에서 기회를 포착</span>하고, <br /><span className='strong'>해결</span>을 통한 <span className='strong'>성취감</span>을 좋아합니다.</li>
+          <li>
+            일상에서 마주한 불편함으로, <br /> 더 나은 <span className='underline'><span className='strong'>사용자 경험</span>에 대해 고민</span>합니다. </li>
+        </ul>
+        <div className='card-container'>
+          {PROFILE.map(({ icon, type, content }, index) => (
+            <CardBox
+              key={type}
+              animate={{
+                opacity: 1,
+                scale: 1.2,
+              }}
+              transition={{
+                repeat: Infinity,
+                type: 'spring',
+                mass: 3,
+                delay: index * 0.2,
+              }}
+            >
+              <motion.div className='content-box'>
+                <div className='icon'>{icon}</div>
+                <div className='text-box'>
+                  <p className='type'>{type}</p>
+                  <p className='text'>{content}</p>
+                </div>
+              </motion.div>
+            </CardBox>
+          ))}
+        </div>
       </div>
+      <SubButton onClick={() => handleMove('skill')} />
     </ProfileBox>
   )
 }
@@ -48,14 +58,21 @@ const ProfileBox = styled.section`
   margin: auto;
 
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-around;
 
+
+  .about-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7rem;
+  }
 
   ul {
     font-family: 'HakgyoansimWoojuR';
-
     display: flex;
     flex-direction: column;
     align-items: center;

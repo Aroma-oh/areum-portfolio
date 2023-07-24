@@ -1,16 +1,20 @@
 // styled, react import 
 import styled from '@emotion/styled';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 // data import 
 import { FRONTEND, BACKEND, ETC } from '@/constants/skills';
 // component import 
 import { ProgressCircle } from '@/component/section/skill/ProgressCircle';
+import { SubButton } from '@/component/common/SubButton';
+// custom hook import
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 // type import 
 import { SkillSet, OpenModalDataProps, ProgressCircleProps, CircleAnimationProps } from '@/types/skills';
 // observer library import 
 import { useInView } from 'react-intersection-observer';
 
 const Skill = () => {
+  const { handleMove } = useMoveToSection();
 
   // 상태 관리
   const [openStack, setOpenStack] = useState({
@@ -96,6 +100,7 @@ const Skill = () => {
             </div>
           ))}
         </ProgressCircleBox>
+
         {/* 반응형을 위한 Card: 900px 미만 */}
         <StackCardBox>
           {skills.map((skill, index) => (
@@ -107,6 +112,10 @@ const Skill = () => {
             </div>
           ))}
         </StackCardBox>
+
+        <div className='button'>
+          <SubButton onClick={() => handleMove('project')} />
+        </div>
       </div>
     </SkillBox>
   )
@@ -117,7 +126,13 @@ const SkillBox = styled.section`
   position: relative;
 
   width: 100%;
-  min-height: calc(100vh - 84px);
+  min-height: 100vh;
+
+  .skill-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 const Card = styled.div`
@@ -132,11 +147,10 @@ const Card = styled.div`
 
 const ProgressCircleBox = styled.div<ProgressCircleProps>`
   position: relative;
-
   margin: auto;
 
   width: 70vw;
-  height: 100vh;
+  height: 86vh;
   transition: 1.2s;
 
   font-family: 'SUIT-Regular';
@@ -221,6 +235,11 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
 
     cursor: pointer;
   }
+
+  /* .button {
+    position: absolute;
+    bottom: -10vh;
+  } */
 
   @media (max-width: 900px) {
     display: none
