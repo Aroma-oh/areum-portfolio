@@ -1,6 +1,7 @@
 // styled, react import 
 import styled from '@emotion/styled';
 import { useState, useRef, MouseEvent } from 'react';
+// library import 
 import ReactLoading from 'react-loading';
 // custom hook import
 import { useMoveToSection } from '@/hooks/useMoveToSection';
@@ -90,8 +91,7 @@ const Project = () => {
               handleDetailOpen(index);
               handleMove('detail');
             }}>
-            {index === 1 ? <p className='text'>클릭하면 프로젝트를 자세히 볼 수 있어요!</p> : <p className='text'>&nbsp;</p>}
-
+            {index === 1 ? <p className='text'><span className='strong'>클릭</span>하면 프로젝트를 자세히 볼 수 있어요!</p> : <p className='text'>&nbsp;</p>}
             <Card key={index} boxData={boxData}>
               <Light boxData={boxData} />
               <Image
@@ -114,6 +114,9 @@ const Project = () => {
           </CardBox>
         ))}
       </Frame>
+      <div className='button'>
+        <SubButton onClick={() => handleMove('contact')} />
+      </div>
       <Detail
         className={openDetail.isOpen ? 'open' : ''}
         project={data[0].project[openDetail.index]}
@@ -146,6 +149,10 @@ const ProjectBox = styled.section`
   align-items: center;
 
   background: linear-gradient(0deg, #ffffff 0%, #dfffd847 60%, #b5f1ccde 100%);
+
+  .button {
+    margin-top: -13vh;
+  }
 `
 
 const Frame = styled.div`
@@ -158,7 +165,6 @@ const Frame = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap-reverse;
 `;
 
 const CardBox = styled.div`
@@ -171,6 +177,25 @@ const CardBox = styled.div`
     font-size: 0.9rem;
     margin: -1rem 0 36px 0;
     color: #747474;
+    position: relative;
+  }
+  .strong {
+    font-size: 1.2rem;
+    /* 🤔 애니메이션 효과 적용 고민중
+    position: absolute;
+    animation: bounce 0.5s ease-in-out infinite;
+    margin-left: -36px;
+  }
+  @keyframes bounce {
+    0% {
+      transform: translate(0, -6px) ; 
+    }
+    50% {
+      transform: translate(0, -12px) ; 
+    }
+    100% {
+      transform: translate(0, -6px) ; 
+    } */
   }
 `
 
@@ -191,7 +216,6 @@ const Card = styled.div<CardProps>`
 
   font-family: 'SUIT-Regular';
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>👀</text></svg>") 16 0, auto;
-
 
   border-radius: 3%;
   background-color: white;
@@ -253,7 +277,6 @@ const Light = styled.div<CardProps>`
 
   background: ${({ boxData }) =>
     `radial-gradient(circle at ${boxData.left}px ${boxData.top}px, #00000010, #ffffff, #ffffff60)`};
-
 `;
 
 export default Project;
