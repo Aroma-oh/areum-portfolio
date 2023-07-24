@@ -2,7 +2,6 @@
 import styled from '@emotion/styled';
 import emailjs from '@emailjs/browser'
 // mui import
-import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 // react, custom hook, validation import
 import { useState, useRef, useEffect, FormEvent } from 'react'
@@ -44,7 +43,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    handleMove('Contact');
+    handleMove('contact');
 
     if (!emailValidation.test(form.email)) {
       return setIsValidEmail(false);
@@ -63,7 +62,7 @@ const Contact = () => {
       reset();
       const jsConfetti = new JSConfetti();
       jsConfetti.addConfetti({
-        emojis: ['🤍', '💙'],
+        emojis: ['🌱', '💌'],
         emojiSize: 50,
         confettiNumber: 100,
       });
@@ -116,13 +115,10 @@ const Contact = () => {
             />
           </div>
           <ButtonBox
-            variant="contained"
-            size='large'
-            sx={{ borderRadius: '21px' }}
             className='button'
             onClick={handleSubmit}
           > {isLoading
-            ? <ReactLoading type='spin' color='white' height='20px' width='20px' />
+            ? <ReactLoading type='spin' color='#5d5d5d' height='20px' width='20px' />
             : <div className='text'> send </div>
             }
           </ButtonBox>
@@ -131,14 +127,30 @@ const Contact = () => {
     </ContactBox>
   )
 }
+const ButtonBox = styled.button`
+  width: 100px;
+  height: 36px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0px 0px 15px rgba(149, 160, 165, 0.3);
+  background-color: transparent;
+
+  cursor: pointer;
+
+  .text {
+    margin: 0 0.5rem;
+    font-size: 1rem;
+    color: #5d5d5d;
+  }
+`
 const ContactBox = styled.section`
   padding: 0 2.5%;
-  height: 91vh ;
-  background:linear-gradient(-15deg, transparent 55%, #d5d5d52b 0) right, 
-        linear-gradient(15deg, transparent 55%, #d5d5d52b 0) left;
-  background-size: 50% 100%;
-  background-repeat:no-repeat;
+  height: 100vh ;
 
   display: flex;
   flex-direction: column;
@@ -147,6 +159,8 @@ const ContactBox = styled.section`
 
   position: relative;
 
+  font-family: 'SUIT-Regular';
+
   .alert {
     width: 50%;
     position: relative;
@@ -154,19 +168,19 @@ const ContactBox = styled.section`
   }
   @keyframes slideIn {
     0% {
-      transform: translateY(-100%);
+      transform: translateY(0vh);
       opacity: 0;
     }
     25% {
-    transform: translateY(50%);
+    transform: translateY(13vh);
     opacity: 1;
     }
     75% {
-    transform: translateY(50%);
+    transform: translateY(13vh);
     opacity: 1;
     }
     100% {
-      transform: translateY(-100%);
+      transform: translateY(0vh);
       opacity: 0;
     }
   }
@@ -179,6 +193,7 @@ const MailBox = styled.div`
   width: 50%;
   height: fit-content;
   padding-bottom: 1rem;
+  margin-top: 6vh;
 
   display: flex;
   flex-direction: column;
@@ -236,19 +251,6 @@ const MailBox = styled.div`
     .name, .email, .content, .info {
       width: 60vw;
     }
-  }
-`
-
-const ButtonBox = styled(Button)`
-  width: 100px;
-  height: 36px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .text {
-    margin: 0 0.5rem;
   }
 `
 
