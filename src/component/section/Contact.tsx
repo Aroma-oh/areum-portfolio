@@ -1,16 +1,18 @@
-// styled, emailjs library import 
+// styled, react library import 
 import styled from '@emotion/styled';
-import emailjs from '@emailjs/browser'
+import { useState, useRef, useEffect, FormEvent } from 'react';
+// custom hook, custom validation import
+import { useInput } from '@/hooks/useInput';
+import { useMoveToSection } from '@/hooks/useMoveToSection';
+import { emailValidation } from '@/util/validation';
 // mui import
 import Alert from '@mui/material/Alert';
-// react, custom hook, validation import
-import { useState, useRef, useEffect, FormEvent } from 'react'
-import { useInput } from '@/hooks/useInput'
-import { useMoveToSection } from '@/hooks/useMoveToSection';
-import { emailValidation } from '@/util/validation'
-// confetti, loading library import
-import JSConfetti from 'js-confetti'
+// library import
+import JSConfetti from 'js-confetti';
 import ReactLoading from 'react-loading';
+import emailjs from '@emailjs/browser';
+// component import
+import { SubButton } from '@/component/common/SubButton';
 
 
 const Contact = () => {
@@ -124,42 +126,28 @@ const Contact = () => {
           </ButtonBox>
         </form>
       </MailBox>
+      <div className='scroll-button'>
+        <SubButton rotate={270} onClick={() => handleMove('intro')} />
+      </div>
     </ContactBox>
   )
 }
-const ButtonBox = styled.button`
-  width: 100px;
-  height: 36px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border: none;
-  border-radius: 18px;
-  box-shadow: 0px 0px 15px rgba(149, 160, 165, 0.3);
-  background-color: transparent;
-
-  cursor: pointer;
-
-  .text {
-    margin: 0 0.5rem;
-    font-size: 1rem;
-    color: #5d5d5d;
-  }
-`
 const ContactBox = styled.section`
   padding: 0 2.5%;
   height: 100vh ;
 
   display: flex;
   flex-direction: column;
-  justify-content: start;
   align-items: center;
-
   position: relative;
 
   font-family: 'SUIT-Regular';
+
+  .scroll-button {
+    position: absolute;
+    bottom: 5vh;
+  }
 
   .alert {
     width: 50%;
@@ -185,7 +173,6 @@ const ContactBox = styled.section`
     }
   }
 `;
-
 
 const MailBox = styled.div`
   position: absolute;
@@ -251,6 +238,28 @@ const MailBox = styled.div`
     .name, .email, .content, .info {
       width: 60vw;
     }
+  }
+`
+
+const ButtonBox = styled.button`
+  width: 100px;
+  height: 36px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0px 0px 15px rgba(149, 160, 165, 0.3);
+  background-color: transparent;
+
+  cursor: pointer;
+
+  .text {
+    margin: 0 0.5rem;
+    font-size: 1rem;
+    color: #5d5d5d;
   }
 `
 
