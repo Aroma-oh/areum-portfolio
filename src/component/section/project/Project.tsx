@@ -2,16 +2,21 @@
 import styled from '@emotion/styled';
 import { useState, useRef, MouseEvent } from 'react';
 import ReactLoading from 'react-loading';
+// custom hook import
+import { useMoveToSection } from '@/hooks/useMoveToSection';
 // react-query import
 import { useQuery } from 'react-query';
 // next import
 import Image from 'next/legacy/image';
 // firebase, type import 
 import { getDbAllData } from '@/util/firebase';
-import { ProjectType } from '@/types/project'
+import { ProjectType } from '@/types/project';
+// component import 
+import { Detail } from '@/component/section/project/Detail';
 
 const Project = () => {
   // 상태 관리
+  const [openDetailIndex, setOpenDetailIndex] = useState(0);
   const [isMouseEnter, setIseMouseEnter] = useState(false);
   const [boxData, setBoxData] = useState({
     left: 0,
@@ -20,6 +25,8 @@ const Project = () => {
     centerY: 0,
     d: 0,
   });
+
+  const { handleMove } = useMoveToSection();
 
   // 데이터 관리를 위한 코드
   const { data, isError } = useQuery<ProjectType[]>('project', () => getDbAllData<ProjectType>('project'));
@@ -57,6 +64,10 @@ const Project = () => {
     });
   };
 
+  const handleDetailOpen = (index: number) => {
+    setOpenDetailIndex(index);
+  };
+
   if (isError || !data) return (
     <LoadingBox >
       <ReactLoading type='bubbles' color='#1876d1' height='10vh' width='10vw' />
@@ -68,7 +79,11 @@ const Project = () => {
     <ProjectBox id='project'>
       <Frame ref={rectRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onMouseMove={onMouseMove} >
         {data[0].project.map((el, index) => (
-          <CardBox>
+          <CardBox
+            onClick={() => {
+              handleDetailOpen(index);
+              handleMove('detail');
+            }}>
             {index === 1 ? <p className='text'>클릭하면 프로젝트를 자세히 볼 수 있어요!</p> : <p className='text'>&nbsp;</p>}
 
             <Card key={index} boxData={boxData}>
@@ -93,7 +108,8 @@ const Project = () => {
           </CardBox>
         ))}
       </Frame>
-    </ProjectBox>
+      <Detail project={data[0].project[openDetailIndex]} />
+    </ProjectBox >
   )
 }
 
