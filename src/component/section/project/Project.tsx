@@ -181,7 +181,6 @@ const CardBox = styled.div`
   }
   .strong {
     font-size: 1.2rem;
-    /* 🤔 애니메이션 효과 적용 고민중
     position: absolute;
     animation: bounce 0.5s ease-in-out infinite;
     margin-left: -36px;
@@ -195,7 +194,7 @@ const CardBox = styled.div`
     }
     100% {
       transform: translate(0, -6px) ; 
-    } */
+    }
   }
 `
 
