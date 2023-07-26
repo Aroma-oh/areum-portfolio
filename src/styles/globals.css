@@ -2,6 +2,7 @@
 @import url('./skills.css');
 @import url('./position.css');
 
+/* about font */
 @font-face {
   font-family: 'HakgyoansimWoojuR';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
@@ -9,6 +10,7 @@
   font-style: normal;
 }
 
+/* 기본 폰트(깔끔) */
 @font-face {
   font-family: 'SUIT-Regular';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
@@ -16,6 +18,7 @@
   font-style: normal;
 }
 
+/* intro font */
 @font-face {
   font-family: 'PyeongChangPeace-Bold';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
@@ -24,5 +27,5 @@
 }
 
 body {
-  font-family: 'serif', 'sans-serif', 'PyeongChangPeace-Bold', 'HakgyoansimWoojuR', 'SUIT-Regular', ;
+  font-family: 'serif', 'sans-serif', 'SUIT-Regular', 'PyeongChangPeace-Bold', 'HakgyoansimWoojuR';
 }
