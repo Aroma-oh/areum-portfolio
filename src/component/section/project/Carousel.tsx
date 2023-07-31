@@ -16,7 +16,7 @@ export const Carousel = ({ project }: Props) => {
     <CarouselBox id='view-project'>
       <p className='sub-text'>이미지에 마우스를 올리면 auto play를 멈출 수 있습니다.</p>
       <CarouselImg
-        interval={3000}
+        interval={4000}
         animation={"fade"}
         autoPlay={true}
         sx={{

@@ -60,13 +60,6 @@ const IntroBox = styled.section`
   font-size: 150px;
   font-weight: 900;
   letter-spacing: 0.8rem;
-
-  @media ((min-width: 600px) and (max-width: 900px)) {
-    font-size: 100px;
-  }
-  @media (max-width: 600px) {
-    font-size: 60px;
-  }
 `
 
 const ContentBox = styled.div`
