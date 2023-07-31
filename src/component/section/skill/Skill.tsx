@@ -101,18 +101,6 @@ const Skill = () => {
           ))}
         </ProgressCircleBox>
 
-        {/* 반응형을 위한 Card: 900px 미만 */}
-        <StackCardBox>
-          {skills.map((skill, index) => (
-            <div key={index} className='box'>
-              <h5> 🛠 {skill[0]} 🛠 </h5>
-              <StackCard >
-                <div className={skill[2]}></div>
-              </StackCard>
-            </div>
-          ))}
-        </StackCardBox>
-
         <div className='button'>
           <SubButton onClick={() => handleMove('project')} />
         </div>
@@ -235,15 +223,6 @@ const ProgressCircleBox = styled.div<ProgressCircleProps>`
 
     cursor: pointer;
   }
-
-  /* .button {
-    position: absolute;
-    bottom: -10vh;
-  } */
-
-  @media (max-width: 900px) {
-    display: none
-  }
 `
 
 const CircleAnimation = styled.div<CircleAnimationProps>`
@@ -257,39 +236,4 @@ const CircleAnimation = styled.div<CircleAnimationProps>`
     : `rotate(0deg) translate(0px) `};
 `
 
-const StackCardBox = styled.div`
-  position: relative;
-  width: 60vw;
-  height: fit-content;
-  margin: 4rem auto;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  h5 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  @media (min-width: 900px) {
-    display: none
-  }
-`
-
-const StackCard = styled.div`
-  margin: 1rem auto;
-  padding:  2rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
-
-`
 export default Skill;
