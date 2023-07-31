@@ -15,7 +15,7 @@ const Profile = () => {
   return (
     <ProfileBox id='about'>
       <div className='about-box'>
-        <ul>
+        <ul >
           <li>
             <span className='underline'><span className='strong'>문제</span>에서 기회를 포착</span>하고, <br /><span className='strong'>해결</span>을 통한 <span className='strong'>성취감</span>을 좋아합니다.</li>
           <li>
@@ -69,6 +69,24 @@ const ProfileBox = styled.section`
     justify-content: center;
     align-items: center;
     margin-top: 7rem;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      ul {
+        margin:  2rem 0;
+      }
+      li {
+        width: 80vw;
+        margin: auto;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+      .strong {
+        font-size: 1.3rem;
+      }
+    }
   }
 
   ul {
@@ -101,10 +119,6 @@ const ProfileBox = styled.section`
     justify-content: center;
     flex-direction: column;
   }
-  @media (max-width: 900px) {
-      flex-direction: column;
-      align-items: center;
-    }
 `
 
 const CardBox = styled(motion.div)`
