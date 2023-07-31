@@ -11,9 +11,6 @@ import Alert from '@mui/material/Alert';
 import JSConfetti from 'js-confetti';
 import ReactLoading from 'react-loading';
 import emailjs from '@emailjs/browser';
-// component import
-import { SubButton } from '@/component/common/SubButton';
-
 
 const Contact = () => {
 
@@ -126,9 +123,6 @@ const Contact = () => {
           </ButtonBox>
         </form>
       </MailBox>
-      {/* <div className='scroll-button'>
-        <SubButton rotate={270} onClick={() => handleMove('intro')} />
-      </div> */}
     </ContactBox>
   )
 }
@@ -231,13 +225,6 @@ const MailBox = styled.div`
   }
   .button {
     margin: 2rem 8rem;
-  }
-
-  @media(max-width: 600px) {
-    width: 80%;
-    .name, .email, .content, .info {
-      width: 60vw;
-    }
   }
 `
 
