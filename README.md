@@ -10,9 +10,22 @@
 - 간편한 컨택을 위해 이메일 기능을 추가하였습니다.
 
 ## Demo video
+### Ver.1
 | 스크롤 이동 | 애니메이션 효과 | 이메일 컨택 |
 |:-:|:-:| :-: |
 |![](https://velog.velcdn.com/images/on002way/post/8bc6e977-a081-49be-831b-d0dd8e919c8f/image.gif) |![](https://velog.velcdn.com/images/on002way/post/cfb8d0db-fceb-49d9-8114-d594173d18c5/image.gif) |![](https://velog.velcdn.com/images/on002way/post/275b066b-918a-4c7c-8b5c-9b83c1cad06a/image.gif)|
+### Ver.2
+|Main|About|
+|:---:|:---:|
+|![](https://velog.velcdn.com/images/on002way/post/52301ad7-39cb-493b-820b-1e6939fb13d5/image.gif)|![](https://velog.velcdn.com/images/on002way/post/c55c05ea-cdd8-4bcb-bae1-1ae1efab9608/image.gif)|
+| canvas 학습 후에 만들어본 효과입니다. </br> canvas animation으로 Hill을 만들었으며, mouse event로 text 효과를 주었습니다. |framer motion을 적용해보고 싶어 만들어본 효과입니다. </br> 다양한 속성들을 적용해보며 framer motion을 학습했습니다.|
+
+|Skill|Project|Contact|
+|:---:|:---:|:---:|
+|![](https://velog.velcdn.com/images/on002way/post/7ddab1a7-e196-45f9-b03e-9102a21d5c05/image.gif)|![](https://velog.velcdn.com/images/on002way/post/c39a7e11-1537-4c78-9b7b-c9a0411efc44/image.gif)|![](https://velog.velcdn.com/images/on002way/post/17e51a79-d56b-46ac-a5d1-464271707e64/image.gif)|
+| 옵저버를 이용하여 Skill 섹션이 관측될때마다 애니메이션이 발동되도록 하였습니다. |translate3d 속성을 이용하여 3D 카드 효과를 적용한 섹션입니다. |email.js를 이용하여 메일 전송이 가능하도록 구현한 섹션입니다. alert, loading, confetti 등을 이용하여 메일 전송 상태를 사용자에게 전달하여, UX를 향상시키고자 하였습니다. |
+
+
 
 ## Stack
 | Next.js | TypeScript | Recoil | React-query | Firebase | Styled-component | MUI |
