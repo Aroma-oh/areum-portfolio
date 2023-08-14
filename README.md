@@ -22,7 +22,6 @@
 | 옵저버를 이용하여 Skill 섹션이 관측될때마다 애니메이션이 발동되도록 하였습니다. |translate3d 속성을 이용하여 3D 카드 효과를 적용한 섹션입니다. |email.js를 이용하여 메일 전송이 가능하도록 구현한 섹션입니다. alert, loading, confetti 등을 이용하여 메일 전송 상태를 사용자에게 전달하여, UX를 향상시키고자 하였습니다. |
 
 
-
 ## Stack
 | Next.js | TypeScript | Recoil | React-query | Firebase | Styled-component | MUI |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
