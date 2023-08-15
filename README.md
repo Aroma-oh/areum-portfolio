@@ -18,7 +18,7 @@
 
 |Skill|Project|Contact|
 |:---:|:---:|:---:|
-|![](https://velog.velcdn.com/images/on002way/post/7ddab1a7-e196-45f9-b03e-9102a21d5c05/image.gif)|![](https://velog.velcdn.com/images/on002way/post/c39a7e11-1537-4c78-9b7b-c9a0411efc44/image.gif)|![](https://velog.velcdn.com/images/on002way/post/17e51a79-d56b-46ac-a5d1-464271707e64/image.gif)|
+|![](https://velog.velcdn.com/images/on002way/post/7ddab1a7-e196-45f9-b03e-9102a21d5c05/image.gif)|![](https://velog.velcdn.com/images/on002way/post/4630c24d-54b8-45d1-b1cd-6025814b1e9e/image.gif)|![](https://velog.velcdn.com/images/on002way/post/17e51a79-d56b-46ac-a5d1-464271707e64/image.gif)|
 | 옵저버를 이용하여 Skill 섹션이 관측될때마다 애니메이션이 발동되도록 하였습니다. |translate3d 속성을 이용하여 3D 카드 효과를 적용한 섹션입니다. |email.js를 이용하여 메일 전송이 가능하도록 구현한 섹션입니다. alert, loading, confetti 등을 이용하여 메일 전송 상태를 사용자에게 전달하여, UX를 향상시키고자 하였습니다. |
 
 
