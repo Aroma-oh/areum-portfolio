@@ -6,11 +6,11 @@
 - firebase를 이용하여 서버에서 데이터를 받아오도록 하였습니다. 
 
 ## Demo video
-### Ver.1
+### `Ver.1`
 | 스크롤 이동 | 애니메이션 효과 | 이메일 컨택 |
 |:-:|:-:| :-: |
 |![](https://velog.velcdn.com/images/on002way/post/8bc6e977-a081-49be-831b-d0dd8e919c8f/image.gif) |![](https://velog.velcdn.com/images/on002way/post/cfb8d0db-fceb-49d9-8114-d594173d18c5/image.gif) |![](https://velog.velcdn.com/images/on002way/post/275b066b-918a-4c7c-8b5c-9b83c1cad06a/image.gif)|
-### Ver.2
+### `Ver.2`
 |Main|About|
 |:---:|:---:|
 |![](https://velog.velcdn.com/images/on002way/post/52301ad7-39cb-493b-820b-1e6939fb13d5/image.gif)|![](https://velog.velcdn.com/images/on002way/post/c55c05ea-cdd8-4bcb-bae1-1ae1efab9608/image.gif)|
