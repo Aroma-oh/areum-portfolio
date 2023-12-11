@@ -11,12 +11,12 @@ export const PROFILE = [
   {
     icon: <FaPhoneAlt />,
     type: 'PHONE',
-    content: '010-7735-8373',
+    content: '-',
   },
   {
     icon: <MdMarkEmailUnread />,
     type: 'EMAIL',
-    content: 'on002way@gamil.com',
+    content: '-',
   },
   {
     icon: <FaSchool />,
